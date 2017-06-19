@@ -1,0 +1,34 @@
+{
+  "name": "justyeh",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "justyeh <justyeh@163.com>",
+  "private": true,
+  "scripts": {
+    "dev": "backpack dev",
+    "build": "nuxt build && backpack build",
+    "start": "cross-env NODE_ENV=production node build/main.js",
+    "precommit": "npm run lint",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "cross-env": "^5.0.0",
+    "express": "^4.15.3",
+    "mysql": "^2.13.0",
+    "nuxt": "^1.0.0-alpha.3",
+    "source-map-support": "^0.4.15"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "backpack-core": "^0.3.0",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-html": "^2.0.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
