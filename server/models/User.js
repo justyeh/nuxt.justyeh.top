@@ -21,7 +21,7 @@ User.prototype.one = (userID,callback) => {
             callback(true);
             return;
         }
-        callback(false, result);
+        callback(false, result[0]);
     });
 }
 

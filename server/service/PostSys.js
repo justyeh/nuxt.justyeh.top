@@ -12,7 +12,7 @@ let list = (callback) => {
 }
 
 let getPostById = (postID,callback) => {
-    post.one(userID,(err,result) => {
+    post.one(postID,(err,result) => {
         if(err){
             callback({code:404,msg:'no result'});
         }

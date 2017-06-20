@@ -1,5 +1,4 @@
-html, body
-{
+html, body{
   background-color: #fff;
   color: #000;
   letter-spacing: 0.5px;
@@ -8,15 +7,13 @@ html, body
   margin: 0;
 }
 
-footer
-{
+footer{
   padding: 20px;
   text-align: center;
   border-top: 1px solid #ddd;
 }
 
-a, a:hover, a:focus, a:visited
-{
+a, a:hover, a:focus, a:visited{
   color: #000;
 }
 
@@ -25,4 +22,18 @@ a, a:hover, a:focus, a:visited
   height: auto;
   max-width: 400px;
   max-height: 289px;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.detail {
+  background: #fff;
+	width: 1000px;
+	margin: 50px auto;
+	border-radius: 2px;
+	box-shadow: 1px 2px 8px rgba(0,0,0,0.36);
 }

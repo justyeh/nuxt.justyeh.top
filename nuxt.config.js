@@ -3,11 +3,11 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'starter',
+    title: '叶文祥的前端博客',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: '叶文祥的前端博客' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -35,5 +35,13 @@ module.exports = {
         })
       }
     }
+  },
+  /*
+  ** loading效果
+  */
+  loading: {
+    color: '#04acf7',
+    height: '4px',
+    failedColor: 'red'
   }
 }

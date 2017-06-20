@@ -3,7 +3,7 @@ let db = require('../db/DBUtil');
 let Post = function() {};
 
 Post.prototype.list = (callback) => {
-    let sql = "SELECT id,title FROM posts";
+    let sql = "SELECT id,title,image,meta_description,updated_at FROM posts";
     db.query(sql,[],(err,result) => {
         if (err) {
             return;
@@ -20,7 +20,7 @@ Post.prototype.one = (postID,callback) => {
             callback(true);
             return;
         }
-        callback(false, result);
+        callback(false, result[0]);
     });
 }
 

@@ -10,8 +10,8 @@ router.get('/user', function(req, res, next) {
   });
 });
 
-router.get('/user/:userID', function(req, res, next) {
-  let userID = req.params.userID;
+router.get('/user/:id', function(req, res, next) {
+  let userID = req.params.id;
   UserSys.getUserById(userID,function(data){
     res.json(data)
   });

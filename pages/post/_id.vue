@@ -1,14 +1,12 @@
 <template>
-  <section class="container">
-    <img src="../../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <h1 class="title">
-      Post
-    </h1>
-    <h2 class="info">
-      {{ post.title }}
-    </h2>
-    <div>{{post.html}}</div>
-    <pre><code>{{post.markdown}}</code></pre>
+  <section class="detail">
+    <div class="title">{{post.title}}</div>
+    <div class="info">
+      <p>{{post.updated_at}}</p>
+    </div>
+    <div class="conten">
+      {{post.markdown}}
+    </div>
   </section>
 </template>
 
@@ -19,35 +17,38 @@ export default {
   name: 'id',
   asyncData ({ params, error }) {
     return axios.get('/api/post/' + params.id).then((res) => {
-      console.log(res)
-      return { post: res.list }
-    }).catch((e) => {
-      console.log(e)
-      error({ statusCode: 404, message: 'Post not found' })
+      return { post: res.data.list }
+    }).catch((err) => {
+      error({ statusCode: 404, message: err.message })
     })
   },
   head () {
     return {
-      title: `Post: ${this.post.title}`
+      title: this.post.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.post.meta_description }
+      ]
     }
   }
 }
 </script>
 
 <style scoped>
-.title
-{
-  margin-top: 30px;
+.title {
+  padding: 20px;
+  font-size: 26px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.info
-{
-  font-weight: 300;
-  color: #9aabb1;
-  margin: 0;
-  margin-top: 10px;
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 20px 20px 0 20px;
 }
-.button
-{
-  margin-top: 30px;
+
+.conten {
+  padding: 20px;
+  line-height: 26px;
 }
 </style>

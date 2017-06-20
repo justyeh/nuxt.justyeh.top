@@ -10,13 +10,12 @@ router.get('/post', function(req, res, next) {
   });
 });
 
-router.get('/post/:postID', function(req, res, next) {
-
-  let postID = req.params.postID;
-  console.log(postID)
-  PostSys.getPostById(2,function(data){
+router.get('/post/:id', function(req, res, next) {
+  let postID = req.params.id;
+  PostSys.getPostById(postID,function(data){
     res.json(data)
   });
 });
+
 
 module.exports = router;

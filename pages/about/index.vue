@@ -1,12 +1,9 @@
 <template>
-  <section class="container">
-    <img src="../../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
+  <section class="wrap">
     <h1 class="title">
       关于Yeh
     </h1>
-    <nuxt-link class="button" to="/">
-      Home
-    </nuxt-link>
+    叶文祥
   </section>
 </template>
 
