@@ -12,7 +12,7 @@ node+express+mysqlvuejs+nuxtjs
 
 http://localhost:3000
 
-## 参考
+## 参考资料
 
 [Vue.js](https://cn.vuejs.org/)
 
