@@ -6,6 +6,8 @@ node+express+mysqlvuejs+nuxtjs
 
 ## 运行
 
+`npm install`
+
 `npm run dev`
 
 http://localhost:3000
