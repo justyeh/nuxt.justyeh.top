@@ -1,6 +1,6 @@
 # justyeh.com
 
-在线地址 [www.justyeh.com](www.justyeh.com)，刚刚部署好，只是为了让项目跑起来，估计有很多BUG！
+在线地址 [www.justyeh.com](http://www.justyeh.com)，刚刚部署好，只是为了让项目跑起来，估计有很多BUG！
 
 ## 技术
 
