@@ -18,11 +18,12 @@
 import axios from '~plugins/axios'
 
 export default {
-  async asyncData () {
-    let { data } = await axios.get('/api/post')
-    return {
-      posts: data.list
-    }
+  async asyncData ({error}) {
+    return axios.get('/api/post/').then((res) => {
+      return { posts: res.data.list }
+    }).catch((err) => {
+      error({ statusCode: 404, message: err.message })
+    })
   }
 }
 

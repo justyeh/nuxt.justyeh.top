@@ -5,6 +5,7 @@ let user = require('./user');
 let post = require('./post');
 
 router.get('/', function(req, res, next) {
+  console.log('/')
   res.json({ message: '欢迎使用justyeh的API服务！' });
 });
 
