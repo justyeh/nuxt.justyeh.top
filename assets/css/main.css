@@ -1,37 +1,66 @@
-html, body{
-  background-color: #fff;
-  color: #000;
-  letter-spacing: 0.5px;
-  font-family: "Source Sans Pro", Arial, sans-serif;
-  height: 100vh;
-  margin: 0;
+@charset "utf-8";
+/* reset*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,legend,input,textarea,p,blockquote,th,td,a,img,span {
+	margin:0;
+	padding:0;
 }
-
-footer{
-  padding: 20px;
-  text-align: center;
-  border-top: 1px solid #ddd;
+input,textarea,select {
+	font-family:inherit;
+	font-size:inherit;
+	*font-size: 100%;
+	font-weight:inherit;
+	outline:none;
 }
-
-a, a:hover, a:focus, a:visited{
-  color: #000;
+a, a:hover, a:focus, a:visited {
+	color: #000;
+	text-decoration: none;
 }
-
+a:focus,
+a:active,button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,select::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner {
+	border: 0;
+}
+input[type='button'],input[type='submit'] {
+	border:0;
+}
+ol,ul,li {
+	list-style-type:none;
+	list-style: none;
+}
+img {
+	vertical-align:middle;
+	border:0;
+}
+button,a {
+	cursor: pointer;
+	outline: none;
+}
+html,body {
+	height: 100%;
+}
+body{
+  font-size: 14px;
+}
+* {
+	box-sizing: border-box;
+}
+footer {
+	padding: 20px;
+	text-align: center;
+	border-top: 1px solid #ddd;
+}
 .logo {
-  width: 100%;
-  height: auto;
-  max-width: 400px;
-  max-height: 289px;
+	width: 100%;
+	height: auto;
+	max-width: 400px;
+	max-height: 289px;
 }
-
 .container {
-  width: 1000px;
-  margin: 0 auto;
-  padding: 50px 0;
+	width: 1000px;
+	margin: 0 auto;
+	padding: 50px 0;
 }
-
 .detail {
-  background: #fff;
+	background: #fff;
 	width: 1000px;
 	margin: 50px auto;
 	border-radius: 2px;

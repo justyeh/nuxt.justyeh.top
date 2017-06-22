@@ -11,8 +11,8 @@ router.get('/post', function(req, res, next) {
 });
 
 router.get('/post/:id', function(req, res, next) {
-  let postID = req.params.id;
-  PostSys.getPostById(postID,function(data){
+  let postId = req.params.id;
+  PostSys.getPostById(postId,function(data){
     res.json(data)
   });
 });
