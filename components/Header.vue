@@ -1,5 +1,6 @@
 <template>
   <header>
+    <div class="warming">本网站正在调试中，可能包含大量BUG，请见谅！</div>
     <div class="site">
       <img src="../assets/img/head.jpg" />
       <p>JustYeh的前端博客</p>
@@ -28,7 +29,18 @@ header {
   position: relative;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-
+.warming{
+  background: #CC9966;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 header .site {
   font-size: 56px;
   color: rgba(250, 250, 250, 0.85);
