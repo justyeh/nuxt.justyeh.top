@@ -2,17 +2,22 @@
     <div class="markdown">
         <div class="preview" @click="preview = !preview">{{preview ? '编辑' : '预览'}}</div>
         <textarea placeholder="正文" v-model="markdown">{{markdown}}</textarea>
-        <vue-markdown class="yeh-markdown-theme" :source="markdown" v-show="preview"></vue-markdown>
+        <vue-markdown class="md-theme" :source="markdown" v-show="preview"></vue-markdown>
     </div>
 </template>
 
 <script>
 import VueMarkdown from 'vue-markdown'
 
+import hljs from 'highlight'
+
 export default {
     props: ['markdown'],
     components:{
         VueMarkdown
+    },
+    mounted(){
+        //hljs.highlightBlock(block);
     },
     data() {
         return {
@@ -21,8 +26,8 @@ export default {
     }
 }
 </script>
-
 <style scoped>
+
 .markdown {
     position: relative;
     height: 500px;
@@ -58,7 +63,7 @@ export default {
     border-color: rgb(51, 204, 250);
 }
 
-.markdown .yeh-markdown-theme {
+.markdown .md-theme {
     position: absolute;
     top: 0;
     right: 0;
@@ -68,6 +73,7 @@ export default {
     overflow-y: auto;
     background: #eee;
     transition: width ease cubic-bezier(0.075, 0.82, 0.165, 1);
+    padding:10px 20px;
 }
 
 .markdown>div.show {

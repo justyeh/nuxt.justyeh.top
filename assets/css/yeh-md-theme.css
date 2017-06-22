@@ -1,0 +1,174 @@
+.md-theme {
+	color: #222;
+	word-wrap: break-word;
+	font-size: 16px;
+    line-height: 1.4;
+}
+.md-theme a {
+	color: #3084bb;
+}
+.md-theme a:hover{
+    text-decoration: underline;
+}
+.md-theme img {
+	max-width: 100%
+}
+.md-theme *:first-child {
+	margin-top: 0
+}
+.md-theme code {
+	font-family: "Menlo", "Liberation Mono", "Consolas", "DejaVu Sans Mono", "Ubuntu Mono", "Courier New", "andale mono", "lucida console", monospace;
+	white-space: pre;
+	word-wrap: normal;
+	line-height: 1.3;
+}
+.md-theme kbd {
+	display: inline-block;
+	padding: 3px 5px;
+	font-size: 11px;
+	line-height: 10px;
+	color: #555;
+	vertical-align: middle;
+	background-color: #FCFCFC;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #CCC #CCC #BBB;
+	border-image: none;
+	border-radius: 3px;
+	box-shadow: 0px -1px 0px #BBB inset
+}
+.md-theme h1 {
+	font-size: 1.3em;
+	font-weight: 600;
+	margin: 24px 0 12px 0;
+	padding: 0 0 10px 0;
+	border-bottom: 1px solid #e7e9ed;
+	color: #313236
+}
+.md-theme h2 {
+	font-size: 1.2em;
+	font-weight: 600;
+	margin: 24px 0 12px 0;
+	color: #313236
+}
+.md-theme h3 {
+	margin: 24px 0 12px 0;
+	font-size: 1.15em
+}
+.md-theme h4 {
+	margin: 24px 0 12px 0;
+	font-size: 1.1em
+}
+.md-theme h5 {
+	margin: 24px 0 12px 0;
+	font-size: 1em
+}
+.md-theme h6 {
+	margin: 24px 0 12px 0;
+	font-size: 0.90em
+}
+.md-theme h1, .md-theme h2, .md-theme h3, .md-theme h4, .md-theme h5, .md-theme h6 {
+	position: relative
+}
+.md-theme blockquote {
+	color: #7f8fa4;
+	font-size: inherit;
+	padding: 8px 21px;
+	margin: 12px 0 12px;
+	border-left: 3px solid #e7e9ed
+}
+.md-theme blockquote p {
+	color: #7f8fa4 !important;
+	font-size: inherit;
+	line-height: 1.5
+}
+.md-theme p {
+	color: #5c5d5e;
+	margin: 6px 0 0 0
+}
+.md-theme table {
+	margin: 12px 0 12px 0;
+	color: #5c5d5e
+}
+.md-theme table th {
+	background: #f8fafc
+}
+.md-theme pre {
+	margin: 12px 0 12px 0 !important;
+	background-color: #002b36;
+	font-size: 13px !important;
+	color: #93a1a1;
+	line-height: 1.6em !important;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	padding: 10px;
+	overflow-x: auto;
+}
+.md-theme p>code {
+	font-weight: inherit;
+	border: solid 1px #bbb;
+	padding: 0 5px;
+	background: #FCFCFC;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.md-theme ul, .md-theme ol {
+	padding: 0;
+	margin: 6px 0 6px 18px !important
+}
+.md-theme li {
+	line-height: 1.6em;
+	list-style: disc;
+}
+.md-theme hr {
+	height:1px;
+	border:none;
+	border-top:1px dashed #222;
+}
+.md-theme table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 21px;
+	border: 1px solid #f0f0f0;
+}
+.md-theme table>thead>tr>th,
+.md-theme table>thead>tr>td,
+.md-theme table>tbody>tr>th,
+.md-theme table>tbody>tr>td,
+.md-theme table>tfoot>tr>th,
+.md-theme table>tfoot>tr>td {
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: top;
+	border-top: 1px solid #f0f0f0
+}
+.md-theme table>thead>tr>th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #f0f0f0
+}
+.md-theme table>caption+thead>tr:first-child>th,
+.md-theme table>caption+thead>tr:first-child>td,
+.md-theme table>colgroup+thead>tr:first-child>th,
+.md-theme table>colgroup+thead>tr:first-child>td,
+.md-theme table>thead:first-child>tr:first-child>th,
+.md-theme table>thead:first-child>tr:first-child>td {
+	border-top: 0
+}
+.md-theme table>tbody+tbody {
+	border-top: 2px solid #f0f0f0
+}
+.md-theme table>thead>tr>th,
+.md-theme table>thead>tr>td,
+.md-theme table>tbody>tr>th,
+.md-theme table>tbody>tr>td,
+.md-theme table>tfoot>tr>th,
+.md-theme table>tfoot>tr>td {
+	border: 1px solid #f0f0f0
+}
+.md-theme table>thead>tr>th,
+.md-theme table>thead>tr>td {
+	border-bottom-width: 2px
+}
