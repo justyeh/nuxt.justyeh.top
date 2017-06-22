@@ -15,7 +15,6 @@ User.prototype.list = (callback) => {
 
 User.prototype.one = (userID,callback) => {
     let sql = "SELECT * FROM users where id = ?";
-    //连接池
     db.query(sql,[userID],(err,result) => {
         if (err) {
             callback(true);

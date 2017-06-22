@@ -24,7 +24,6 @@ export default class Post {
 
     one(callback){
         let sql = "SELECT * FROM posts where id = ?";
-        //连接池
         db.query(sql,[this.id],(err,result) => {
             if (err) {
                 return;
