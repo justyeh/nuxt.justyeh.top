@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="warming">本网站正在调试中，可能包含大量BUG，请见谅！</div>
+    <div class="warming">本网站正在调试中，可能包含许多BUG，请见谅！</div>
     <div class="site">
       <img src="../assets/img/head.jpg" />
       <p>JustYeh的前端博客</p>
