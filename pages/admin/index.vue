@@ -42,7 +42,6 @@ import TagInput from '../../components/TagInput'
 import ImageUpload from '../../components/ImageUpload'
 import YehMarkdown from '../../components/YehMarkdown'
 
-
 export default {
     layout: 'admin',
     async asyncData({ error }) {
