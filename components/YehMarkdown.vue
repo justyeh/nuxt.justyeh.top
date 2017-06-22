@@ -1,6 +1,6 @@
 <template>
     <div class="markdown">
-        <div class="preview" @click="preview = !preview">{{preview ? '预览' : '编辑'}}</div>
+        <div class="preview" @click="preview = !preview">{{preview ? '编辑' : '预览'}}</div>
         <textarea placeholder="正文" v-model="markdown">{{markdown}}</textarea>
         <vue-markdown class="yeh-markdown-theme" :source="markdown" v-show="preview"></vue-markdown>
     </div>
@@ -33,8 +33,8 @@ export default {
     width: 40px;
     height: 30px;
     line-height: 30px;
-    box-shadow: 0 0 5px rgba(100, 100, 100, 0.4);
-    background: rgba(100, 100, 100, 0.2);
+    box-shadow: 0 0 3px rgba(100, 100, 100, 0.4);
+    background: #e2e2e2;
     position: absolute;
     top: 20px;
     right: 20px;
