@@ -8,8 +8,9 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
-
-import hljs from 'highlight'
+import '../assets/css/yeh-md-theme.css'
+import '../assets/css/ocean.min.css'
+import hljs from 'highlight.js'
 
 export default {
     props: ['markdown'],
@@ -18,6 +19,7 @@ export default {
     },
     mounted(){
         //hljs.highlightBlock(block);
+        console.log(hljs)
     },
     data() {
         return {
@@ -71,7 +73,7 @@ export default {
     width: 100%;
     z-index: 99;
     overflow-y: auto;
-    background: #eee;
+    background: #f2f2f2;
     transition: width ease cubic-bezier(0.075, 0.82, 0.165, 1);
     padding:10px 20px;
 }

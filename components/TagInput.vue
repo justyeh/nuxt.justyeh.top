@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="tags">
-            <label v-for="tag in tags">{{tag}}</label>
+            <label class="btn btn-small btn-default" v-for="tag in tags">{{tag}}</label>
         </div>
         <input type="text" @keyup.enter.stop.prevent="handleEnter" v-model="tag">
     </div>
@@ -38,25 +38,17 @@
     display: flex;
 }
 label{
-    display: inline-block;
     height: 26px;
     line-height: 26px;
     padding: 0 10px;
-    background: rgba(100, 100, 100, 0.12);
-    border-radius: 2px;
-    color: rgba(0, 0, 0, .54);
     margin: 5px 10px 5px 0;
 }
 input {
     height: 36px;
     border: 1px solid #ccc;
     width: 100%;
-}
-
-input {
     text-indent: 15px;
 }
-
 input:focus {
     border-color: rgb(51, 204, 250);
 }
