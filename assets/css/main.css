@@ -12,7 +12,6 @@ input,textarea,select {
 	outline:none;
 }
 a, a:hover, a:focus, a:visited {
-	color: #000;
 	text-decoration: none;
 }
 a:focus,
@@ -65,4 +64,46 @@ footer {
 	margin: 50px auto;
 	border-radius: 2px;
 	box-shadow: 1px 2px 8px rgba(0,0,0,0.36);
+}
+
+.text-center{
+	text-align: center;
+}
+
+
+.btn{
+	display:inline-block;
+	border:none;
+	color:#fff;
+	padding:8px 14px;
+	border-radius:3px;
+	transition: background-color ease 0.2s; 
+}
+.btn-small{
+	padding:3px 6px;
+	border-radius:2px;
+}
+.btn-large{
+	padding:10px 20xp;
+	font-size: 16px;
+	border-radius:4px;
+}
+.btn-default{
+	background:rgb(235,235,235);
+	color:rgb(60,60,60);
+}
+.btn-default:hover{
+	background:rgb(220,220,220);
+}
+.btn-main{
+	background: rgb(51, 204, 250);
+}
+.btn-main:hover{
+	background: rgb(31, 184, 230);
+}
+.btn-danger{
+	background: rgb(255, 64, 129);
+}
+.btn-danger:hover{
+	background: rgb(245, 54, 119);
 }
