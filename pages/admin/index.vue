@@ -27,7 +27,7 @@
             </form-group>
             <form-group>
                 <template slot="label">正文</template>
-                <yeh-markdown slot="input" class="yeh-markdown-theme" :markdown="post.markdown"></yeh-markdown>
+                <markdown-editor slot="input" class="yeh-markdown-theme" :markdown="post.markdown"></markdown-editor>
             </form-group>
             <form-group>
                 <template slot="label">标签</template>
@@ -46,7 +46,7 @@ import axios from '~plugins/axios'
 import FormGroup from '../../components/FormGroup'
 import TagInput from '../../components/TagInput'
 import ImageUpload from '../../components/ImageUpload'
-import YehMarkdown from '../../components/YehMarkdown'
+import MarkdownEditor from '../../components/MarkdownEditor'
 
 export default {
     layout: 'admin',
@@ -74,7 +74,7 @@ export default {
     components:{
         FormGroup,
         TagInput,
-        YehMarkdown,
+        MarkdownEditor,
         ImageUpload
     },
     methods:{

@@ -1,11 +1,13 @@
 <template>
   <section class="detail">
+    <div :class="{poster:post.image == '' ? false : true}" :style="{backgroundImage:'url('+post.image+')'}">
+    </div>
     <div class="title">{{post.title}}</div>
     <div class="info">
       <p>{{post.updated_at}}</p>
     </div>
     <div class="conten">
-      {{post.markdown}}
+      <div v-html="post.html" class="md-theme"></div>
     </div>
   </section>
 </template>
@@ -13,11 +15,33 @@
 <script>
 import axios from '~plugins/axios'
 
+import hljs from 'highlight.js'
+import '../../assets/css/yeh-md-theme.css'
+import '../../assets/css/ocean.min.css'
+
+let marked = require('marked');
+
+marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    highlight: function (code) {
+      return hljs.highlightAuto(code).value;
+  }
+});
+
 export default {
   name: 'id',
   asyncData ({ params, error }) {
     return axios.get('/api/post/' + params.id).then((res) => {
-      return { post: res.data.list }
+      var post = res.data.list[0];
+      post.html = marked(post.markdown);
+      return { post}
     }).catch((err) => {
       error({ statusCode: 404, message: err.message })
     })
@@ -34,10 +58,18 @@ export default {
 </script>
 
 <style scoped>
+section{
+  border-radius:5px;
+  overflow:hidden;
+}
+.poster{
+  height:360px;
+  background: no-repeat center / cover;
+}
 .title {
   padding: 20px;
-  font-size: 26px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 30px;
+  text-align:center;
 }
 
 .info {

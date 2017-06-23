@@ -25,9 +25,9 @@ router.post('/post/update', function (req, res, next) {
   try {
     PostSys.updatePost(req.body.post, function (data) {
       res.json(data)
+      return
     });
   } catch (error) {
-    console.log(error)
     res.json({ code: 500, message: '程序发生错误！' })
   }
 });

@@ -10,11 +10,11 @@ let query = function(sql,params,callback){
             return;
         }
         //链接
-        connection.query(sql,[params], (err,result) => {
-             //释放链接
+        connection.query(sql,params, (err,result) => {
+            //释放链接
             connection.release();
-
             if(err){
+                console.error('db error:' + err)
                 callback(true);
                 return;
             }
