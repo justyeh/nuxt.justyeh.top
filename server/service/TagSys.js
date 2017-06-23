@@ -11,7 +11,7 @@ let list = (callback) => {
     });
 }
 
-let gettagById = (tagId,callback) => {
+let geTagById = (tagId,callback) => {
     tag.one(tagId,(err,result) => {
         if(err){
             callback({code:404,message:'no result'});
@@ -21,4 +21,4 @@ let gettagById = (tagId,callback) => {
 }
 
 module.exports.list = list;
-module.exports.gettagById = gettagById;
+module.exports.gettagById = geTagById;

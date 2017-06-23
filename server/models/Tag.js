@@ -41,8 +41,8 @@ class Tag {
     }
 
     update(callback) {
-        let sql = "UPDATE tags SET (NULL,?,?,?,?)";
-        db.query(sql, [postID], (err, result) => {
+        let sql = "UPDATE tags SET (NULL,?,?,?,?) WHERE id = ?";
+        db.query(sql, [tag], (err, result) => {
             if (err) {
                 callback(true);
                 return;

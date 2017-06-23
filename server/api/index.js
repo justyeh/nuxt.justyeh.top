@@ -16,6 +16,7 @@ router.get('/user/:id', user);
 
 router.get('/post', post);
 router.get('/post/:id', post);
+router.post('/post/update', post);
 
 router.get('/tag', tag);
 router.get('/tag/:id', tag);
