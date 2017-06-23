@@ -2,10 +2,10 @@
     <div class="admin-main">
         <div class="article-list">
             <article v-for="(post, index) in posts">
-                <a href="javascript:;" @click="updatePost(index)">{{ post.title }}</a>
+                <a href="javascript:;" @click="setPost(post.id)">{{ post.title }}</a>
                 <div class="handle">
-                    <nuxt-link class="del" :to="'/post/update/'+post.id">删除</nuxt-link>
-                    <nuxt-link target="_blank" class="view" :to="'/post/'+post.id">查看</nuxt-link>
+                    <nuxt-link class="btn btn-small btn-danger" :to="'/post/update/'+post.id">删除</nuxt-link>
+                    <nuxt-link target="_blank" class="btn btn-small btn-main" :to="'/post/'+post.id">查看</nuxt-link>
                 </div>
             </article>
         </div>
@@ -16,11 +16,14 @@
             </form-group>
             <form-group>
                 <template slot="label">海报</template>
-                <image-upload slot="input" :iamge="post.images" v-on:uploadImage="uploadImage"></image-upload>
+                <div slot="input">
+                     <input type="text" v-model="post.image">
+                    <image-upload :image="post.image" v-on:uploadImage="uploadImage"></image-upload>
+                </div>
             </form-group>
             <form-group>
                 <template slot="label">seo描述</template>
-                <input type="text" slot="input" placeholder="标题" v-model="post.meta_description">
+                <textarea type="text" slot="input" placeholder="标题" v-model="post.meta_description"></textarea>
             </form-group>
             <form-group>
                 <template slot="label">正文</template>
@@ -30,6 +33,9 @@
                 <template slot="label">标签</template>
                 <tag-input slot="input" :tags="tags" v-on:addTag="addTag"></tag-input>
             </form-group>
+            <div class="handle">
+                <button class="btn btn-large btn-main" @click="updatePost">提交</button>
+            </div>
         </div>
     </div>
 </template>
@@ -60,7 +66,6 @@ export default {
                 markdown:'',
             },
             tags:['js','css'],
-            index:0
         }
     },
     created(){
@@ -76,24 +81,32 @@ export default {
         addTag(tag){
             this.tags.push(tag);
             axios.get('api/tag/add/'+tag).then((res) => {
-               this.tags.push(tag);
+               this.tags.push(tag)
             }).catch((error) => {
-                alert(error.message)
+                alert(error)
             });
         },
         uploadImage(image){
-            axios.post('/upload/image', {
+            axios.post('/api/upload/image', {
                 image: image
             }).then((res) => {
-                this.post.images = res.data.images;
-            }).catch(function (error) {
+                this.post.images = res.data.images
+            }).catch((err) => {
                 alert(err)
             });
         },
         setPost(postId){
             axios.get('/api/post/'+postId).then((res) => {
-                 console.log('line98:' + this.index++)
-                this.post = res.data.list[0];
+                this.post = res.data.list[0]
+            }).catch((err) => {
+                alert(err)
+            });
+        },
+        updatePost(){
+            axios.post('/api/post/update', {
+                post:this.post
+            }).then((res) => {
+                alert(res.data.message)
             }).catch((err) => {
                 alert(err)
             });
@@ -146,26 +159,15 @@ article{
 }
 article a{
     margin-bottom: 10px;
+    color:#333;
+    font-size:16px;
 }
 article .handle {
-    display: flex;
-    justify-content: flex-end;
+    text-align:right;
     padding-top: 10px;
 }
 article .handle a{
    margin: 0 5px;
-   display: inline-block;
-   padding: 3px 6px;
-   color: #fff;
-   background: rgb(38, 50, 56);
-   border-radius: 3px;
-   font-size: 14px;
-}
-article .handle a.del{
-    background: rgb(255, 64, 129);
-}
-article .handle a.view{
-    background: rgb(51, 204, 250);
 }
 .post{
     position: absolute;
@@ -174,7 +176,9 @@ article .handle a.view{
     left: 360px;
     bottom: 0;
     padding: 20px;
-     overflow-y: auto;
+    overflow-y: auto;
 }
-
+.post .handle{
+    padding: 20px 0 0 100px;
+}
 </style>

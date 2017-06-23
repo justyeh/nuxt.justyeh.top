@@ -13,32 +13,25 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Global CSS
-  */
-  css: ['~assets/css/main.css','~assets/css/yeh-md-theme.css'],
-  /*
-  ** Add axios globally
-  */
+  // Global CSS
+  css: ['~assets/css/main.css'],
+
   build: {
+    //Add axios globally
     vendor: ['axios'],
-    /*
-    ** Run ESLINT on save
-    */
-    extend (config, ctx) {
-      if (ctx.isClient) {
-        /*config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })*/
-      }
-    }
+    // Run ESLINT on save
+    /*extend (config, ctx) {
+       if (ctx.isClient) {
+         config.module.rules.push({
+           enforce: 'pre',
+           test: /\.(js|vue)$/,
+           loader: 'eslint-loader',
+           exclude: /(node_modules)/
+         })
+       }
+     }*/
   },
-  /*
-  ** loading效果
-  */
+  // loading效果
   loading: {
     color: '#04acf7',
     height: '4px',

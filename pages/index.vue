@@ -6,9 +6,7 @@
       </div>
       <div class="desc">{{post.desc}}</div>
       <div class="tags">
-        <a href="">js</a>
-        <a href="">css</a>
-        <a href="">requirejs</a>
+        <a class="btn btn-small btn-default" href="">js</a>
       </div>
     </article>
   </div>
@@ -53,22 +51,14 @@ article .poster a {
 article .desc {
   padding: 20px;
 }
-
 article .tags {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   padding: 0 0 0 20px;
 }
-
 article .tags a {
-  padding: 5px 10px;
-  background: rgba(100, 100, 100, 0.12);
-  border-radius: 2px;
-  color: rgba(0, 0, 0, .54);
   margin: 20px 10px 20px 0;
+  padding:3px 10px;
 }
 
-article .tags a:hover {
-  background: rgba(100, 100, 100, 0.2);
-}
 </style>
