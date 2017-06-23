@@ -1,11 +1,12 @@
 import Nuxt from 'nuxt'
 import express from 'express'
-
-//import api from './api'
+import bodyParser from 'body-parser'
 
 let api = require('./api/index');
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
