@@ -2,9 +2,19 @@ let db = require('../db/DBUtil');
 
 export default class Post {
 
-    list(callback){
-        let sql = 'SELECT id,title,image,meta_description,updated_at FROM posts';
+    all(callback){
+        let sql = 'SELECT id,title,image,meta_description,updated_at,status FROM posts ORDER BY id DESC';
         db.query(sql,[],(err,result) => {
+            if (err) {
+                return;
+            }
+            callback(false, result);
+        });
+    }
+
+    published(callback){
+        let sql = 'SELECT id,title,image,meta_description,updated_at FROM posts WHERE status = ? ORDER BY id DESC';
+        db.query(sql,['published'],(err,result) => {
             if (err) {
                 return;
             }
@@ -23,6 +33,7 @@ export default class Post {
     }
 
     update(post,callback){
+        post.updated_at = new Date().getTime();
         let fields = [],
             params = [];
         for (var field in post) {

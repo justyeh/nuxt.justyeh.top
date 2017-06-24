@@ -5,9 +5,16 @@ let router = express.Router();
 let PostSys = require('../service/PostSys');
 
 router.get('/post', function (req, res, next) {
-  PostSys.list(function (data) {
-    res.json(data)
-  });
+  if(req.query.status && req.query .status == 'all'){
+    PostSys.all(function (data) {
+      res.json(data)
+    });
+  }else{
+    PostSys.published(function (data) {
+      res.json(data)
+    });
+  }
+  
 });
 
 router.get('/post/:id', function (req, res, next) {

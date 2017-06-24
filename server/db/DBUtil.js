@@ -1,5 +1,5 @@
 let mysql = require('mysql');
-let serverCfg = require('../../server.config')
+let serverCfg = require('../../util/mysql.config')
 
 let pool = mysql.createPool(serverCfg.db);
 
