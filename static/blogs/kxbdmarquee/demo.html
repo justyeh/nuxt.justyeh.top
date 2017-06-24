@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>kxbdmarquee demo</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;box-sizing: border-box;}
+			body{background: #eee;padding-top: 100px;}
+			h1{text-align: center;font-size: 50px;}
+			li{list-style: none;height: 40px;line-height: 40px;width:80px;}
+			.box{display: flex;flex-wrap: wrap;width: 802px;margin: 10px auto;}
+			.item{width: 400px;height: 200px;padding: 0 10px;border: solid 1px #aaa;margin: -1px -1px 0 0;}
+			#demo1,#demo2{width: 320px;overflow: hidden;}
+			#demo1 li,#demo2 li{float: left;}
+			#demo3,#demo4{height: 160px;overflow: hidden;}
+		</style>
+	</head>
+	<body>
+		<h1>kxbdmarquee.js</h1>
+		<div class="box">
+			<div class="item">
+				<h2>横向滚动 (right)</h2>
+				<div id="demo1">
+					<ul>
+						<li>滚动內容1</li>
+						<li>滚动內容2</li>
+						<li>滚动內容3</li>
+						<li>滚动內容4</li>
+					</ul>
+				</div>
+			</div>
+			<div class="item">
+				<h2>横向滚动 (left)</h2>
+				<div id="demo2">
+					<ul>
+						<li>滚动內容1</li>
+						<li>滚动內容2</li>
+						<li>滚动內容3</li>
+						<li>滚动內容4</li>
+					</ul>
+				</div>
+			</div>
+			<div class="item">
+				<h2>纵向滚动 (bottom)</h2>
+				<div id="demo3">
+					<ul>
+						<li>滚动內容1</li>
+						<li>滚动內容2</li>
+						<li>滚动內容3</li>
+						<li>滚动內容4</li>
+					</ul>
+				</div>
+			</div>
+			<div class="item">
+				<h2>纵向滚动 (top)</h2>
+				<div id="demo4">
+					<ul>
+						<li>滚动內容1</li>
+						<li>滚动內容2</li>
+						<li>滚动內容3</li>
+						<li>滚动內容4</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.kxbdmarquee.js" ></script>
+	<script>
+		$(function(){
+			$("#demo1").kxbdMarquee({direction:'left'});
+			$("#demo2").kxbdMarquee({direction:'right'});
+			$("#demo3").kxbdMarquee({direction:'up'});
+			$("#demo4").kxbdMarquee({direction:'down'});
+		})
+	</script>
+</html>
+

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>jquery-accordion-menu demo</title>
+		<link href="jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="jquery-accordion-menu.js" type="text/javascript"></script>
+		
+		<style type="text/css">
+			*{box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
+			body{background: #f0f0f0;}
+			.content{width: 260px;margin: 100px auto;}
+			.filterinput{background-color: rgba(249, 244, 244, 0);border-radius: 15px;width: 90%;height: 30px;border: thin solid #FFF;text-indent: 0.5em;font-weight: bold;color: #FFF;}
+			#demo-list a{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;}
+		</style>
+	</head>
+	<body>
+		
+		<div class="content">
+			<div id="jquery-accordion-menu" class="jquery-accordion-menu red">
+				<div class="jquery-accordion-menu-header" id="form"></div>
+				<ul id="demo-list">
+					<li class="active"><a href="#"><i class="fa fa-home"></i>一级</a></li>
+					<li><a href="#"><i class="fa fa-file-image-o"></i>一级带图标</a><span class="jquery-accordion-menu-label">12</span></li>
+					<li>
+						<a href="#"><i class="fa fa-cog"></i>二级</a>
+						<ul class="submenu">
+							<li><a href="#">二级-1</a></li>
+							<li><a href="#">二级-2</a></li>
+							<li>
+								<a href="#">三级</a>
+								<ul class="submenu">
+									<li><a href="#">三级-1</a></li>
+									<li><a href="#">三级-2</a></li>
+								</ul>
+							</li>
+							<li><a href="#">Consulting </a></li>
+						</ul>
+					</li>
+				</ul>
+				<div class="jquery-accordion-menu-footer">Footer</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			/*使用*/
+			jQuery(document).ready(function() {
+				jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+			});
+			
+			/*高亮切换*/
+			$(function() {
+				$("#demo-list li").click(function() {
+					$("#demo-list li.active").removeClass("active")
+					$(this).addClass("active");
+				});
+			});
+		</script>
+		
+		<!--添加搜索支持-->
+		<script type="text/javascript">
+			(function($) {
+				$.expr[":"].Contains = function(a, i, m) {
+					return(a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+				};
+				function filterList(header, list) {
+					//@header 头部元素
+					//@list 无需列表
+					//创建一个搜素表单
+					var form = $("<form>").attr({
+							"class": "filterform",
+							action: "#"
+						}),
+						input = $("<input>").attr({
+							"class": "filterinput",
+							type: "text"
+						});
+					$(form).append(input).appendTo(header);
+					$(input).change(function() {
+						var filter = $(this).val();
+						if(filter) {
+							$matches = $(list).find("a:Contains(" + filter + ")").parent();
+							$("li", list).not($matches).slideUp();
+							$matches.slideDown();
+						} else {
+							$(list).find("li").slideDown();
+						}
+						return false;
+					}).keyup(function() {
+						$(this).change();
+					});
+				}
+				$(function() {
+					filterList($("#form"), $("#demo-list"));
+				});
+			})(jQuery);
+		</script>
+	</body>
+</html>

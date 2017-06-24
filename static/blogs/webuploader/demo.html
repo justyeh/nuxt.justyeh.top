@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>webuploader demo</title>
+		<link rel="stylesheet" type="text/css" href="plugins/webuploader.css"/>
+	</head>
+	<body>
+		
+		<div class="main">
+			<div id="picker">点击上传</div>
+		</div>
+		
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="plugins/webuploader.min.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				uploader();
+			}
+			//文件上传插件
+			function uploader() {  
+			    uploader = WebUploader.create({
+			        swf: 'plugins/Uploader.swf',//swf文件路径
+			        server: '?c=test&m=upload',//文件接受服务端
+			        pick:  {
+			            id:"#picker",//选择文件的dom元素
+			            multiple:false//多文件选择
+			        },
+			        fileVal:'pro',//设置文件上传域的name
+			        auto:true,    //自动上传
+			        fileNumLimit:3, //文件上传数量的限制
+			        duplicate:true, //是否允许重复的文件
+			        fileSingleSizeLimit:10 * 1024 * 1024, //单个文件大小限制
+			        accept: {           //文件格式限制
+			            title: 'Applications',
+			            extensions: 'zip,rar,7z',
+			            mimeTypes: 'application/*，image/*'
+			        }
+			    });
+			
+			    // 文件上传过程中创建进度条实时显示。
+			    uploader.on('uploadProgress', function(file, percentage) {
+			        var $li = $('#' + file.id), $percent = $li.find('.progress span');
+			        // 避免重复创建
+			        if (!$percent.length) {
+			            $percent = $('').appendTo($li).find('span');
+			        }
+			        $percent.css('width', percentage * 100 + '%');
+			    });
+			
+			    //上传出错
+			    uploader.on("error",function (type){ 
+			        if (type=="Q_TYPE_DENIED"){
+			            alert("文件格式错误")
+			        }
+			        if(type=="F_EXCEED_SIZE"){
+			            alert("文件大小超过限制")
+			        }
+			    })
+			
+			    //上传成功
+			    uploader.on('uploadSuccess', function(file,response) {
+			        if(response.error == '200'){
+			            //长传成功
+			        }else{
+			            alert(response.msg)
+			        }
+			    });
+			
+			    //上传完成，成功或者失败，重置插件
+			    uploader.on('uploadComplete', function(file) {
+			        //重置uploader
+			        uploader.reset();
+			    });
+			}
+		</script>
+	</body>
+</html>

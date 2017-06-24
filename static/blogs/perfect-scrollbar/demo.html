@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>scrollbar demo</title>
+		<link rel="stylesheet" type="text/css" href="js/perfect-scrollbar.min.css"/>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#container{
+				position: relative;
+				height: 200px;
+				width: 200px;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			#container .content{
+				background: #04acf4;
+			}
+			#container .content p{
+				padding: 40px 20px;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container" class="contentHolder">
+		    <div class="content">
+		    	<p>line1</p>
+		    	<p>line2</p>
+		    	<p>line3</p>
+		    	<p>line4</p>
+		    	<p>line5</p>
+		    	<p>line6</p>
+		    	<p>line7</p>
+		    	<p>line8</p>
+		    </div>
+		</div>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/perfect-scrollbar.min.js" ></script>
+		<script>
+			$(function(){
+				$('#container').perfectScrollbar();
+			})
+		</script>
+	</body>
+</html>

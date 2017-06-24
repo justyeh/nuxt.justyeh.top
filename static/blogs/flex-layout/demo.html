@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>flex layout demo</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			.main{width: 1000px;margin: 0 auto;}
+			h2{padding: 30px 0 10px 0;}
+			
+			
+			.container{
+			    display: flex;
+			    flex-wrap: wrap;
+			}
+			.box{
+			    width: 120px;
+			    height: 120px;
+			    border: solid 5px #fff;
+			    background: #eee;
+			    display: flex;
+			}
+			.item{
+			    width: 40px;
+			    height: 40px;
+			    background: #04acf7;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			
+			<style>
+				.c1 .box2{
+				    justify-content: center;
+				}
+				.c1 .box3{
+				    justify-content: flex-end;
+				}
+				.c1 .box4{
+				    align-items: center;
+				}
+				.c1 .box5{
+				    justify-content: center;
+				    align-items: center;
+				}
+				.c1 .box6{
+				    justify-content: flex-end;
+				    align-items: center;
+				}
+				.c1 .box7{
+				    align-items: flex-end;
+				}
+				.c1 .box8{
+				    justify-content: center;
+				    align-items: flex-end;
+				}
+				.c1 .box9{
+				    justify-content: flex-end;
+				    align-items: flex-end;
+				}
+			</style>
+			<h2>筛子布局（一个点）</h2>
+			<div class="container c1">  
+			    <div class="box">
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box2">
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box3">
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box4">
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box5">
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box6">
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box7">
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box8">
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box9">
+			        <div class="item"></div>
+			    </div>
+			</div>
+			
+			
+			<style>
+				.c2 .box1{
+				    justify-content: space-between;
+				}
+				.c2 .box2{
+				    justify-content: space-between;
+				    align-items:center;
+				}
+				.c2 .box3{
+				    justify-content: space-between;
+				    align-items:flex-end;
+				}
+				.c2 .box4{
+				    flex-direction: column;
+				    justify-content: space-between;
+				}
+				.c2 .box5{
+				    flex-direction: column;
+				    justify-content: space-between;
+				    align-items:center
+				}
+				.c2 .box6{
+				    flex-direction: column;
+				    justify-content: space-between;
+				    align-items:flex-end;
+				}
+				.c2 .box7 .item:nth-child(2){
+				    align-self: center;
+				}
+				.c2 .box8 {
+				    flex-direction: column;
+				}
+				.c2 .box8 .item:nth-child(2){
+				    align-self: flex-end;
+				}
+				.c2 .box9 .item:nth-child(2){
+				    align-self: flex-end;
+				}
+				.c2 .box10{
+				    justify-content: space-between;
+				}
+				.c2 .box10 .item:nth-child(2){
+				    align-self: flex-end;
+				}
+				.c2 .box11{
+				    flex-direction: column;
+				    justify-content: space-between;
+				    align-items:center
+				}
+				.c2 .box11 .item:nth-child(2){
+				    align-self: flex-end;
+				}
+				.c2 .box12{
+				    flex-direction: column;
+				    justify-content: space-between;
+				    align-items:flex-end;
+				}
+				.c2 .box12 .item:nth-child(2){
+				    align-self: flex-start;
+				}
+			</style>
+			<h2>筛子布局（两个点）</h2>
+			<div class="container c2">  
+			    <div class="box box1">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box2">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box3">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			
+			    <div class="box box4">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box5">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box6">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			
+			    <div class="box box7">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box8">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			
+			    <div class="box box9">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box10">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			
+			    <div class="box box11">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box12">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			</div>
+			
+			<style>
+				.c3 .box1 .item:nth-child(2){
+				    align-self: center;
+				}
+				.c3 .box1 .item:nth-child(3){
+				    align-self: flex-end;
+				}
+				.c3 .box2 .item:nth-child(2){
+				    align-self: flex-end;
+				}
+			</style>
+			<h2>筛子布局（三个点）</h2>
+			<div class="container c3">  
+			    <div class="box box1">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			    <div class="box box2">
+			        <div class="item"></div>
+			        <div class="item"></div>
+			        <div class="item"></div>
+			    </div>
+			</div>  
+			
+			<style>
+				.c4 .box1{
+				    flex-direction: column;
+				    justify-content: space-between;
+				}
+				.c4 .box1 .col{
+				    display: flex;
+				    justify-content: space-between;
+				}
+				.c4 .box2{
+				  flex-wrap: wrap;
+				  justify-content: flex-end;
+				  align-content: space-between;
+				}
+				.c4 .box2 .item{
+				    text-align: center;
+				    line-height: 40px;
+				}
+			</style>
+			<h2>筛子布局（四个点）</h2>
+			<div class="container c4">  
+			    <div class="box box1">
+			        <div class="col">
+			            <div class="item"></div>
+			            <div class="item"></div>
+			        </div>
+			        <div class="col">
+			            <div class="item"></div>
+			            <div class="item"></div>
+			        </div>
+			    </div>
+			
+			    <div class="box box2">
+			        <div class="item">1</div>
+			        <div class="item">2</div>
+			        <div class="item">3</div>
+			        <div class="item">4</div>
+			    </div>
+			</div>  
+			
+			<style>
+				.c5 .gird{
+				    display: flex;
+				    width: 200px;
+				    height: 40px;
+				    background: #EEEEEE;
+				    border: 5px solid #fff;
+				}
+				.c5 .cell{
+				    flex-grow: 1;
+				    background: #04ACF7;
+				    text-align: center;
+				    line-height: 40px;
+				    margin-left: 10px;
+				}
+				.c5 .cell:first-child{
+				    margin: 0;
+				}
+			</style>
+			<h2>Gird布局</h2>
+			<div class=" c5">  
+			    <div class="gird">
+			        <div class="cell">1/2</div>
+			        <div class="cell">1/2</div>
+			    </div>
+			    <div class="gird">
+			        <div class="cell">1/3</div>
+			        <div class="cell">1/3</div>
+			        <div class="cell">1/3</div>
+			    </div>
+			    <div class="gird">
+			        <div class="cell">1/4</div>
+			        <div class="cell">1/4</div>
+			        <div class="cell">1/4</div>
+			        <div class="cell">1/4</div>
+			    </div>
+			</div>   
+			
+		</div>
+		
+	</body>
+</html>
