@@ -28,7 +28,7 @@ CREATE TABLE `posts` (
   `status` varchar(20) DEFAULT 'draft' COMMENT '状态（draft草稿，published已发布，offline下线）',
   `meta_title` varchar(50) DEFAULT NULL COMMENT 'HTML标题',
   `meta_description` varchar(255) DEFAULT NULL COMMENT 'HTML描述',
-  `updated_at` bigint(20) DEFAULT NULL COMMENT '修改时间（删除）',
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间（删除）更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='叶文祥的前端博客：文章表';
 
