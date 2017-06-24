@@ -11,7 +11,9 @@
     text-decoration: underline;
 }
 .md-theme img {
-	max-width: 100%
+	max-width: 100%;
+	margin: 0 auto;
+    display: block;
 }
 .md-theme *:first-child {
 	margin-top: 0
@@ -109,11 +111,11 @@
 }
 .md-theme p>code {
 	font-weight: inherit;
-	border: solid 1px #bbb;
+	border: solid 1px #ccc;
 	padding: 0 5px;
 	background: #FCFCFC;
 	border-radius: 3px;
-	-webkit-border-radius: 3px;
+	margin: 0 2px;
 }
 .md-theme ul, .md-theme ol {
 	padding: 0;
