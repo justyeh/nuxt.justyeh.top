@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="warming">本网站正在调试中，可能包含许多BUG，请见谅！</div>
+    <div class="warming">本网站仍在开发中，可能包含有BUG，请见谅！</div>
     <div class="site">
       <img src="../assets/img/head.jpg" />
       <p>JustYeh的前端博客</p>
@@ -8,18 +8,15 @@
     <div class="nav">
       <div class="menu">
         <nuxt-link to="/">Home</nuxt-link>
-        <nuxt-link :to="{path:'post'}">CSS</nuxt-link>
-        <nuxt-link :to="{path:'post'}">JavaScript</nuxt-link>
-        <nuxt-link :to="{path:'post'}">Tools</nuxt-link>
-        <nuxt-link :to="{path:'post'}">实验室</nuxt-link>
-        <nuxt-link to="/about">关于我</nuxt-link>
-        <nuxt-link to="www.github.com/justyeh"></nuxt-link>
+        <nuxt-link to="/tool">Tools</nuxt-link>
+        <nuxt-link to="/about">About</nuxt-link>
+        <a target="_blank" href="www.github.com/justyeh">Github</a>
       </div>
     </div>
-    <div class="search">
+    <!--<div class="search">
       <input type="" name="" id="" value="" />
       <label>搜索</label>
-    </div>
+    </div>-->
   </header>
 </template>
 

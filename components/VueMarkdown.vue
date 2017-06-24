@@ -1,11 +1,14 @@
 <template>
-    <div class="md-theme" v-html="markdownHtml"></div>
+    <div class="markdown">
+        <div class="md-theme" v-html="markdownHtml"></div>
+    </div>
 </template>
 
 <script>
+
 import hljs from 'highlight.js'
-import '../../assets/css/yeh-md-theme.css'
-import '../../assets/css/ocean.min.css'
+import '../assets/css/yeh-md-theme.css'
+import '../assets/css/ocean.min.css'
 
 let marked = require('marked');
 marked.setOptions({
@@ -19,25 +22,20 @@ marked.setOptions({
     smartypants: false,
     highlight: function (code) {
       return hljs.highlightAuto(code).value;
-  }
+    }
 });
 
 export default {
     props: ['markdown'],
-    data(){
-        console.log(this.markdown)
+    data() {
         return {
-            markdownHtml:marked(this.markdown)
+            markdownHtml:marked(this.markdown),
+        }
+    },
+    watch:{
+        markdown(val){
+            this.markdownHtml = marked(this.markdown)
         }
     }
-   /* mounted(){
-
-    }
-    computed：{
-        markdownHtml(){
-            console.log(this.markdown)
-            return marked(this.markdown)
-        }
-    }*/
 }
 </script>
