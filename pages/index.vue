@@ -1,13 +1,12 @@
 <template>
   <div class="container">
     <article v-for="(post, index) in posts">
-      <div class="poster" :style="{backgroundImage:'url('+post.image+')'}">
-        <router-link :to="'/post/'+post.id">{{ post.title }}</router-link>
-      </div>
-      <div class="desc">{{post.desc}}</div>
-      <div class="tags">
+      <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
+      <router-link :to="'/post/'+post.id">{{ post.title }}</router-link>
+      <div class="desc">{{post.meta_description}}</div>
+      <!--<div class="tags">
         <a class="btn btn-small btn-default" href="">js</a>
-      </div>
+      </div>-->
     </article>
   </div>
 </template>
@@ -32,7 +31,7 @@ article {
   background: #fff;
   border-radius: 2px;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.26);
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 article .poster {
@@ -43,13 +42,21 @@ article .poster {
   align-items: flex-end;
 }
 
-article .poster a {
-  color: #fff;
-  font-size: 26px;
+article a {
+  color: #222;
+  font-size: 24px;
+  line-height:36px;
+  margin: 10px 20px 5px 20px;
+  display:inline-block;
+}
+article a:hover{
+  text-decoration: underline;
 }
 
 article .desc {
-  padding: 20px;
+    padding: 0 20px 10px 20px;
+    font-size: 16px;
+    line-height: 24px;
 }
 article .tags {
   border-top: 1px solid rgba(0, 0, 0, 0.1);

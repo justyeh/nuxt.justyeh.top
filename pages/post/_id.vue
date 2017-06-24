@@ -1,7 +1,6 @@
 <template>
   <section class="detail">
-    <div :class="{poster:post.image == '' ? false : true}" :style="{backgroundImage:'url('+post.image+')'}">
-    </div>
+    <div class="poster" v-if="post.image.length > 0 " :style="{backgroundImage:'url('+post.image+')'}"></div>
     <div class="title">{{post.title}}</div>
     <div class="info">
       <p>{{post.updated_at}}</p>
@@ -14,10 +13,14 @@
 
 <script>
 import axios from '~plugins/axios'
+import {formatDate} from '../../util/assist'
 
 import hljs from 'highlight.js'
 import '../../assets/css/yeh-md-theme.css'
 import '../../assets/css/ocean.min.css'
+
+
+
 let marked = require('marked');
 
 marked.setOptions({
@@ -40,6 +43,7 @@ export default {
     return axios.get('/api/post/' + params.id).then((res) => {
       var post = res.data.list[0];
       post.html = marked(post.markdown);
+      post.updated_at =  formatDate(post.updated_at);
       return { post}
     }).catch((err) => {
       error({ statusCode: 404, message: err.message })
@@ -75,11 +79,11 @@ section{
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  padding: 20px 20px 0 20px;
+  padding:0 20px;
 }
 
 .conten {
-  padding: 20px;
+  padding: 20px 30px;
   line-height: 26px;
 }
 </style>
