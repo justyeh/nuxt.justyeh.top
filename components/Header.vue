@@ -12,9 +12,9 @@
         <nuxt-link to="/about">About</nuxt-link>
         <a target="_blank" href="https://github.com/justyeh">Github</a>
       </div>
-      <form class="serach">
+     <!-- <form class="serach">
         <input type="text" id="bdcsMain">
-      </form>
+      </form>-->
     </div>
   
     <!--<div class="search">
