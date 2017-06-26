@@ -10,17 +10,17 @@
         <nuxt-link to="/">Home</nuxt-link>
         <nuxt-link to="/tool">Tools</nuxt-link>
         <nuxt-link to="/about">About</nuxt-link>
-        <a target="_blank" href="www.github.com/justyeh">Github</a>
+        <a target="_blank" href="https://github.com/justyeh">Github</a>
       </div>
       <form class="serach">
         <input type="text" id="bdcsMain">
       </form>
     </div>
-    
+  
     <!--<div class="search">
-        <input type="" name="" id="" value="" />
-        <label>搜索</label>
-      </div>-->
+              <input type="" name="" id="" value="" />
+              <label>搜索</label>
+            </div>-->
   </header>
 </template>
 
@@ -29,6 +29,7 @@ header {
   background: rgb(38, 50, 56);
   position: relative;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 0 100px;
 }
 
 .warming {
@@ -42,12 +43,13 @@ header {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 }
 
 .site {
   font-size: 56px;
   color: rgba(250, 250, 250, 0.85);
-  padding: 50px 50px 100px 50px;
+  padding: 50px 0 100px 0;
   display: flex;
   align-items: center;
 }
@@ -62,14 +64,13 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px;
   background: rgb(38, 50, 56);
 }
 
 .menu a {
   font-size: 20px;
   color: rgba(250, 250, 250, 0.8);
-  margin-left: 20px;
+  margin-right: 20px;
   line-height: 60px;
   height: 60px;
 }
@@ -77,6 +78,9 @@ header {
 .menu a:hover {
   color: rgba(250, 250, 250, 0.95);
 }
+
+
+
 
 /*.search {
   font-size: 20px;
@@ -93,26 +97,28 @@ header {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }*/
-.serach{
+
+.serach {
   position: relative;
 }
+
 .serach input {
   background: transparent;
   height: 32px;
   width: 260px;
   border: 1px solid rgba(250, 250, 250, 0.8);
-  color:rgba(250, 250, 250, 0.8);
+  color: rgba(250, 250, 250, 0.8);
   text-indent: 15px;
   padding-right: 60px;
 }
-.serach:after{
-  content:'搜索';
+
+.serach:after {
+  content: '搜索';
   position: absolute;
   top: 0;
-  right:10px;
-  color:rgba(250, 250, 250, 0.8);
+  right: 10px;
+  color: rgba(250, 250, 250, 0.8);
   font-size: 17px;
   line-height: 32px;
 }
-
 </style>
