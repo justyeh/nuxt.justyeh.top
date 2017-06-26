@@ -1,10 +1,10 @@
 <template>
     <div>
         <a href="javascript:;" class="disable" v-if="page == 0">&larr;Prev</a>
-        <nuxt-link :to="'/'+(page-1)" v-else>&larr;Prev</nuxt-link>
+        <nuxt-link :to="path+(page-1)" v-else>&larr;Prev</nuxt-link>
     
         <a href="javascript:;" class="disable" v-if="page >= total">Prev&rarr;</a>
-        <nuxt-link :to="'/'+(page+1)" v-else>Next&rarr;</nuxt-link>
+        <nuxt-link :to="path+(page+1)" v-else>Next&rarr;</nuxt-link>
     </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
         },
         page: {
             type: Number
-        }
+        },
+        path:{}
     }
 }
 </script>
