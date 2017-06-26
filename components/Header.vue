@@ -78,10 +78,6 @@ header {
 .menu a:hover {
   color: rgba(250, 250, 250, 0.95);
 }
-
-
-
-
 /*.search {
   font-size: 20px;
   width: 60px;
@@ -111,7 +107,6 @@ header {
   text-indent: 15px;
   padding-right: 60px;
 }
-
 .serach:after {
   content: '搜索';
   position: absolute;
