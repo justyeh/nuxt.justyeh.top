@@ -1,7 +1,7 @@
 <template>
-    <section class="page">
-        <vue-page totak="10" page="1"></vue-page>
-    </section>
+    <div class="page">
+        <vue-page total="10" page="5"></vue-page>
+    </div>
 </template>
 
 <script>
@@ -18,15 +18,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.detail {
+<style>
+.page{
     padding: 20px;
-    font-size: 16px;
-    line-height: 30px;
-}
-
-p {
-    padding: 10px 0;
-    text-indent: 2em;
 }
 </style>
