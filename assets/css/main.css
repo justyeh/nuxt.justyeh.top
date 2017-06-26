@@ -41,6 +41,7 @@ html,body {
 }
 body{
   font-size: 14px;
+  overflow-x: hidden;
 }
 * {
 	box-sizing: border-box;
