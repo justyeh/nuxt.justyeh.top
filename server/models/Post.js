@@ -1,4 +1,5 @@
 let db = require('../db/DBUtil');
+import {objectToSQLWhrer} from '../../util/assist'
 
 export default class Post {
     all(callback){
@@ -21,6 +22,15 @@ export default class Post {
         });
     }
 
+    where(post,callback){
+        let sql = 'SELECT  id,title,image,meta_description,updated_at FROM posts WHERE '+ objectToSQLWhrer(post) +' WHERE id = ?';
+        db.query(sql,['published'],(err,result) => {
+            if (err) {
+                return;
+            }
+            callback(false, result);
+        });
+    }
 
     one(postId,callback){
         let sql = 'SELECT * FROM posts where id = ?';
