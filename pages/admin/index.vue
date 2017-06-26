@@ -23,7 +23,7 @@
             </form-group>
             <form-group>
                 <template slot="label">seo描述</template>
-                <textarea type="text" slot="input" placeholder="标题" v-model="post.meta_description"></textarea>
+                <textarea type="text" slot="input" placeholder="标题" v-model="post.meta_description" maxlength="200"></textarea>
             </form-group>
             <form-group>
                 <template slot="label">正文</template>
