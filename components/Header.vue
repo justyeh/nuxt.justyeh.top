@@ -12,7 +12,11 @@
         <nuxt-link to="/about">About</nuxt-link>
         <a target="_blank" href="www.github.com/justyeh">Github</a>
       </div>
+      <form class="serach">
+        <input type="text" id="bdcsMain">
+      </form>
     </div>
+    
     <!--<div class="search">
         <input type="" name="" id="" value="" />
         <label>搜索</label>
@@ -40,7 +44,7 @@ header {
   right: 0;
 }
 
-header .site {
+.site {
   font-size: 56px;
   color: rgba(250, 250, 250, 0.85);
   padding: 50px 50px 100px 50px;
@@ -48,13 +52,13 @@ header .site {
   align-items: center;
 }
 
-header .site img {
+.site img {
   width: 120px;
   border-radius: 100%;
   margin-right: 20px;
 }
 
-header .nav {
+.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,7 +66,7 @@ header .nav {
   background: rgb(38, 50, 56);
 }
 
-header .menu a {
+.menu a {
   font-size: 20px;
   color: rgba(250, 250, 250, 0.8);
   margin-left: 20px;
@@ -70,11 +74,11 @@ header .menu a {
   height: 60px;
 }
 
-header .menu a:hover {
+.menu a:hover {
   color: rgba(250, 250, 250, 0.95);
 }
 
-header .search {
+/*.search {
   font-size: 20px;
   width: 60px;
   height: 60px;
@@ -88,12 +92,27 @@ header .search {
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+}*/
+.serach{
+  position: relative;
+}
+.serach input {
+  background: transparent;
+  height: 32px;
+  width: 260px;
+  border: 1px solid rgba(250, 250, 250, 0.8);
+  color:rgba(250, 250, 250, 0.8);
+  text-indent: 15px;
+  padding-right: 60px;
+}
+.serach:after{
+  content:'搜索';
+  position: absolute;
+  top: 0;
+  right:10px;
+  color:rgba(250, 250, 250, 0.8);
+  font-size: 17px;
+  line-height: 32px;
 }
 
-header .search input {
-  display: none;
-  background: transparent;
-  height: 40px;
-  width: 200px;
-}
 </style>
