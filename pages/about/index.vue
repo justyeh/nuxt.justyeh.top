@@ -28,5 +28,6 @@ export default {
 .page p {
   padding-top: 20px;
   line-height: 20px;
+  text-indent: 2em;
 }
 </style>
