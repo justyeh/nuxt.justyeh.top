@@ -1,9 +1,8 @@
 let db = require('../db/DBUtil');
 
 export default class Post {
-
     all(callback){
-        let sql = 'SELECT id,title,image,meta_description,updated_at,status FROM posts ORDER BY id DESC';
+        let sql = 'select count(1) form SELECT id,title,image,meta_description,updated_at,status FROM posts ORDER BY id DESC';
         db.query(sql,[],(err,result) => {
             if (err) {
                 return;
@@ -21,6 +20,7 @@ export default class Post {
             callback(false, result);
         });
     }
+
 
     one(postId,callback){
         let sql = 'SELECT * FROM posts where id = ?';
