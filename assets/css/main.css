@@ -11,6 +11,9 @@ input,textarea,select {
 	font-weight:inherit;
 	outline:none;
 }
+a{
+	color: #3084bb;
+}
 a, a:hover, a:focus, a:visited {
 	text-decoration: none;
 }
