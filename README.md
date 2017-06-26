@@ -2,9 +2,9 @@
 
 在线地址 [www.justyeh.com](http://www.justyeh.com)，刚刚部署好，只是为了让项目跑起来，估计有很多BUG！
 
-## 技术
+## 技术栈
 
-node+express+mysqlvuejs+nuxtjs
+Vue.js+Nuxt.js+Es6+Webpack+Mysql+Noyde.js+Express.js
 
 ## 运行
 
