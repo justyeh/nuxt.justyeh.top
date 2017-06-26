@@ -41,6 +41,10 @@ export default {
   name: 'id',
   asyncData({ params, error }) {
     return axios.get('/api/post/' + params.id).then((res) => {
+      if (res.data.list.length === 0) {
+        error({ statusCode: 404, message: 'Not Found This Post' });
+        return false;
+      }
       var post = res.data.list[0];
       post.html = marked(post.markdown);
       post.updated_at = formatDate(post.updated_at);
