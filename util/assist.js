@@ -10,7 +10,7 @@ function objectToSQLWhrer(object){
     for (var key in object) {
        where += ' AND ' + key + ' = ' + mysql.escape(object[key]);
     }
-    return where
+    return where;
 }
 
 export {
