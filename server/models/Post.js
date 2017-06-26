@@ -1,9 +1,9 @@
 let db = require('../db/DBUtil');
-import {objectToSQLWhrer} from '../../util/assist'
+/*import {objectToSQLWhrer} from '../../util/assist'*/
 
 export default class Post {
     all(callback){
-        let sql = 'select count(1) form SELECT id,title,image,meta_description,updated_at,status FROM posts ORDER BY id DESC';
+        let sql = 'SELECT id,title,image,meta_description,updated_at,status FROM posts ORDER BY id DESC';
         db.query(sql,[],(err,result) => {
             if (err) {
                 return;
@@ -22,7 +22,7 @@ export default class Post {
         });
     }
 
-    where(post,callback){
+   /* where(post,callback){
         let sql = 'SELECT  id,title,image,meta_description,updated_at FROM posts WHERE '+ objectToSQLWhrer(post) +' WHERE id = ?';
         db.query(sql,['published'],(err,result) => {
             if (err) {
@@ -30,7 +30,7 @@ export default class Post {
             }
             callback(false, result);
         });
-    }
+    }*/
 
     one(postId,callback){
         let sql = 'SELECT * FROM posts where id = ?';
