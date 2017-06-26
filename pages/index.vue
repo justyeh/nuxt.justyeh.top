@@ -5,8 +5,8 @@
       <router-link :to="'/post/'+post.id">{{ post.title }}</router-link>
       <div class="desc">{{post.meta_description}}</div>
       <!--<div class="tags">
-        <a class="btn btn-small btn-default" href="">js</a>
-      </div>-->
+          <a class="btn btn-small btn-default" href="">js</a>
+        </div>-->
     </article>
   </div>
 </template>
@@ -15,7 +15,7 @@
 import axios from '~plugins/axios'
 
 export default {
-  async asyncData ({error}) {
+  async asyncData({ error }) {
     return axios.get('/api/post/').then((res) => {
       return { posts: res.data.list }
     }).catch((err) => {
@@ -45,27 +45,29 @@ article .poster {
 article a {
   color: #222;
   font-size: 24px;
-  line-height:36px;
+  line-height: 36px;
   margin: 10px 20px 5px 20px;
-  display:inline-block;
+  display: inline-block;
 }
-article a:hover{
+
+article a:hover {
   text-decoration: underline;
 }
 
 article .desc {
-    padding: 0 20px 10px 20px;
-    font-size: 16px;
-    line-height: 24px;
+  padding: 0 20px 10px 20px;
+  font-size: 16px;
+  line-height: 24px;
 }
+
 article .tags {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   padding: 0 0 0 20px;
 }
+
 article .tags a {
   margin: 20px 10px 20px 0;
-  padding:3px 10px;
+  padding: 3px 10px;
 }
-
 </style>

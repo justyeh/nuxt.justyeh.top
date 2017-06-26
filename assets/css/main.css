@@ -42,35 +42,12 @@ body{
 * {
 	box-sizing: border-box;
 }
-footer {
-	padding: 20px;
-	text-align: center;
-	border-top: 1px solid #ddd;
-}
-.logo {
-	width: 100%;
-	height: auto;
-	max-width: 400px;
-	max-height: 289px;
-}
-.container {
-	width: 1000px;
-	margin: 0 auto;
-	padding: 50px 0;
-}
-.detail {
-	background: #fff;
-	width: 1000px;
-	margin: 50px auto;
-	border-radius: 2px;
-	box-shadow: 1px 2px 8px rgba(0,0,0,0.36);
-}
 
 .text-center{
 	text-align: center;
 }
 
-
+/*button*/
 .btn{
 	display:inline-block;
 	border:none;
@@ -106,4 +83,16 @@ footer {
 }
 .btn-danger:hover{
 	background: rgb(245, 54, 119);
+}
+.container{
+	width: 1000px;
+	margin: 50px auto;
+}
+.page{
+	width: 1000px;
+	margin: 50px auto;
+  	overflow:hidden;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 1px 1px 6px rgba(100,100,100,0.4);
 }

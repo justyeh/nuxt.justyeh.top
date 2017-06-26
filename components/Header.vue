@@ -14,19 +14,20 @@
       </div>
     </div>
     <!--<div class="search">
-      <input type="" name="" id="" value="" />
-      <label>搜索</label>
-    </div>-->
+        <input type="" name="" id="" value="" />
+        <label>搜索</label>
+      </div>-->
   </header>
 </template>
 
-<style>
+<style scoped>
 header {
   background: rgb(38, 50, 56);
   position: relative;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-.warming{
+
+.warming {
   background: #CC9966;
   height: 50px;
   line-height: 50px;
@@ -38,6 +39,7 @@ header {
   left: 0;
   right: 0;
 }
+
 header .site {
   font-size: 56px;
   color: rgba(250, 250, 250, 0.85);

@@ -4,7 +4,7 @@
   </footer>
 </template>
 
-<style>
+<style scoped>
 footer {
   background: rgb(38, 50, 56);
   padding: 150px 0;
