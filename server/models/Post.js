@@ -63,7 +63,7 @@ export default class Post {
     }
 
     count(scope, callback) {
-        let sql = 'SELECT COUNT(id) AS count FROM POSTS';
+        let sql = 'SELECT COUNT(id) AS count FROM posts';
         if (scope === 'published') {
             sql += ` WHERE status = '${scope}'`
         }

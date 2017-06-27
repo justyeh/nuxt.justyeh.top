@@ -23,9 +23,4 @@ let query = function(sql,params,callback){
     });
 }
 
-query('select id from posts',[],function(err,result){
-    console.log(result)
-})
-console.log(query)
-
 module.exports.query = query;
