@@ -39,6 +39,10 @@ marked.setOptions({
 
 export default {
   name: 'id',
+  validate ({ params }) {
+    // Must be a number
+    return /^\d+$/.test(params.id)
+  },
   asyncData({ params, error }) {
     return axios.get('/api/post/' + params.id).then((res) => {
       if (res.data.list.length === 0) {
