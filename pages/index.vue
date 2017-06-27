@@ -1,29 +1,46 @@
 <template>
   <div class="container">
-    <article v-for="(post, index) in posts">
-      <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
-      <router-link :to="'/post/'+post.id">{{ post.title }}</router-link>
-      <div class="desc">{{post.meta_description}}</div>
-      <!--<div class="tags">
-          <a class="btn btn-small btn-default" href="">js</a>
-        </div>-->
-    </article>
+    <section>
+      <article v-for="(post, index) in posts" :key="post.id">
+        <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
+        <router-link :to="'/post/'+post.id">{{ post.title }}</router-link>
+        <div class="desc">{{post.meta_description}}</div>
+      </article>
+    </section>
+    <vue-page :total="total" :page="0" path="/page/" v-on:pageChange="pageChange"></vue-page>
   </div>
 </template>
 
 <script>
 import axios from '~plugins/axios'
+import VuePage from '../components/VuePage'
+import ApiCfg from '../util/api.config'
 
 export default {
-  async asyncData({ error }) {
-    return axios.get('/api/post/').then((res) => {
-      return { posts: res.data.list }
-    }).catch((err) => {
-      error({ statusCode: 404, message: err.message })
-    })
+  async asyncData({ query, error }) {
+    let posts = await axios.get('/api/post/page/0?scope=pulished');
+    let count = await axios.get('/api/post/count/published');
+    return {
+      posts: posts.data.list,
+      count: count.data.result,
+    }
+  },
+  computed: {
+    total() {
+      return Math.ceil(this.count / ApiCfg.pageSize)
+    }
+  },
+  components: {
+    VuePage
+  },
+  methods: {
+    pageChange(page) {
+      axios.get(`/api/post/page/${page}?scope=pulished`).then(res => {
+        this.posts = res.data.list;
+      }).catch(error => console.error(error))
+    }
   }
 }
-
 </script>
 
 <style scoped>
