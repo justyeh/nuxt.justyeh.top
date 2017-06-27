@@ -1,10 +1,18 @@
 let db = require('../db/DBUtil');
+let pageCfg = require('../../util/api.config')
+
 /*import {objectToSQLWhrer} from '../../util/assist'*/
 
 export default class Post {
-    all(callback){
-        let sql = 'SELECT id,title,image,meta_description,updated_at,status FROM posts ORDER BY id DESC';
-        db.query(sql,[],(err,result) => {
+
+    list(params, callback) {
+        let sql = 'SELECT id,title,image,meta_description,updated_at,status FROM posts ';
+        if (params.scope === 'published') {
+            sql += ` WHERE status = '${params.scope}' `
+        }
+        sql += 'ORDER BY id DESC '
+        sql += `LIMIT ${params.pageNo*pageCfg.pageSize},${pageCfg.pageSize}`
+        db.query(sql, [], (err, result) => {
             if (err) {
                 return;
             }
@@ -12,29 +20,19 @@ export default class Post {
         });
     }
 
-    published(callback){
-        let sql = 'SELECT id,title,image,meta_description,updated_at FROM posts WHERE status = ? ORDER BY id DESC';
-        db.query(sql,['published'],(err,result) => {
-            if (err) {
-                return;
-            }
-            callback(false, result);
-        });
-    }
+    /* where(post,callback){
+         let sql = 'SELECT  id,title,image,meta_description,updated_at FROM posts WHERE '+ objectToSQLWhrer(post) +' WHERE id = ?';
+         db.query(sql,['published'],(err,result) => {
+             if (err) {
+                 return;
+             }
+             callback(false, result);
+         });
+     }*/
 
-   /* where(post,callback){
-        let sql = 'SELECT  id,title,image,meta_description,updated_at FROM posts WHERE '+ objectToSQLWhrer(post) +' WHERE id = ?';
-        db.query(sql,['published'],(err,result) => {
-            if (err) {
-                return;
-            }
-            callback(false, result);
-        });
-    }*/
-
-    one(postId,callback){
+    one(postId, callback) {
         let sql = 'SELECT * FROM posts where id = ?';
-        db.query(sql,[postId],(err,result) => {
+        db.query(sql, [postId], (err, result) => {
             if (err) {
                 return;
             }
@@ -42,25 +40,38 @@ export default class Post {
         });
     }
 
-    update(post,callback){
+    update(post, callback) {
         post.updated_at = new Date().getTime();
         let fields = [],
             params = [];
         for (var field in post) {
-            if(field === 'id'){
+            if (field === 'id') {
                 continue;
             }
             fields.push(field + ' = ?');
             params.push(post[field])
         }
         params.push(post.id);
-        let sql = 'UPDATE posts SET '+ fields.join(',') +' WHERE id = ?';
+        let sql = 'UPDATE posts SET ' + fields.join(',') + ' WHERE id = ?';
         db.query(sql, params, (err, result) => {
             if (err) {
                 callback(true);
                 return;
             }
             callback(false, result.changedRows);
+        });
+    }
+
+    count(scope, callback) {
+        let sql = 'SELECT COUNT(id) AS count FROM POSTS';
+        if (scope === 'published') {
+            sql += ` WHERE status = '${scope}'`
+        }
+        db.query(sql, [], (err, result) => {
+            if (err) {
+                return;
+            }
+            callback(false, result[0].count);
         });
     }
 }

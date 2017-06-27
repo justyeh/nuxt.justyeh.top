@@ -14,8 +14,9 @@ router.get('/', function(req, res, next) {
 router.get('/user', user);
 router.get('/user/:id', user);
 
-router.get('/post', post);
-router.get('/post/:id', post);
+router.get('/post/page/:pageNo', post);
+router.get('/post/detali/:id', post);
+router.get('/post/count/:scope', post);
 router.post('/post/update', post);
 
 router.get('/tag', tag);
