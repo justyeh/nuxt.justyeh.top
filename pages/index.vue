@@ -18,11 +18,14 @@ import ApiCfg from '../util/api.config'
 
 export default {
   async asyncData({ query, error }) {
-    let posts = await axios.get('/api/post/page/0?scope=pulished');
-    let count = await axios.get('/api/post/count/published');
+
+    let [pageRes, countRes] = await Promise.all([
+      axios.get('/api/post/page/0'),
+      axios.get('/api/post/count/published'),
+    ])
     return {
-      posts: posts.data.list,
-      count: count.data.result,
+       posts: pageRes.data.list,
+       count: countRes.data.result
     }
   },
   computed: {
