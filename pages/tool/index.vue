@@ -1,15 +1,16 @@
 <template>
     <div class="tools">
         <div :class="{cards:true,small:isSmall}">
-            <template v-for="(tool,index) in tools">
-                <div :class="{card:true,curr:currIndex == index && isSmall}" @click="setCurrentView(tool.component)">
-                    <div :style="{backgroundImage:'url('+tool.logo+')'}"></div>
-                    <p>{{tool.name}}</p>
-                </div>
-            </template>
+            <div :class="{card:true,curr:currIndex == index && isSmall}" v-for="(tool,index) in tools" :key="tool.name" @click="setCurrentView(tool.component)">
+                <div :style="{backgroundImage:'url('+tool.logo+')'}"></div>
+                <p>{{tool.name}}</p>
+            </div>
         </div>
         <div class="view" v-show="isSmall">
-            <component :is="currentView"></component>
+            <i class="fa fa-close" @click="isSmall = false"></i>
+            <transition name="component-fade" mode="out-in">
+                <component :is="currentView"></component>
+            </transition>
         </div>
     </div>
 </template>
@@ -49,8 +50,10 @@ export default {
 
 <style scoped>
 .cards {
-    padding: 20px;
+    padding: 20px 100px;
+    display:flex;
 }
+
 .card {
     width: 200px;
     border-radius: 3px;
@@ -58,6 +61,7 @@ export default {
     overflow: hidden;
     cursor: pointer;
     transition: all ease-in 0.1s;
+    margin: 20px 20px 20px 0;
 }
 
 .card.curr,
@@ -101,5 +105,26 @@ export default {
 .view {
     background: #f7f8fa;
     padding: 50px;
+    position: relative;
+}
+.view i{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 30px;
+    right: 30px;
+    color: #666;
+    font-size: 30px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2)
+}
+
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .3s ease;
+}
+.component-fade-enter, .component-fade-leave-active {
+  opacity: 0;
 }
 </style>
