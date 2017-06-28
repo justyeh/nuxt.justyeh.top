@@ -19,7 +19,7 @@ import axios from '~plugins/axios'
 import VuePage from '../components/VuePage'
 
 export default {
-  async asyncData({ query, error }) {
+  async asyncData({ error }) {
 
     let [pageRes, countRes] = await Promise.all([
       axios.get('/api/post/page/0?scope=published'),

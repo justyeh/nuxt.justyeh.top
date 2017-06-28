@@ -1,7 +1,7 @@
 <template>
     <div class="admin-main">
         <div class="article-list">
-            <article v-for="(post, index) in posts" :class="{curr: index == currIndex}">
+            <article v-for="(post, index) in posts" :class="{curr: index == currIndex}" :key="post.id">
                 <a href="javascript:;" @click="setPost(index)">{{ post.title }}</a>
                 <div class="handle">
                     <a href="javascript:;" class="btn btn-small btn-danger" @click="offline(index)" v-if="post.status != 'offline'">下线</a>
@@ -17,7 +17,7 @@
             <form-group>
                 <template slot="label">海报</template>
                 <div slot="input">
-                     <input type="text" v-model="post.image">
+                    <input type="text" v-model="post.image">
                     <image-upload :image="post.image" v-on:uploadImage="uploadImage"></image-upload>
                 </div>
             </form-group>
@@ -30,12 +30,12 @@
                 <div slot="input" class="markdown">
                     <button class="btn btn-small btn-main" @click="preview = !preview">{{preview ? '编辑' : '预览'}}</button>
                     <textarea v-model="post.markdown" @keydown.ctrl.83.stop.prevent="updatePost"></textarea>
-                    <vue-markdown :markdown="post.markdown"  v-show="preview"></vue-markdown>
+                    <vue-markdown :markdown="post.markdown" v-show="preview"></vue-markdown>
                 </div>
             </form-group>
             <form-group>
                 <template slot="label">标签</template>
-                <tag-input slot="input" :tags="tags" v-on:addTag="addTag"></tag-input>
+                <tag-input slot="input" :tags="post.tags" v-on:addTag="addTag"></tag-input>
             </form-group>
             <div class="handle">
                 <button class="btn btn-large btn-main" @click="updatePost">保存</button>
@@ -57,44 +57,46 @@ import VueMarkdown from '../../components/VueMarkdown'
 export default {
     layout: 'admin',
     async asyncData({ error }) {
-        return axios.get('/api/post?status=all').then((res) => {
-            return { posts: res.data.list }
-        }).catch((err) => {
-            error({ statusCode: 404, message: err.message })
-        });
-    },
-    data(){
-        return{
-            post:{
-                title:'',
-                images:'',
-                meta_description:'',
-                markdown:'',
-            },
-            preview:false,
-            currIndex:0,
-            tags:['js','css'],
+        let [pageRes, countRes] = await Promise.all([
+            axios.get('/api/post/page/0?scope=published'),
+            axios.get('/api/post/count/published'),
+        ])
+        return {
+            posts: pageRes.data.list,
+            count: countRes.data.result
         }
     },
-    mounted(){
+    data() {
+        return {
+            post: {
+                title: '',
+                images: '',
+                meta_description: '',
+                markdown: '',
+            },
+            preview: false,
+            currIndex: 0,
+        }
+    },
+    mounted() {
         this.setPost(0);
     },
-    components:{
+    components: {
         FormGroup,
         TagInput,
         VueMarkdown,
         ImageUpload
     },
-    methods:{
-        addTag(tag){
+    methods: {
+        addTag(tag) {
             this.tags.push(tag);
-            axios.get('api/tag/add/'+tag).then((res) => {
-               this.tags.push(tag)
+            axios.get('api/tag/add/' + tag).then((res) => {
+                this.tags.push(tag)
             }).catch((error) => {
                 alert(error)
             });
         },
-        uploadImage(image){
+        uploadImage(image) {
             axios.post('/api/upload/image', {
                 image: image
             }).then((res) => {
@@ -103,21 +105,21 @@ export default {
                 alert(err)
             });
         },
-        setPost(index){
-            if(isNaN(index)){
-                console.error('the id is must')
+        setPost(index) {
+            if (isNaN(index)) {
+                console.error('the id is required')
                 return false;
             }
-            axios.get('/api/post/'+this.posts[index].id).then((res) => {
+            axios.get('/api/post/detail/' + this.posts[index].id).then((res) => {
                 this.currIndex = index;
                 this.post = res.data.list[0];
             }).catch((err) => {
                 alert(err)
             });
         },
-        updatePost(){
+        updatePost() {
             axios.post('/api/post/update', {
-                post:this.post
+                post: this.post
             }).then((res) => {
                 this.posts[this.currIndex].title = this.post.title;
                 //alert(res.data.message)
@@ -125,11 +127,11 @@ export default {
                 alert(err)
             });
         },
-        publish(){
-            axios.post('/api/post/update',{
-                post:{
-                    id:this.post.id,
-                    status:'published'
+        publish() {
+            axios.post('/api/post/update', {
+                post: {
+                    id: this.post.id,
+                    status: 'published'
                 }
             }).then((res) => {
                 this.post.status = 'published';
@@ -138,11 +140,11 @@ export default {
                 alert(err)
             });
         },
-        offline(index){
-             axios.post('/api/post/update',{
-                post:{
-                    id:this.posts[index].id,
-                    status:'offline'
+        offline(index) {
+            axios.post('/api/post/update', {
+                post: {
+                    id: this.posts[index].id,
+                    status: 'offline'
                 }
             }).then((res) => {
                 posts[index].status = 'offline';
@@ -193,28 +195,34 @@ export default {
     overflow-y: auto;
     padding: 20px 10px;
 }
-article{
+
+article {
     border-bottom: 1px solid #ccc;
     padding: 10px 0;
 }
-article a{
+
+article a {
     margin-bottom: 10px;
-    color:#333;
-    font-size:16px;
-    transition:all ease .1s;
+    color: #333;
+    font-size: 16px;
+    transition: all ease .1s;
 }
-article.curr>a{
-     color:#1b8afa;
-     font-weight:bold;
+
+article.curr>a {
+    color: #1b8afa;
+    font-weight: bold;
 }
+
 article .handle {
-    text-align:right;
+    text-align: right;
     padding-top: 10px;
 }
-article .handle a{
-   margin: 0 5px;
+
+article .handle a {
+    margin: 0 5px;
 }
-.post{
+
+.post {
     position: absolute;
     top: 0;
     right: 0;
@@ -223,11 +231,13 @@ article .handle a{
     padding: 20px;
     overflow-y: auto;
 }
-.post .handle{
+
+.post .handle {
     padding: 20px 0 0 100px;
 }
-.post .handle .btn{
-    margin-right:10px;
+
+.post .handle .btn {
+    margin-right: 10px;
 }
 
 .markdown {
@@ -241,7 +251,7 @@ article .handle a{
     top: 20px;
     right: 20px;
     z-index: 100;
-    padding:5px 10px;
+    padding: 5px 10px;
 }
 
 .markdown textarea {
@@ -257,7 +267,7 @@ article .handle a{
     border-color: rgb(51, 204, 250);
 }
 
-.markdown>div{
+.markdown>div {
     position: absolute;
     top: 0;
     right: 0;
@@ -267,7 +277,6 @@ article .handle a{
     overflow-y: auto;
     background: #f2f2f2;
     transition: width ease cubic-bezier(0.075, 0.82, 0.165, 1);
-    padding:10px 20px;
+    padding: 10px 20px;
 }
-
 </style>
