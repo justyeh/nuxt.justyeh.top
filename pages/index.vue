@@ -3,8 +3,11 @@
     <transition-group name="list" tag="section">
       <article v-for="(post, index) in posts" :key="post.id">
         <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
-        <router-link :to="'/post/'+post.id">{{ post.title }}</router-link>
+        <router-link :to="`/post/${post.id}`">{{ post.title }}</router-link>
         <div class="desc">{{post.meta_description}}</div>
+        <div class="tags" v-if="post.tags">
+            <router-link class="btn btn-small btn-default" :to="`/tag/${tag.id}`" v-for="tag in post.tags" :key="tag.id">{{tag.name}}</router-link>
+        </div>
       </article>
     </transition-group>
     <vue-page :total="count" :page="0" v-on:pageChange="pageChange"></vue-page>
@@ -56,7 +59,7 @@ article .poster {
   align-items: flex-end;
 }
 
-article a {
+article>a {
   color: #222;
   font-size: 24px;
   line-height: 36px;
@@ -83,6 +86,7 @@ article .tags {
 article .tags a {
   margin: 20px 10px 20px 0;
   padding: 3px 10px;
+  text-decoration: none;
 }
 
 .list-enter-active,
