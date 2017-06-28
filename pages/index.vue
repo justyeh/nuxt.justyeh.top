@@ -7,14 +7,13 @@
         <div class="desc">{{post.meta_description}}</div>
       </article>
     </transition-group>
-    <vue-page :total="total" :page="0" path="/page/" v-on:pageChange="pageChange"></vue-page>
+    <vue-page :total="count" :page="0" v-on:pageChange="pageChange"></vue-page>
   </div>
 </template>
 
 <script>
 import axios from '~plugins/axios'
 import VuePage from '../components/VuePage'
-import ApiCfg from '../util/api.config'
 
 export default {
   async asyncData({ query, error }) {
@@ -26,11 +25,6 @@ export default {
     return {
       posts: pageRes.data.list,
       count: countRes.data.result
-    }
-  },
-  computed: {
-    total() {
-      return Math.ceil(this.count / ApiCfg.pageSize)
     }
   },
   components: {

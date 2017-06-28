@@ -1,11 +1,15 @@
 <template>
     <div>
-        <button :class="{disable:myPage == 0}" @click="prev">&larr;Prev</button>
-        <button :class="{disable:myPage >= total-1}" @click="next">Next&rarr;</button>
+        <template v-if="total != 0">
+            <button :class="{disable:pageNow == 0}" @click="prev">&larr;Prev</button>
+            <button :class="{disable:pageNow >= pageAll-1}" @click="next">Next&rarr;</button>
+        </template>
     </div>
 </template>
 
 <script>
+let ApiCfg = require('../util/api.config')
+
 export default {
     props: {
         total: {
@@ -16,31 +20,36 @@ export default {
         },
         path: {}
     },
-    data(){
+    data() {
         return {
-            myPage : 0
+            pageNow: 0,
         }
     },
-    watch:{
-        page(val){
-            this.myPage = val
+    watch: {
+        page(val) {
+            this.pageNow = val
         },
-        myPage(val){
-            this.$emit('pageChange', this.myPage)
+        pageNow(val) {
+            this.$emit('pageChange', this.pageNow)
+        }
+    },
+    computed:{
+        pageAll(){
+            return Math.ceil(this.total/ApiCfg.pageSize)
         }
     },
     methods: {
         prev() {
-            if (this.myPage == 0) {
+            if (this.pageNow == 0) {
                 return false;
             }
-            this.myPage--;
+            this.pageNow--;
         },
         next() {
-            if (this.myPage >= this.total - 1) {
+            if (this.pageNow >= this.total - 1) {
                 return false;
             }
-            this.myPage++;
+            this.pageNow++;
         }
     }
 }
