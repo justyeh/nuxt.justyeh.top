@@ -44,7 +44,7 @@ export default {
     return /^\d+$/.test(params.id)
   },
   asyncData({ params, error }) {
-    return axios.get('/api/post/' + params.id).then((res) => {
+    return axios.get('/api/post/detail/' + params.id).then((res) => {
       if (res.data.list.length === 0) {
         error({ statusCode: 404, message: 'Not Found This Post' });
         return false;
