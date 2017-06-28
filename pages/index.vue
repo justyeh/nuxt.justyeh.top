@@ -1,12 +1,14 @@
 <template>
   <div class="container">
-    <section>
+    <!--<section>-->
+    <transition-group name="list" tag="section">
       <article v-for="(post, index) in posts" :key="post.id">
         <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
         <router-link :to="'/post/'+post.id">{{ post.title }}</router-link>
         <div class="desc">{{post.meta_description}}</div>
       </article>
-    </section>
+    </transition-group>
+    <!--</section>-->
     <vue-page :total="total" :page="0" path="/page/" v-on:pageChange="pageChange"></vue-page>
   </div>
 </template>
@@ -20,12 +22,12 @@ export default {
   async asyncData({ query, error }) {
 
     let [pageRes, countRes] = await Promise.all([
-      axios.get('/api/post/page/0'),
+      axios.get('/api/post/page/0?scope=published'),
       axios.get('/api/post/count/published'),
     ])
     return {
-       posts: pageRes.data.list,
-       count: countRes.data.result
+      posts: pageRes.data.list,
+      count: countRes.data.result
     }
   },
   computed: {
@@ -38,7 +40,7 @@ export default {
   },
   methods: {
     pageChange(page) {
-      axios.get(`/api/post/page/${page}?scope=pulished`).then(res => {
+      axios.get(`/api/post/page/${page}?scope=published`).then(res => {
         this.posts = res.data.list;
       }).catch(error => console.error(error))
     }
@@ -89,5 +91,45 @@ article .tags {
 article .tags a {
   margin: 20px 10px 20px 0;
   padding: 3px 10px;
+}
+
+.list-enter-active,
+.list-leave-active {
+  opacity: 0;
+  transform: translateY(0);
+  animation: fade-in 0.2s ease-in forwards;
+  animation-delay: 0.3s;
+}
+
+.list-enter,
+.list-leave-active {
+  animation: fade-out 0.3s ease-in forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  5% {
+    display: black;
+    opacity: 0;
+    transform: translateY(3000px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
 }
 </style>
