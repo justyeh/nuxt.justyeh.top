@@ -16,6 +16,7 @@
     "nuxt-start": "nuxt start"
   },
   "dependencies": {
+    "async": "^2.5.0",
     "axios": "^0.16.1",
     "body-parser": "^1.17.2",
     "cross-env": "^5.0.0",
