@@ -15,12 +15,12 @@ router.get('/user', user);
 router.get('/user/:id', user);
 
 router.get('/post/page/:pageNo', post);
-router.get('/post/detali/:id', post);
+router.get('/post/detail/:id', post);
 router.get('/post/count/:scope', post);
 router.post('/post/update', post);
 
-router.get('/tag', tag);
-router.get('/tag/:id', tag);
+router.get('/tag/page/:pageNo', tag);
+router.get('/tag/list/:id', tag);
 router.post('/tag/add', tag);
 router.post('/tag/del', tag);
 router.post('/tag/update', tag);

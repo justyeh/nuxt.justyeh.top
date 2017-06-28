@@ -1,15 +1,20 @@
 let db = require('../db/DBUtil');
 
 class Tag {
-    constructor(id, name, description, hidden){
-        this.id = id;
-        this.name = id;
-        this.description = id;
-        this.hidden = id;
+
+    listByPostId(postId, callback) {
+        let sql = "SELECT tags.id,tags.name FROM posts,tags,post_tags WHERE posts.id = post_tags.post_id AND tags.id = post_tags.tag_id AND posts.id = ?";
+        db.query(sql, [postId], (err, result) => {
+            if (err) {
+                return;
+            }
+            callback(false, result);
+        });
     }
 
-    list(callback) {
-        let sql = "SELECT id,name,description FROM tags";
+
+    pageList(callback) {
+        let sql = "SELECT id,name FROM tags";
         db.query(sql, [], (err, result) => {
             if (err) {
                 return;
