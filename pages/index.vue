@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <!--<section>-->
     <transition-group name="list" tag="section">
       <article v-for="(post, index) in posts" :key="post.id">
         <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
@@ -8,7 +7,6 @@
         <div class="desc">{{post.meta_description}}</div>
       </article>
     </transition-group>
-    <!--</section>-->
     <vue-page :total="total" :page="0" path="/page/" v-on:pageChange="pageChange"></vue-page>
   </div>
 </template>
