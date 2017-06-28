@@ -1,9 +1,10 @@
 <template>
     <div>
+        {{tags}}
         <div class="tags">
-            <label class="btn btn-small btn-default" v-for="tag in tags">{{tag}}</label>
+            <label class="btn btn-small btn-default" v-for="tag in tags" :key="tag.id">{{tag.name}}</label>
         </div>
-        <input type="text" @keyup.enter.stop.prevent="handleEnter" v-model="tag">
+        <input type="text" @keyup.enter.stop.prevent="handleEnter" v-model="pageTag">
     </div>
 </template>
 
@@ -11,12 +12,17 @@
     export default {
         data(){
             return {
-                tag:''
+                pageTag:''
             }
         },
         props:{
             tags:{
                 type:Array
+            }
+        },
+        watch:{
+            tags(val){
+                this.tags = val
             }
         },
         methods:{
