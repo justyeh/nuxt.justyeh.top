@@ -1,8 +1,14 @@
 <template>
     <div>
         <template v-if="total != 0">
-            <button :class="{disable:pageNow == 0}" @click="prev">&larr;Prev</button>
-            <button :class="{disable:pageNow >= pageAll-1}" @click="next">Next&rarr;</button>
+            <template v-if="model == 'link'">
+                <nuxt-link :class="{disable:pageNow == 1}" :to="prevPage">&larr;Prev</nuxt-link>
+                <nuxt-link :class="{disable:pageNow >= pageAll-1}" :to="nextPage">Next&rarr;</nuxt-link>
+            </template>
+            <template v-else>
+                <button :class="{disable:pageNow == 0}" @click="prev">&larr;Prev</button>
+                <button :class="{disable:pageNow >= pageAll-1}" @click="next">Next&rarr;</button>
+            </template>
         </template>
     </div>
 </template>
@@ -16,7 +22,11 @@ export default {
             type: Number
         },
         page: {
-            type: Number
+            type: Number,
+            default: 0
+        },
+        model:{
+            required: true
         },
         path: {}
     },
@@ -33,9 +43,15 @@ export default {
             this.$emit('pageChange', this.pageNow)
         }
     },
-    computed:{
-        pageAll(){
-            return Math.ceil(this.total/ApiCfg.pageSize)
+    computed: {
+        pageAll() {
+            return Math.ceil(this.total / ApiCfg.pageSize)
+        },
+        prevPage(){
+            return this.path + (this.pageNow > 1 ? this.pageNow-1 : 1)
+        },
+        nextPage(){
+            return this.path + (this.pageNow < this.pageAll-1 ? this.pageNow +1 : this.pageAll-1)
         }
     },
     methods: {
@@ -61,7 +77,7 @@ div {
     justify-content: space-between;
 }
 
-button {
+button,a {
     display: inline-block;
     padding: 8px 10px;
     border: 1px solid #666;
@@ -77,7 +93,7 @@ button {
     border-color: #ddd;
 }
 
-button:not(.disable):hover {
+:not(.disable):hover {
     border-color: rgb(51, 204, 250);
     color: rgb(51, 204, 250);
 }

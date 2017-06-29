@@ -16,9 +16,8 @@ import axios from '~plugins/axios'
 import { formatDate } from '../../util/assist'
 
 import hljs from 'highlight.js'
-import '../../assets/css/yeh-md-theme.css'
-import '../../assets/css/ocean.min.css'
-
+import '~assets/css/yeh-md-theme.css'
+import '~assets/css/ocean.min.css'
 
 
 let marked = require('marked');
@@ -40,14 +39,12 @@ marked.setOptions({
 export default {
   name: 'id',
   validate ({ params }) {
-    // Must be a number
     return /^\d+$/.test(params.id)
   },
   asyncData({ params, error }) {
     return axios.get('/api/post/detail/' + params.id).then((res) => {
-      if (res.data.list.length === 0) {
+      if (res.data.code === 404) {
         error({ statusCode: 404, message: 'Not Found This Post' });
-        return false;
       }
       var post = res.data.list[0];
       post.html = marked(post.markdown);

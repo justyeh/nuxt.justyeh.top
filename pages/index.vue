@@ -1,28 +1,17 @@
 <template>
   <div class="container">
-    <transition-group name="list" tag="section">
-      <article v-for="(post, index) in posts" :key="post.id">
-        <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
-        <router-link :to="`/post/${post.id}`">{{ post.title }}</router-link>
-        <div class="desc">{{post.meta_description}}</div>
-        <div class="tags" v-if="post.tags">
-          <router-link class="btn btn-small btn-default" :to="`/tag/${tag.id}`" v-for="tag in post.tags" :key="tag.id">{{tag.name}}</router-link>
-        </div>
-      </article>
-    </transition-group>
-    <vue-page :total="count" :page="page" v-on:pageChange="pageChange"></vue-page>
+    <post-list :posts="posts"></post-list>
+    <nuxt-link class="more" to="/page/1">查看更多</nuxt-link>
   </div>
 </template>
 
 <script>
 import axios from '~plugins/axios'
-import VuePage from '../components/VuePage'
-import * as assist  from '../util/assist'
+import PostList from '~components/PostList'
 
 export default {
   async asyncData({ req, error }) {
-    let page = parseInt(assist.getCookiesInServer(req).page || assist.getCookieInClient('page') || 0);
-
+    let page = 0
     let [pageRes, countRes] = await Promise.all([
       axios.get(`/api/post/page/${page}?scope=published`),
       axios.get('/api/post/count/published'),
@@ -30,115 +19,28 @@ export default {
     return {
       posts: pageRes.data.list,
       count: countRes.data.result,
-      page
     }
   },
-  components: {
-    VuePage
-  },
-  mounted() {
-    assist.setCookieInClient('page', this.page)
-  },
-  methods: {
-    pageChange(page) {
-      axios.get(`/api/post/page/${page}?scope=published`).then(res => {
-        this.posts = res.data.list;
-        assist.setCookieInClient('page',page)
-      }).catch(error => console.error(error))
-    }
-    /*setCookie(name, value) {
-      let Days = 30;
-      let exp = new Date();
-      exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-      document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-    }*/
+  components:{
+    PostList
   }
 }
 </script>
 
 <style scoped>
-article {
+.more {
   background: #fff;
   border-radius: 2px;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.26);
   margin-bottom: 40px;
-}
-
-article .poster {
-  background: rgba(38, 50, 56, 0.95) no-repeat center / cover;
-  height: 300px;
-  padding: 20px;
-  display: flex;
-  align-items: flex-end;
-}
-
-article>a {
-  color: #222;
-  font-size: 24px;
-  line-height: 36px;
-  margin: 10px 20px 5px 20px;
-  display: inline-block;
-}
-
-article a:hover {
-  text-decoration: underline;
-}
-
-article .desc {
-  padding: 0 20px 10px 20px;
+  display: block;
+  text-align: center;
+  padding: 10px 0;
   font-size: 16px;
-  line-height: 24px;
+  transition: all ease-in 0.2s;
 }
 
-article .tags {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  padding: 0 0 0 20px;
-}
-
-article .tags a {
-  margin: 20px 10px 20px 0;
-  padding: 3px 10px;
-  text-decoration: none;
-}
-
-.list-enter-active,
-.list-leave-active {
-  opacity: 0;
-  transform: translateY(0);
-  animation: fade-in 0.2s ease-in forwards;
-  animation-delay: 0.3s;
-}
-
-.list-enter,
-.list-leave-active {
-  animation: fade-out 0.3s ease-in forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    display: none;
-    opacity: 0;
-  }
-  5% {
-    display: black;
-    opacity: 0;
-    transform: translateY(3000px)
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0)
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    display: block;
-    opacity: 1;
-  }
-  100% {
-    display: none;
-    opacity: 0;
-  }
+.more:hover {
+  background: #f2f2f2;
 }
 </style>
