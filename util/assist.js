@@ -1,8 +1,8 @@
 /*let mysql = require('mysql')*/
 
-function formatDate(timestamp) {
-    let date = new Date(timestamp);
-    return date.getYear() + "-" + date.getMonth() + 1 + "-" + date.getDate() + "   " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+export function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  return date.getYear() + "-" + date.getMonth() + 1 + "-" + date.getDate() + "   " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 }
 
 /*function objectToSQLWhrer(object){
@@ -13,7 +13,7 @@ function formatDate(timestamp) {
     return where;
 }*/
 
-export function timeAgo (time) {
+export function timeAgo(time) {
   const between = Date.now() / 1000 - Number(time)
 
   if (between < 3600) {
@@ -25,8 +25,20 @@ export function timeAgo (time) {
   }
 }
 
-
-export {
-    formatDate,
-    objectToSQLWhrer
+export function getCookiesInServer(req) {
+  var Cookies = {};
+  req.headers.cookie && req.headers.cookie.split(';').forEach(function (Cookie) {
+    var parts = Cookie.split('=');
+    Cookies[parts[0].trim()] = (parts[1] || '').trim();
+  });
+  return Cookies;
 }
+
+
+export function setCookieInClient(name, value) {
+  let Days = 30;
+  let exp = new Date();
+  exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+  document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+}
+
