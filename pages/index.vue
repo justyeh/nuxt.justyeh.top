@@ -17,13 +17,11 @@
 <script>
 import axios from '~plugins/axios'
 import VuePage from '../components/VuePage'
-import { getCookiesInServer,setCookieInClient} from '../util/assist'
+import * as assist  from '../util/assist'
 
 export default {
   async asyncData({ req, error }) {
-    
-    let page = parseInt(getCookiesInServer(req).page || 0);
-    console.log(page)
+    let page = parseInt(assist.getCookiesInServer(req).page || assist.getCookieInClient('page') || 0);
 
     let [pageRes, countRes] = await Promise.all([
       axios.get(`/api/post/page/${page}?scope=published`),
@@ -39,13 +37,13 @@ export default {
     VuePage
   },
   mounted() {
-    setCookieInClient('page', this.page)
+    assist.setCookieInClient('page', this.page)
   },
   methods: {
     pageChange(page) {
       axios.get(`/api/post/page/${page}?scope=published`).then(res => {
         this.posts = res.data.list;
-        setCookieInClient('page',page)
+        assist.setCookieInClient('page',page)
       }).catch(error => console.error(error))
     }
     /*setCookie(name, value) {

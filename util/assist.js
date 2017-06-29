@@ -27,7 +27,7 @@ export function timeAgo(time) {
 
 export function getCookiesInServer(req) {
   var Cookies = {};
-  req.headers.cookie && req.headers.cookie.split(';').forEach(function (Cookie) {
+  req && req.headers.cookie && req.headers.cookie.split(';').forEach(function (Cookie) {
     var parts = Cookie.split('=');
     Cookies[parts[0].trim()] = (parts[1] || '').trim();
   });
@@ -42,3 +42,11 @@ export function setCookieInClient(name, value) {
   document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
+
+export function getCookieInClient(name) {
+  var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+  if (arr = document.cookie.match(reg))
+    return unescape(arr[2]);
+  else
+    return null;
+}
