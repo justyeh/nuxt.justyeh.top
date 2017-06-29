@@ -12,13 +12,13 @@ let list = (params, callback) => {
             callback({ code: 404, message: 'no result' });
         }
         //get each post's tags
-        async.everySeries(posts, (post, callback) => {
+        async.eachSeries(posts, (post, tagCallback) => {
             tagModel.listByPostId(post.id, (err, result) => {
                 if (err) {
-                    return callback(err)
+                    tagCallback(err)
                 }
                 post.tags = result;
-                callback()
+                tagCallback()
             });
         }, (err) => {
             if (err) {
@@ -31,33 +31,36 @@ let list = (params, callback) => {
 }
 
 let getPostById = (postId, callback) => {
-    postModel.one(postId, (err, post) => {
+    async.waterfall([
+        oneCallback => {
+            postModel.one(postId, (err, post) => {
+                if (err) {
+                    oneCallback(err);
+                    return;
+                }
+                if(post.length == 0){
+                    oneCallback('not found this post');
+                    return;
+                }
+                oneCallback(null, post);
+            });
+        },
+        (arg1, tagCallback) => {
+            tagModel.listByPostId(postId, (err, tags) => {
+                if (err) {
+                    tagCallback(err);
+                }
+                arg1[0].tags = tags;
+                tagCallback(null, arg1);
+            });
+        }
+    ], (err, newPost) => {
         if (err) {
             callback({ code: 404, message: 'no result' });
+            return;
         }
-        callback({ code: 200, message: 'success', list: post });
-       /* tagModel.listByPostId(postId, (err, tags) => {
-            if (err) {
-                callback({ code: 404, message: 'no result' });
-            }
-            post.tags = tags;
-            callback({ code: 200, message: 'success', list: post });
-        });*/
+        callback({ code: 200, message: 'success', list: newPost });
     });
-
-    /*postModel.one(postId, (err, post) => {
-        if (err) {
-            callback({ code: 404, message: 'no result' });
-        }
-        tagModel.listByPostId(postId, (err, tags) => {
-            if (err) {
-                callback({ code: 404, message: 'no result' });
-            }
-            post.tags = tags;
-            callback({ code: 200, message: 'success', list: post });
-        });
-
-    });*/
 }
 
 let updatePost = (post, callback) => {
@@ -77,7 +80,6 @@ let getPostCount = (postStatus, callback) => {
         callback({ code: 200, message: 'success', result: result });
     });
 }
-
 
 module.exports.list = list;
 module.exports.getPostById = getPostById;
