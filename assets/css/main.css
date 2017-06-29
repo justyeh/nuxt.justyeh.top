@@ -88,6 +88,12 @@ body{
 .btn-danger:hover{
 	background: rgb(245, 54, 119);
 }
+.btn-group .btn{
+	margin: 0 5px;
+}
+.btn-group .btn:first-child{
+	margin-left: 0px;
+}
 .container{
 	width: 1000px;
 	margin: 50px auto;
