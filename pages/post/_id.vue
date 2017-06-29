@@ -5,7 +5,7 @@
     <div class="info">
       <p>{{post.updated_at}}</p>
     </div>
-    <div class="conten">
+    <div class="content">
       <div v-html="post.html" class="md-theme"></div>
     </div>
   </section>
@@ -38,7 +38,7 @@ marked.setOptions({
 
 export default {
   name: 'id',
-  validate ({ params }) {
+  validate({ params }) {
     return /^\d+$/.test(params.id)
   },
   asyncData({ params, error }) {
@@ -84,8 +84,34 @@ export default {
   padding: 0 20px;
 }
 
-.conten {
+.content {
   padding: 20px 30px;
   line-height: 26px;
+}
+
+@media screen and (max-width: 960px) {
+  .poster {
+    height: 260px;
+  }
+  .title {
+    font-size: 24px;
+    padding: 15px 0
+  }
+  .info {
+    padding: 0 10px;
+  }
+  .content {
+    padding: 15px;
+  }
+}
+@media screen and (max-width: 640px) {
+    .poster {
+        height: 220px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .poster {
+        height: 180px;
+    }
 }
 </style>

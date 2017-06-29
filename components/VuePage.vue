@@ -97,4 +97,12 @@ button,a {
     border-color: rgb(51, 204, 250);
     color: rgb(51, 204, 250);
 }
+@media screen and (max-width: 960px) {
+  div{
+    padding: 0 10px;
+  }
+  button,a {
+      padding: 5px 8px;
+  }
+}
 </style>

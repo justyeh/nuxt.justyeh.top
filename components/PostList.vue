@@ -12,14 +12,14 @@
 </template>
 
 <script>
-    export default {
-        props:{
-            posts:{
-                type:Array,
-                required:true
-            }
+export default {
+    props: {
+        posts: {
+            type: Array,
+            required: true
         }
     }
+}
 </script>
 
 <style scoped>
@@ -33,9 +33,7 @@ article {
 article .poster {
     background: rgba(38, 50, 56, 0.95) no-repeat center / cover;
     height: 300px;
-    padding: 20px;
-    display: flex;
-    align-items: flex-end;
+    width: 100%;
 }
 
 article>a {
@@ -105,6 +103,44 @@ article .tags a {
     100% {
         display: none;
         opacity: 0;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    article {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.26);
+        margin-bottom: 20px;
+    }
+    article .poster {
+        height: 200px;
+    }
+    article>a {
+        margin: 10px 10px 5px 10px;
+        font-size: 18px;
+        line-height: 26px;
+        color: #3084bb;
+    }
+    article .desc {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0 10px 5px 10px;
+        color: #666;
+    }
+    article .tags {
+        padding-left: 10px;
+    }
+    article .tags a {
+        margin: 10px 10px 10px 0;
+    }
+}
+@media screen and (max-width: 640px) {
+    article .poster {
+        height: 160px;
+    }
+}
+@media screen and (max-width: 480px) {
+    article .poster {
+        height: 130px;
     }
 }
 </style>

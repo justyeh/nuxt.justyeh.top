@@ -36,12 +36,18 @@ button,a {
 	cursor: pointer;
 	outline: none;
 }
+table{
+	border-collapse:collapse; 
+	border-spacing:0;
+}
 html,body {
 	height: 100%;
 }
 body{
   font-size: 14px;
   overflow-x: hidden;
+  word-break: break-word;
+  word-break: break-all;
 }
 * {
 	box-sizing: border-box;
@@ -105,4 +111,20 @@ body{
 	background: #fff;
 	border-radius: 4px;
 	box-shadow: 1px 1px 6px rgba(100,100,100,0.4);
+}
+
+@media screen and (max-width: 960px) {
+	body{
+		background: #f7f8fa;
+	}
+	.container{
+		width: 100%;
+		margin: 20px 0;
+	}
+	.page{
+		width: 100%;
+		margin: 20px 0;
+		border-radius: 0;
+    	box-shadow: 0 0 6px rgba(100,100,100,0.6)
+	}
 }

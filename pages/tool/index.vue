@@ -31,10 +31,10 @@ export default {
                 logo: '/tools/material-design-color-logo.jpg',
                 name: 'Material Design Color',
                 component: 'MaterialDesignColor'
-            },{
-                logo:'/tools/css-beautify.jpg',
+            }, {
+                logo: '/tools/css-beautify.jpg',
                 name: 'Css Beautify',
-                component:'CssBeautify'
+                component: 'CssBeautify'
             }],
             currentView: '',
             isSmall: false,
@@ -46,7 +46,7 @@ export default {
         CssBeautify
     },
     methods: {
-        setCurrentView(index,component) {
+        setCurrentView(index, component) {
             this.currIndex = index;
             this.currentView = component;
             this.isSmall = true;
@@ -58,7 +58,8 @@ export default {
 <style scoped>
 .cards {
     padding: 20px 100px;
-    display:flex;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -114,7 +115,8 @@ export default {
     padding: 50px 100px;
     position: relative;
 }
-.view i{
+
+.view i {
     position: absolute;
     width: 30px;
     height: 30px;
@@ -128,10 +130,34 @@ export default {
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.2)
 }
 
-.component-fade-enter-active, .component-fade-leave-active {
-  transition: opacity .3s ease;
+.component-fade-enter-active,
+.component-fade-leave-active {
+    transition: opacity .3s ease;
 }
-.component-fade-enter, .component-fade-leave-active {
-  opacity: 0;
+
+.component-fade-enter,
+.component-fade-leave-active {
+    opacity: 0;
+}
+
+@media screen and (max-width: 960px) {
+    .cards {
+        padding: 10px;
+        background: #fff;
+    }
+    .card {
+        width: 120px;
+        margin: 10px 10px 10px 0;
+    }
+    .card div {
+        height: 120px;
+    }
+    .view {
+        padding: 40px 10px;
+    }
+    .view i{
+        top: 5px;
+        right: 5px;
+    }
 }
 </style>

@@ -1,6 +1,6 @@
 .md-theme {
 	color: #222;
-	word-wrap: break-word;
+	word-break: break-word;
 	font-size: 16px;
     line-height: 1.4;
 }
@@ -90,7 +90,9 @@
 }
 .md-theme table {
 	margin: 12px 0 12px 0;
-	color: #5c5d5e
+	color: #5c5d5e;
+	border-collapse:collapse; 
+	border-spacing:0;
 }
 .md-theme table th {
 	background: #f8fafc
@@ -134,7 +136,7 @@
 	width: 100%;
 	max-width: 100%;
 	margin-bottom: 21px;
-	border: 1px solid #f0f0f0;
+	border: 1px solid #eee;
 }
 .md-theme table>thead>tr>th,
 .md-theme table>thead>tr>td,
@@ -145,11 +147,11 @@
 	padding: 8px;
 	line-height: 1.42857143;
 	vertical-align: top;
-	border-top: 1px solid #f0f0f0
+	border-top: 1px solid #eee
 }
 .md-theme table>thead>tr>th {
 	vertical-align: bottom;
-	border-bottom: 2px solid #f0f0f0
+	border-bottom: 2px solid #eee
 }
 .md-theme table>caption+thead>tr:first-child>th,
 .md-theme table>caption+thead>tr:first-child>td,
@@ -160,7 +162,7 @@
 	border-top: 0
 }
 .md-theme table>tbody+tbody {
-	border-top: 2px solid #f0f0f0
+	border-top: 2px solid #eee
 }
 .md-theme table>thead>tr>th,
 .md-theme table>thead>tr>td,
@@ -168,7 +170,7 @@
 .md-theme table>tbody>tr>td,
 .md-theme table>tfoot>tr>th,
 .md-theme table>tfoot>tr>td {
-	border: 1px solid #f0f0f0
+	border: 1px solid #eee
 }
 .md-theme table>thead>tr>th,
 .md-theme table>thead>tr>td {

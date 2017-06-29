@@ -1264,8 +1264,6 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, .22)
 }
 .color-palette {
-  width: 1200px;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   padding-top: 50px;

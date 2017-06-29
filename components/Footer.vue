@@ -42,4 +42,9 @@ p {
 a {
   margin-right: 20px;
 }
+@media screen and (max-width: 960px) {
+  footer{
+    padding: 20px 10px;
+  }
+}
 </style>

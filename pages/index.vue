@@ -43,4 +43,10 @@ export default {
 .more:hover {
   background: #f2f2f2;
 }
+
+@media screen and (max-width: 960px) {
+  .more{
+    margin: 0 10px;
+  }
+}
 </style>

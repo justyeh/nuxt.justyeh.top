@@ -1,6 +1,5 @@
 <template>
   <header>
-    <div class="warming">本网站仍在开发中，可能包含有BUG，请见谅！</div>
     <div class="site">
       <img src="../assets/img/head.jpg" />
       <p>JustYeh的前端博客</p>
@@ -12,15 +11,15 @@
         <nuxt-link to="/about">About</nuxt-link>
         <a target="_blank" href="https://github.com/justyeh">Github</a>
       </div>
-     <!-- <form class="serach">
-        <input type="text" id="bdcsMain">
-      </form>-->
+      <!-- <form class="serach">
+          <input type="text" id="bdcsMain">
+        </form>-->
     </div>
   
     <!--<div class="search">
-              <input type="" name="" id="" value="" />
-              <label>搜索</label>
-            </div>-->
+      <input type="" name="" id="" value="" />
+      <label>搜索</label>
+    </div>-->
   </header>
 </template>
 
@@ -30,20 +29,6 @@ header {
   position: relative;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   padding: 0 100px;
-}
-
-.warming {
-  background: #CC9966;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  color: #fff;
-  font-size: 18px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
 }
 
 .site {
@@ -65,19 +50,24 @@ header {
   align-items: center;
   justify-content: space-between;
   background: rgb(38, 50, 56);
+  font-size: 20px;
 }
 
 .menu a {
-  font-size: 20px;
   color: rgba(250, 250, 250, 0.8);
   margin-right: 20px;
   line-height: 60px;
   height: 60px;
 }
+.menu a:last-child{
+  margin-right: 0
+}
 
 .menu a:hover {
   color: rgba(250, 250, 250, 0.95);
 }
+
+
 /*.search {
   font-size: 20px;
   width: 60px;
@@ -107,6 +97,7 @@ header {
   text-indent: 15px;
   padding-right: 60px;
 }
+
 .serach:after {
   content: '搜索';
   position: absolute;
@@ -115,5 +106,24 @@ header {
   color: rgba(250, 250, 250, 0.8);
   font-size: 17px;
   line-height: 32px;
+}
+
+
+@media screen and (max-width: 960px) {
+  header{
+    padding: 0;
+  }
+	.site{
+		flex-direction: column;
+    font-size: 26px;
+    padding: 30px 0
+	}
+  .site img{
+    margin: 0 0 10px 0;
+  }
+  .nav{
+    justify-content: center;
+    font-size: 14px;
+  }
 }
 </style>
