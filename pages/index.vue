@@ -6,39 +6,54 @@
         <router-link :to="`/post/${post.id}`">{{ post.title }}</router-link>
         <div class="desc">{{post.meta_description}}</div>
         <div class="tags" v-if="post.tags">
-            <router-link class="btn btn-small btn-default" :to="`/tag/${tag.id}`" v-for="tag in post.tags" :key="tag.id">{{tag.name}}</router-link>
+          <router-link class="btn btn-small btn-default" :to="`/tag/${tag.id}`" v-for="tag in post.tags" :key="tag.id">{{tag.name}}</router-link>
         </div>
       </article>
     </transition-group>
-    <vue-page :total="count" :page="0" v-on:pageChange="pageChange"></vue-page>
+    <vue-page :total="count" :page="page" v-on:pageChange="pageChange"></vue-page>
   </div>
 </template>
 
 <script>
 import axios from '~plugins/axios'
 import VuePage from '../components/VuePage'
+import { getCookiesInServer,setCookieInClient} from '../util/assist'
 
 export default {
-  async asyncData({ error }) {
+  async asyncData({ req, error }) {
+    
+    let page = parseInt(getCookiesInServer(req).page || 0);
+    console.log(page)
 
     let [pageRes, countRes] = await Promise.all([
-      axios.get('/api/post/page/0?scope=published'),
+      axios.get(`/api/post/page/${page}?scope=published`),
       axios.get('/api/post/count/published'),
     ])
     return {
       posts: pageRes.data.list,
-      count: countRes.data.result
+      count: countRes.data.result,
+      page
     }
   },
   components: {
     VuePage
   },
+  mounted() {
+    setCookieInClient('page', this.page)
+  },
   methods: {
     pageChange(page) {
       axios.get(`/api/post/page/${page}?scope=published`).then(res => {
         this.posts = res.data.list;
+        setCookieInClient('page',page)
       }).catch(error => console.error(error))
     }
+    /*setCookie(name, value) {
+      let Days = 30;
+      let exp = new Date();
+      exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+      document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    }*/
   }
 }
 </script>

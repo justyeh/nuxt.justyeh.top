@@ -22,7 +22,7 @@ export default {
     },
     data() {
         return {
-            pageNow: 0,
+            pageNow: this.page,
         }
     },
     watch: {
