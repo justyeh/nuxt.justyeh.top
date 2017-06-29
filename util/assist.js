@@ -26,9 +26,9 @@ export function timeAgo(time) {
 }
 
 export function getCookiesInServer(req) {
-  var Cookies = {};
+  let Cookies = {};
   req && req.headers.cookie && req.headers.cookie.split(';').forEach(function (Cookie) {
-    var parts = Cookie.split('=');
+    let parts = Cookie.split('=');
     Cookies[parts[0].trim()] = (parts[1] || '').trim();
   });
   return Cookies;
@@ -44,9 +44,21 @@ export function setCookieInClient(name, value) {
 
 
 export function getCookieInClient(name) {
-  var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+  let arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
   if (arr = document.cookie.match(reg))
     return unescape(arr[2]);
   else
     return null;
+}
+
+export function seo() {
+  let bp = document.createElement('script');
+  let curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  } else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  let s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
 }

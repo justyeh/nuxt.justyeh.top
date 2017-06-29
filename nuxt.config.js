@@ -32,7 +32,7 @@ module.exports = {
   },
   // Global CSS
   css: ['~assets/css/main.css', '~assets/css/font-awesome.min.css'],
-
+  
   build: {
     //Add axios globally
     vendor: ['axios'],
