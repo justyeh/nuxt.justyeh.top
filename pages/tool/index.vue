@@ -1,7 +1,7 @@
 <template>
     <div class="tools">
         <div :class="{cards:true,small:isSmall}">
-            <div :class="{card:true,curr:currIndex == index && isSmall}" v-for="(tool,index) in tools" :key="tool.name" @click="setCurrentView(tool.component)">
+            <div :class="{card:true,curr:currIndex == index && isSmall}" v-for="(tool,index) in tools" :key="tool.name" @click="setCurrentView(index,tool.component)">
                 <div :style="{backgroundImage:'url('+tool.logo+')'}"></div>
                 <p>{{tool.name}}</p>
             </div>
@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import MaterialDesignColor from '../../components/tools/MaterialDesignColor'
+import MaterialDesignColor from '~components/tools/MaterialDesignColor'
+import CssBeautify from '~components/tools/CssBeautify'
 
 export default {
     head() {
@@ -30,6 +31,10 @@ export default {
                 logo: '/tools/material-design-color-logo.jpg',
                 name: 'Material Design Color',
                 component: 'MaterialDesignColor'
+            },{
+                logo:'/tools/css-beautify.jpg',
+                name: 'Css Beautify',
+                component:'CssBeautify'
             }],
             currentView: '',
             isSmall: false,
@@ -37,10 +42,12 @@ export default {
         }
     },
     components: {
-        MaterialDesignColor
+        MaterialDesignColor,
+        CssBeautify
     },
     methods: {
-        setCurrentView(component) {
+        setCurrentView(index,component) {
+            this.currIndex = index;
             this.currentView = component;
             this.isSmall = true;
         }
@@ -66,7 +73,7 @@ export default {
 
 .card.curr,
 .card:hover {
-    box-shadow: 0 0 10px rgba(100, 100, 100, 0.8);
+    box-shadow: 0 0 10px rgba(100, 100, 100, 1);
 }
 
 .card div {
@@ -104,7 +111,7 @@ export default {
 
 .view {
     background: #f7f8fa;
-    padding: 50px;
+    padding: 50px 100px;
     position: relative;
 }
 .view i{
