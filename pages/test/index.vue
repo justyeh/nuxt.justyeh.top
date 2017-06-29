@@ -1,13 +1,9 @@
 <template>
-    <div class="page">
-        <vue-page total='10' page='1' path='?page=' ></vue-page>
-        <material-design-color></material-design-color>
-    </div>
+        <css-beautify></css-beautify>
 </template>
 
 <script>
-import VuePage from '../../components/VuePage'
-import MaterialDesignColor from '../../components/tools/MaterialDesignColor'
+import CssBeautify from '~components/tools/CssBeautify'
 export default {
     head() {
         return {
@@ -15,8 +11,7 @@ export default {
         }
     },
     components: {
-        VuePage,
-        MaterialDesignColor
+        CssBeautify
     }
 }
 </script>
