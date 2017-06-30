@@ -1,8 +1,8 @@
 <template>
   <div>
-    <my-header/>
-    <nuxt/>
-    <my-footer/>
+    <my-header></my-header>
+    <nuxt></nuxt>
+    <my-footer></my-footer>
   </div>
 </template>
 
