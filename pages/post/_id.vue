@@ -4,6 +4,9 @@
     <div class="title">{{post.title}}</div>
     <div class="info">
       <p>{{post.updated_at}}</p>
+      <p>
+        <span v-for="tag in post.tags" :key="tag.id">{{tag.name}}</span>
+      </p>
     </div>
     <div class="content">
       <div v-html="post.html" class="md-theme"></div>
@@ -13,7 +16,7 @@
 
 <script>
 import axios from '~plugins/axios'
-import { formatDate } from '../../util/assist'
+import timeago from 'timeago.js'
 
 import hljs from 'highlight.js'
 import '~assets/css/yeh-md-theme.css'
@@ -48,7 +51,7 @@ export default {
       }
       var post = res.data.list[0];
       post.html = marked(post.markdown);
-      post.updated_at = formatDate(post.updated_at);
+      post.updated_at = '发布于' + timeago(null, 'zh_CN').format(post.updated_at);
       return { post }
     }).catch((err) => {
       error({ statusCode: 404, message: err.message })
@@ -79,11 +82,23 @@ export default {
 
 .info {
   display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  padding: 0 20px;
+  /*justify-content: space-around;*/
+  font-size: 16px;
+  padding: 0 30px;
+}
+.info p{
+  padding-right: 10px;
 }
 
+.info p:last-child {
+  padding-left: 0;
+}
+.info p span:after{
+  content: '，'
+}
+.info p span:last-child:after{
+  content: ''
+}
 .content {
   padding: 20px 30px;
   line-height: 26px;
@@ -99,19 +114,23 @@ export default {
   }
   .info {
     padding: 0 10px;
+    justify-content: center;
+    font-size: 14px;
   }
   .content {
     padding: 15px;
   }
 }
+
 @media screen and (max-width: 640px) {
-    .poster {
-        height: 220px;
-    }
+  .poster {
+    height: 220px;
+  }
 }
+
 @media screen and (max-width: 480px) {
-    .poster {
-        height: 180px;
-    }
+  .poster {
+    height: 180px;
+  }
 }
 </style>
