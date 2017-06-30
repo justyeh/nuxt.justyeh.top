@@ -2,14 +2,19 @@ let express = require('express');
 let router = express.Router();
 
 //services
-let TagSys = require('../service/TagSys');
+let tagSys = require('../service/TagSys');
 
-router.get('/tag/detail/:id', function(req, res, next) {
-  TagSys.list(function(data){
-    res.json(data)
-  });
+router.get('/tag/detail/:id', function (req, res, next) {
+  try {
+    tagSys.getTagByTagId(req.params.id, function (result) {
+      res.json(result)
+    });
+  } catch (error) {
+    res.json({ code: 500, message: '程序发生错误！' })
+  }
 });
 
+/*
 router.get('/tag/page/:pageNo', function(req, res, next) {
   let tagId = req.params.id;
   TagSys.getPageTags(tagId,function(data){
@@ -43,6 +48,6 @@ router.post('/tag/del', function(req, res, next) {
   TagSys.getPostById(tagId,function(data){
     res.json(data)
   });
-});
+});*/
 
 module.exports = router;

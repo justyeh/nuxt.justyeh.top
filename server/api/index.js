@@ -17,10 +17,12 @@ router.get('/user/:id', user);
 router.get('/post/page/:pageNo', post);
 router.get('/post/detail/:id', post);
 router.get('/post/count/:scope', post);
+router.get('/post/list/:tagId', post);
 router.post('/post/update', post);
 
-router.get('/tag/page/:pageNo', tag);
-router.get('/tag/list/:id', tag);
+
+
+router.get('/tag/detail/:id', tag);
 router.post('/tag/add', tag);
 router.post('/tag/del', tag);
 router.post('/tag/update', tag);
