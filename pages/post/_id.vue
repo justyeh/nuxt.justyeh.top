@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <div class="page">
     <div class="poster" v-if="post.image.length > 0 " :style="{backgroundImage:'url('+post.image+')'}"></div>
     <div class="title">{{post.title}}</div>
     <div class="info">
@@ -11,7 +11,7 @@
     <div class="content">
       <div v-html="post.html" class="md-theme"></div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>

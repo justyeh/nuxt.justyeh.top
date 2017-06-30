@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="error">
     <img src="../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
     <h1 class="title">
       {{ error.statusCode }}
@@ -17,8 +17,9 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.error {
   text-align: center;
+  padding: 30px 0;
 }
 
 .title {
