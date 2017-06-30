@@ -106,7 +106,22 @@ body{
   	overflow:hidden;
 	background: #fff;
 	border-radius: 4px;
-	box-shadow: 1px 1px 6px rgba(100,100,100,0.4);
+	box-shadow: 0 0 6px rgba(100,100,100,0.4);
+}
+
+#__nuxt {
+    height: 100%;
+}
+.app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.app>div{
+    flex: 1 0 auto;
+}
+header,footer {
+    flex: 0 0 auto;
 }
 
 @media screen and (max-width: 960px) {
