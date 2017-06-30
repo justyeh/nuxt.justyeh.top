@@ -39,12 +39,16 @@ export default {
                     account: this.account,
                     password: this.password
                 }
-            }).then(function (res) {
+            }).then((res) => {
                 let data = res.data;
-                if(data.code !== 200){
-                    alert(data.message);
-                }
-            }).catch(function (error) {
+                 if(data.code !== 200){
+                     alert(data.message);
+                 }
+                 if(data.code === 200){
+                     this.$router.replace('/admin')
+                 }
+                 return;
+            }).catch((error) => {
                 console.error(error);
             });
         }
@@ -103,6 +107,7 @@ input {
     border: solid 1px #f7fafc;
     text-indent: 30px;
 }
+
 
 
 

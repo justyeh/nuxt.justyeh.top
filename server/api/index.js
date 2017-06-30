@@ -11,8 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/user', user);
-router.get('/user/:id', user);
+router.post('/user/login', user);
 
 router.get('/post/page/:pageNo', post);
 router.get('/post/detail/:id', post);
