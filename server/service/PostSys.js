@@ -1,11 +1,11 @@
 import Post from '../models/Post'
-import Tag from '../models/Tag'
-
+import PostTag from '../models/PostTag'
 let async = require('async');
 
 let postModel = new Post();
-let tagModel = new Tag();
+let postTagModel = new PostTag();
 
+//获取分页Post列表
 let list = (params, callback) => {
     postModel.list(params, (err, posts) => {
         if (err) {
@@ -13,7 +13,7 @@ let list = (params, callback) => {
         }
         //get each post's tags
         async.eachSeries(posts, (post, tagCallback) => {
-            tagModel.listByPostId(post.id, (err, result) => {
+            postTagModel.tagsByPostId(post.id, (err, result) => {
                 if (err) {
                     tagCallback(err)
                 }
@@ -30,6 +30,7 @@ let list = (params, callback) => {
     });
 }
 
+//根据id获取Post
 let getPostById = (postId, callback) => {
     async.waterfall([
         oneCallback => {
@@ -38,7 +39,7 @@ let getPostById = (postId, callback) => {
                     oneCallback(err);
                     return;
                 }
-                if(post.length == 0){
+                if (post.length == 0) {
                     oneCallback('not found this post');
                     return;
                 }
@@ -46,7 +47,7 @@ let getPostById = (postId, callback) => {
             });
         },
         (arg1, tagCallback) => {
-            tagModel.listByPostId(postId, (err, tags) => {
+            postTagModel.tagsByPostId(postId, (err, tags) => {
                 if (err) {
                     tagCallback(err);
                 }
@@ -63,6 +64,18 @@ let getPostById = (postId, callback) => {
     });
 }
 
+//根据tagId获取Post列表
+let getPostsByTagId = (tagId, callback) => {
+    postTagModel.postsByTagId(tagId, (err, posts) => {
+        if (err) {
+            callback({ code: 404, message: 'no result' });
+            return;
+        }
+        callback({ code: 200, message: 'success', list: posts });
+    });
+}
+
+//更新Post
 let updatePost = (post, callback) => {
     postModel.update(post, (err, result) => {
         if (err) {
@@ -72,6 +85,7 @@ let updatePost = (post, callback) => {
     });
 }
 
+//获取Post总数
 let getPostCount = (postStatus, callback) => {
     postModel.count(postStatus, (err, result) => {
         if (err) {
@@ -83,5 +97,6 @@ let getPostCount = (postStatus, callback) => {
 
 module.exports.list = list;
 module.exports.getPostById = getPostById;
+module.exports.getPostsByTagId = getPostsByTagId;
 module.exports.updatePost = updatePost;
 module.exports.getPostCount = getPostCount;

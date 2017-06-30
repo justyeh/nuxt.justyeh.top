@@ -5,13 +5,14 @@ let pageCfg = require('../../util/api.config')
 
 export default class Post {
 
+    //根据页码获取当前页Post列表
     list(params, callback) {
         let sql = 'SELECT id,title,image,meta_description,updated_at,status FROM posts ';
         if (params.scope === 'published') {
             sql += ` WHERE status = '${params.scope}' `
         }
         sql += 'ORDER BY id DESC '
-        sql += `LIMIT ${params.pageNo*pageCfg.pageSize},${pageCfg.pageSize}`
+        sql += `LIMIT ${params.pageNo * pageCfg.pageSize},${pageCfg.pageSize}`
         db.query(sql, [], (err, result) => {
             if (err) {
                 return;
@@ -20,16 +21,7 @@ export default class Post {
         });
     }
 
-    /* where(post,callback){
-         let sql = 'SELECT  id,title,image,meta_description,updated_at FROM posts WHERE '+ objectToSQLWhrer(post) +' WHERE id = ?';
-         db.query(sql,['published'],(err,result) => {
-             if (err) {
-                 return;
-             }
-             callback(false, result);
-         });
-     }*/
-
+    //根据PostId获取Post详情
     one(postId, callback) {
         let sql = 'SELECT * FROM posts where id = ?';
         db.query(sql, [postId], (err, result) => {
@@ -40,6 +32,7 @@ export default class Post {
         });
     }
 
+    //更新Post
     update(post, callback) {
         post.updated_at = new Date().getTime();
         let fields = [],
@@ -62,6 +55,7 @@ export default class Post {
         });
     }
 
+    //获取Post总数
     count(scope, callback) {
         let sql = 'SELECT COUNT(id) AS count FROM posts';
         if (scope === 'published') {

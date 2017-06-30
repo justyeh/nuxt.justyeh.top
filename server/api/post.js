@@ -28,6 +28,16 @@ router.get('/post/detail/:id', function (req, res, next) {
   }
 });
 
+router.get('/post/list/:tagId', function (req, res, next) {
+  try {
+    PostSys.getPostsByTagId(req.params.tagId, function (result) {
+      res.json(result)
+    });
+  } catch (error) {
+    res.json({ code: 500, message: '程序发生错误！' })
+  }
+});
+
 router.post('/post/update', function (req, res, next) {
   try {
     PostSys.updatePost(req.body.post, function (result) {
@@ -49,7 +59,5 @@ router.get('/post/count/:scope', function (req, res, next) {
     res.json({ code: 500, message: '程序发生错误！' })
   }
 });
-
-
 
 module.exports = router;
