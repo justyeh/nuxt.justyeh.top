@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 .poster {
-  height: 360px;
+  height: 420px;
   background: no-repeat center / cover;
 }
 

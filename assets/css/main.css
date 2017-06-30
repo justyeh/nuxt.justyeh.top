@@ -100,14 +100,7 @@ body{
 .btn-group .btn:first-child{
 	margin-left: 0px;
 }
-.page{
-	width: 1000px;
-	margin: 50px auto;
-  	overflow:hidden;
-	background: #fff;
-	border-radius: 4px;
-	box-shadow: 0 0 6px rgba(100,100,100,0.4);
-}
+
 
 #__nuxt {
     height: 100%;
@@ -124,6 +117,25 @@ header,footer {
     flex: 0 0 auto;
 }
 
+.page{
+	width: 1400px;
+	margin: 50px auto;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 6px rgba(100,100,100,0.4);
+	transition: all ease-in 0.5s;
+}
+
+@media screen and (max-width: 1400px) {
+	.page{
+		width: 1200px;
+	}
+}
+@media screen and (max-width: 1200px) {
+	.page{
+		width: 1000px;
+	}
+}
 @media screen and (max-width: 960px) {
 	body{
 		background: #f7f8fa;
@@ -135,3 +147,4 @@ header,footer {
     	box-shadow: 0 0 6px rgba(100,100,100,0.6)
 	}
 }
+

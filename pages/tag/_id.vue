@@ -66,6 +66,7 @@ article {
     margin-bottom: 20px;
     border-bottom: solid 1px #e5e5e5;
     padding: 10px 5px;
+    transition: all ease-out 0.8s;
 }
 
 .info {
@@ -97,13 +98,13 @@ a:hover {
     width: 100%;
     height: 100%;
     background: rgba(38, 50, 56, 0.95) no-repeat center / cover;
-    transition: all ease-out 0.8s;
+    transition: all ease 1.2s;
 }
 article:hover{
     box-shadow: 0 0 5px rgba(100,100,100,0.6);
 }
 article:hover .poster div{
-    transform: scale(1.2)
+    transform: scale(1.1)
 }
 
 

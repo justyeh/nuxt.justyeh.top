@@ -32,8 +32,9 @@ article {
 
 article .poster {
     background: rgba(38, 50, 56, 0.95) no-repeat center / cover;
-    height: 300px;
+    height: 480px;
     width: 100%;
+    transition: all ease-in 0.5s;
 }
 
 article>a {
@@ -104,6 +105,18 @@ article .tags a {
     100% {
         display: none;
         opacity: 0;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+     article .poster {
+        height: 420px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+     article .poster {
+        height: 360px;
     }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="page">
     <post-list :posts="posts"></post-list>
     <nuxt-link class="more" to="/page/1">查看更多</nuxt-link>
   </div>
@@ -28,15 +28,13 @@ export default {
 </script>
 
 <style scoped>
-.index {
-  width: 1000px;
-  margin: 50px auto;
+.page{
+  box-shadow: none;
 }
-
 .more {
   background: #fff;
   border-radius: 2px;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.26);
   margin-bottom: 40px;
   display: block;
   text-align: center;
@@ -50,10 +48,6 @@ export default {
 }
 
 @media screen and (max-width: 960px) {
-  .index {
-    width: 100%;
-    margin: 20px 0;
-  }
   .more {
     margin: 0 10px;
   }

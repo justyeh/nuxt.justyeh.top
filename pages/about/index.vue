@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 h1{
   text-align: center;
   padding-bottom: 20px;
