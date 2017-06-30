@@ -11,7 +11,7 @@
 <style scoped>
 header {
   background: #1b8afa;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   height: 80px;

@@ -13,7 +13,7 @@
 
 <style scoped>
 .side-menu {
-  position: fixed;
+  position: absolute;
   top: 80px;
   bottom: 0;
   left: 0;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="admin">
     <my-header></my-header>
     <side-menu></side-menu>
     <nuxt></nuxt>
@@ -17,4 +17,33 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.admin {
+  position: relative;
+  height: 100%;
+  min-width: 960px;
+}
+</style>
+
+<style>
+.admin ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+
+.admin ::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background-color: rgba(100, 100, 100, 0.2);
+  box-shadow: 0 0 6px rgba(100, 100, 100, 0.2);
+}
+
+.admin ::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: rgba(100, 100, 100, 0.6);
+}
+</style>
+
+
 
