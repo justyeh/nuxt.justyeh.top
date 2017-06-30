@@ -100,10 +100,6 @@ body{
 .btn-group .btn:first-child{
 	margin-left: 0px;
 }
-.container{
-	width: 1000px;
-	margin: 50px auto;
-}
 .page{
 	width: 1000px;
 	margin: 50px auto;
@@ -116,10 +112,6 @@ body{
 @media screen and (max-width: 960px) {
 	body{
 		background: #f7f8fa;
-	}
-	.container{
-		width: 100%;
-		margin: 20px 0;
 	}
 	.page{
 		width: 100%;
