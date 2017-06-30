@@ -7,8 +7,7 @@ class Tag {
         let sql = "SELECT id,name,description FROM tags where id = ?";
         db.query(sql, [tagId], (err, result) => {
             if (err) {
-                callback(true);
-                return;
+                return callback(true);
             }
             callback(false, result[0]);
         });

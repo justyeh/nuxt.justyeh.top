@@ -7,25 +7,22 @@ let query = function (sql, params, callback) {
     try {
         pool.getConnection((err, connection) => {
             if (err) {
-                callback(true);
-                return;
+                return callback(true);
             }
             //链接
             connection.query(sql, params, (err, result) => {
                 //释放链接
                 connection.release();
                 if (err) {
-                    console.error('db error:' + err)
-                    callback(true);
-                    return;
+                    console.error('db error17:' + err)
+                    return callback(true);
                 }
                 callback(false, result);
             });
         });
     } catch (error) {
-        console.log(true)
-        callback(true);
-        return false;
+        console.error('db error24:' + err)
+        return callback(true);
     }
 }
 

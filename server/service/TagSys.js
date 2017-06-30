@@ -5,7 +5,7 @@ let tagModel = new Tag();
 let getTagByTagId = (tagId,callback) => {
     tagModel.one(tagId,(err,result) => {
         if(err){
-            callback({code:404,message:'no result'});
+            return callback({code:404,message:'no result'});
         }
         callback({code:200, message:'success',list:result});
     });

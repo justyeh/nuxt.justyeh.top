@@ -36,12 +36,10 @@ let getPostById = (postId, callback) => {
         oneCallback => {
             postModel.one(postId, (err, post) => {
                 if (err) {
-                    oneCallback(err);
-                    return;
+                    return oneCallback(err);
                 }
                 if (post.length == 0) {
-                    oneCallback('not found this post');
-                    return;
+                    return oneCallback('not found this post');
                 }
                 oneCallback(null, post);
             });
@@ -49,7 +47,7 @@ let getPostById = (postId, callback) => {
         (arg1, tagCallback) => {
             postTagModel.tagsByPostId(postId, (err, tags) => {
                 if (err) {
-                    tagCallback(err);
+                   return tagCallback(err);
                 }
                 arg1[0].tags = tags;
                 tagCallback(null, arg1);
@@ -57,8 +55,7 @@ let getPostById = (postId, callback) => {
         }
     ], (err, newPost) => {
         if (err) {
-            callback({ code: 404, message: 'no result' });
-            return;
+            return callback({ code: 404, message: 'no result' });
         }
         callback({ code: 200, message: 'success', list: newPost });
     });
@@ -68,8 +65,7 @@ let getPostById = (postId, callback) => {
 let getPostsByTagId = (tagId, callback) => {
     postTagModel.postsByTagId(tagId, (err, posts) => {
         if (err) {
-            callback({ code: 404, message: 'no result' });
-            return;
+           return  callback({ code: 404, message: 'no result' });
         }
         callback({ code: 200, message: 'success', list: posts });
     });
@@ -79,7 +75,7 @@ let getPostsByTagId = (tagId, callback) => {
 let updatePost = (post, callback) => {
     postModel.update(post, (err, result) => {
         if (err) {
-            callback({ code: 404, message: 'no result' });
+            return callback({ code: 404, message: 'no result' });
         }
         callback({ code: 200, message: 'success', changedRows: result });
     });
@@ -89,7 +85,7 @@ let updatePost = (post, callback) => {
 let getPostCount = (postStatus, callback) => {
     postModel.count(postStatus, (err, result) => {
         if (err) {
-            callback({ code: 404, message: 'no result' });
+           return callback({ code: 404, message: 'no result' });
         }
         callback({ code: 200, message: 'success', result: result });
     });

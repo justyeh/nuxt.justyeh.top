@@ -15,7 +15,7 @@ export default class Post {
         sql += `LIMIT ${params.pageNo * pageCfg.pageSize},${pageCfg.pageSize}`
         db.query(sql, [], (err, result) => {
             if (err) {
-                return;
+                return callback(true);
             }
             callback(false, result);
         });
@@ -26,7 +26,7 @@ export default class Post {
         let sql = 'SELECT * FROM posts where id = ?';
         db.query(sql, [postId], (err, result) => {
             if (err) {
-                return;
+               return callback(true);
             }
             callback(false, result);
         });
@@ -48,8 +48,7 @@ export default class Post {
         let sql = 'UPDATE posts SET ' + fields.join(',') + ' WHERE id = ?';
         db.query(sql, params, (err, result) => {
             if (err) {
-                callback(true);
-                return;
+               return callback(true);
             }
             callback(false, result.changedRows);
         });
@@ -63,7 +62,7 @@ export default class Post {
         }
         db.query(sql, [], (err, result) => {
             if (err) {
-                return;
+                return callback(true);
             }
             callback(false, result[0].count);
         });
