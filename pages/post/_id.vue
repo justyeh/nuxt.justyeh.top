@@ -51,7 +51,7 @@ export default {
       }
       var post = res.data.list[0];
       post.html = marked(post.markdown);
-      post.updated_at = '发布于' + timeago(null, 'zh_CN').format(post.updated_at);
+      post.updated_at = timeago(null, 'zh_CN').format(post.updated_at);
       return { post }
     }).catch((err) => {
       error({ statusCode: 404, message: err.message })
