@@ -1,6 +1,6 @@
 <template>
     <div>
-        <template v-if="total != 0">
+        <template v-if="pageAll > 1">
             <template v-if="model == 'link'">
                 <nuxt-link :class="{disable:pageNow == 1}" :to="prevPage">&larr;Prev</nuxt-link>
                 <nuxt-link :class="{disable:pageNow >= pageAll-1}" :to="nextPage">Next&rarr;</nuxt-link>
