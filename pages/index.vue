@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="index">
     <post-list :posts="posts"></post-list>
     <nuxt-link class="more" to="/page/1">查看更多</nuxt-link>
   </div>
@@ -21,13 +21,18 @@ export default {
       count: countRes.data.result,
     }
   },
-  components:{
+  components: {
     PostList
   }
 }
 </script>
 
 <style scoped>
+.index {
+  width: 1000px;
+  margin: 50px auto;
+}
+
 .more {
   background: #fff;
   border-radius: 2px;
@@ -45,7 +50,11 @@ export default {
 }
 
 @media screen and (max-width: 960px) {
-  .more{
+  .index {
+    width: 100%;
+    margin: 20px 0;
+  }
+  .more {
     margin: 0 10px;
   }
 }

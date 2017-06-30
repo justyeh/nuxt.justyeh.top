@@ -37,7 +37,7 @@ article .poster {
 }
 
 article>a {
-    color: #222;
+    color: #333;
     font-size: 24px;
     line-height: 36px;
     margin: 10px 20px 5px 20px;
@@ -52,6 +52,7 @@ article .desc {
     padding: 0 20px 10px 20px;
     font-size: 16px;
     line-height: 24px;
+    color: #555;
 }
 
 article .tags {
