@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-06-30 14:08:49
+Date: 2017-06-30 18:53:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -174,7 +174,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL COMMENT '姓名',
-  `slug` varchar(100) DEFAULT NULL COMMENT '访问地址',
+  `account` varchar(100) DEFAULT NULL COMMENT '访问地址',
   `password` varchar(100) DEFAULT NULL COMMENT '密码',
   `image` varchar(100) DEFAULT NULL COMMENT '头像',
   `email` varchar(20) DEFAULT NULL COMMENT '邮箱',
@@ -187,7 +187,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '叶文祥', 'justyeh', '$2a$10$aB/hdx/rtJBRQpHBPjp8uuJZ02D49//5I53jMLvXFUEJg4Uswll8e', null, 'justyeh@163.com', '码畜，其他没什么好说的！', 'http://www.justyeh.com', '暂住北京');
+INSERT INTO `users` VALUES ('1', '叶文祥', 'justyeh', '99926e3dab995487ceab34ec1c8b2fd7f99392da', null, 'justyeh@163.com', '码畜，其他没什么好说的！', 'http://www.justyeh.com', '暂住北京');
 
 -- ----------------------------
 -- Table structure for user_roles
