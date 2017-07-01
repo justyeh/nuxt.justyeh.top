@@ -11,7 +11,7 @@ import PostList from '~components/PostList'
 
 export default {
   async asyncData({ req, error }) {
-    let page = 0
+    const page = 0
     let [pageRes, countRes] = await Promise.all([
       axios.get(`/api/post/page/${page}?scope=published`),
       axios.get('/api/post/count/published'),
