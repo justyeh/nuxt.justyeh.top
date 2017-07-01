@@ -19,8 +19,6 @@ router.get('/post/count/:scope', post);
 router.get('/post/list/:tagId', post);
 router.post('/post/update', post);
 
-
-
 router.get('/tag/detail/:id', tag);
 router.post('/tag/add', tag);
 router.post('/tag/del', tag);

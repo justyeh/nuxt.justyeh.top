@@ -7,24 +7,30 @@
                 <nuxt-link target="_blank" class="btn btn-small btn-main" :to="'/post/'+post.id">预览</nuxt-link>
             </div>
         </article>
+        <vue-page :total="count" :page="page" model="button" v-on:pageChange="pageChange"></vue-page>
     </div>
 </template>
 
 <script>
 import axios from '~plugins/axios'
+import VuePage from '~components/VuePage'
 
 export default{
     data(){
         return {
             posts:[],
-            count:0
+            count:0,
+            page:0
         }
     },
     created(){
-
-         axios.get('/api/post/page/0?scope=published').then(res=>{
+        this.setPageList(0)
+        /* axios.get('/api/post/page/0').then(res=>{
              this.posts = res.data.list;
          })
+         axios.get('/api/post/count/all').then(res=>{
+             this.count= res.data.result
+         })*/
        /* axios.all([
             axios.get('/api/post/page/0?scope=published'),
             axios.get('/api/post/count/published'),
@@ -40,7 +46,19 @@ export default{
         ])*/
        
     },
+    components:{
+        VuePage
+    },
     methods:{
+        pageChange(page){
+            this.page = page
+            this.setPageList(page)
+        },
+        setPageList(page){
+             axios.get('/api/post/page/0').then(res=>{
+                this.posts = res.data.list;
+            })
+        },
         setPost(index) {
            if (isNaN(index)) {
                 console.error('the id is required')
