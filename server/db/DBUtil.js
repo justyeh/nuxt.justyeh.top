@@ -27,3 +27,4 @@ let query = function (sql, params, callback) {
 }
 
 module.exports.query = query;
+
