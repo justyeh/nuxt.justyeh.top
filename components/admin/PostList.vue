@@ -1,6 +1,6 @@
 <template>
     <div>
-        <article v-for="(post, index) in posts" :class="{curr: index == currIndex}" :key="post.id">
+        <article v-for="(post, index) in posts" :key="post.id">
             <a href="javascript:;" @click="setPost(index)">{{ post.title }}</a>
             <div class="handle">
                 <a href="javascript:;" class="btn btn-small btn-danger" @click="offline(index)" v-if="post.status != 'offline'">下线</a>
@@ -20,21 +20,26 @@ export default{
             count:0
         }
     },
-    /*created:{
-        axios.all([
+    created(){
+
+         axios.get('/api/post/page/0?scope=published').then(res=>{
+             this.posts = res.data.list;
+         })
+       /* axios.all([
             axios.get('/api/post/page/0?scope=published'),
             axios.get('/api/post/count/published'),
         ]).then( (posRes,countRes) => {
-             this.posts = posRes.data.list
-            this.count= countRes.data.result
+             this.posts = posRes.data.list;
+             this.count= countRes.data.result
         }).catch( error => {
             alert(error)
-        })[pageRes, countRes] = await Promise.all([
+        })*/
+      /*  [pageRes, countRes] = await Promise.all([
             axios.get('/api/post/page/0?scope=published'),
             axios.get('/api/post/count/published'),
-        ])
+        ])*/
        
-    },*/
+    },
     methods:{
         setPost(index) {
            if (isNaN(index)) {
