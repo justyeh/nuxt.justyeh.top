@@ -1,6 +1,7 @@
 <template>
     <div class="main">
         <post-list class="post-list"></post-list>
+        <post-from :post="post"></post-from>
     </div>
 </template>
 

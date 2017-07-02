@@ -42,11 +42,38 @@ import ImageUpload from '~components/form/ImageUpload'
 import VueMarkdown from '~components/form/VueMarkdown'
 
 export default {
+    prop:['currPostId'],
     components: {
         FormGroup,
         TagInput,
         VueMarkdown,
         ImageUpload
+    },
+    data() {
+        return {
+           post: {
+                title: '',
+                images: '',
+                meta_description: '',
+                markdown: '',
+            },
+            preview: false,
+            currIndex: 0,
+        }
+    },
+    watch:{
+        currPostId(val){
+            setPost(val)
+        }
+    },
+    methods:{
+        setPost(postId){
+            axios.get(`/api/post/detail/${postId}`).then((res) => {
+                this.post = res.data.list[0];
+            }).catch((err) => {
+                alert(err)
+            });
+        }
     }
 }
 </script>

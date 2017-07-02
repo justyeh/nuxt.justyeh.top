@@ -48,10 +48,16 @@ export default {
             return Math.ceil(this.total / ApiCfg.pageSize)
         },
         prevPage(){
-            return this.path + (this.pageNow > 1 ? this.pageNow-1 : 1)
+            if(this.mode == 'link'){
+                return this.path + (this.pageNow > 1 ? this.pageNow-1 : 1)
+            }
+            return;
         },
         nextPage(){
-            return this.path + (this.pageNow < this.pageAll-1 ? this.pageNow +1 : this.pageAll-1)
+            if(this.mode == 'link'){
+                return this.path + (this.pageNow < this.pageAll-1 ? this.pageNow +1 : this.pageAll-1)
+            }
+            return;
         }
     },
     methods: {

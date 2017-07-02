@@ -7,7 +7,7 @@
                 <nuxt-link target="_blank" class="btn btn-small btn-main" :to="'/post/'+post.id">预览</nuxt-link>
             </div>
         </article>
-        <vue-page :total="count" :page="page" model="button" v-on:pageChange="pageChange"></vue-page>
+        <vue-page :total="count" :page="page" model="button" v-on:pageChange="pageChange" class="vue-page"></vue-page>
     </div>
 </template>
 
@@ -24,13 +24,14 @@ export default{
         }
     },
     created(){
-        this.setPageList(0)
-        /* axios.get('/api/post/page/0').then(res=>{
-             this.posts = res.data.list;
-         })
-         axios.get('/api/post/count/all').then(res=>{
+        this.setPageList(0);
+        axios.get('/api/post/count/all').then(res=>{
              this.count= res.data.result
-         })*/
+         })
+        axios.get('/api/post/page/0').then(res=>{
+             this.posts = res.data.list;
+              this.$emit('currPostIdChange',this.posts[0].id)
+        })
        /* axios.all([
             axios.get('/api/post/page/0?scope=published'),
             axios.get('/api/post/count/published'),
@@ -55,7 +56,7 @@ export default{
             this.setPageList(page)
         },
         setPageList(page){
-             axios.get('/api/post/page/0').then(res=>{
+             axios.get(`/api/post/page/${page}`).then(res=>{
                 this.posts = res.data.list;
             })
         },
@@ -64,12 +65,6 @@ export default{
                 console.error('the id is required')
                 return false;
             }
-            axios.get('/api/post/detail/' + this.posts[index].id).then((res) => {
-                this.currIndex = index;
-                this.post = res.data.list[0];
-            }).catch((err) => {
-                alert(err)
-            });
         },
         offline(index) {
            axios.post('/api/post/update',{
@@ -112,5 +107,8 @@ article .handle {
 
 article .handle a {
     margin: 0 5px;
+}
+.vue-page{
+    padding-top:20px;
 }
 </style>
