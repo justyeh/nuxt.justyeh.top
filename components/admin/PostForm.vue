@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div>postId:{{currPostId}}
         <form-group>
             <template slot="label">标题</template>
             <input type="text" slot="input" placeholder="标题" v-model="post.title">
@@ -36,13 +36,15 @@
 </template>
 
 <script>
+import axios from '~plugins/axios'
+
 import FormGroup from '~components/form/FormGroup'
 import TagInput from '~components/form/TagInput'
 import ImageUpload from '~components/form/ImageUpload'
 import VueMarkdown from '~components/form/VueMarkdown'
 
 export default {
-    prop:['currPostId'],
+    props:['currPostId'],
     components: {
         FormGroup,
         TagInput,
@@ -58,18 +60,60 @@ export default {
                 markdown: '',
             },
             preview: false,
-            currIndex: 0,
         }
     },
     watch:{
         currPostId(val){
-            setPost(val)
+            this.setPost(val)
         }
     },
     methods:{
         setPost(postId){
+            if (isNaN(postId)) {
+                return false;
+            }
             axios.get(`/api/post/detail/${postId}`).then((res) => {
                 this.post = res.data.list[0];
+            }).catch((err) => {
+                alert(err)
+            });
+        },
+        addTag(tag) {
+            this.tags.push(tag);
+            axios.get('api/tag/add/' + tag).then((res) => {
+                this.tags.push(tag)
+            }).catch((error) => {
+                alert(error)
+            });
+        },
+        uploadImage(image) {
+            axios.post('/api/upload/image', {
+                image: image
+            }).then((res) => {
+                this.post.images = res.data.images
+            }).catch((err) => {
+                alert(err)
+            });
+        },
+        updatePost() {
+            axios.post('/api/post/update', {
+                post: this.post
+            }).then((res) => {
+                this.posts[this.currIndex].title = this.post.title;
+                //alert(res.data.message)
+            }).catch((err) => {
+                alert(err)
+            });
+        },
+        publish() {
+            axios.post('/api/post/update', {
+                post: {
+                    id: this.post.id,
+                    status: 'published'
+                }
+            }).then((res) => {
+                this.post.status = 'published';
+                //alert(res.data.message)
             }).catch((err) => {
                 alert(err)
             });
