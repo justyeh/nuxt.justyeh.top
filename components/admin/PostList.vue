@@ -1,7 +1,7 @@
 <template>
     <div>
-        <article v-for="(post, index) in posts" :key="post.id">
-            <a href="javascript:;" @click="setPost(index)">{{ post.title }}</a>
+        <article v-for="(post, index) in posts" :key="post.id" :class="{curr:currPostIndex==index}">
+            <a href="javascript:;" @click="handlePostClick(index)">{{ post.title }}</a>
             <div class="handle">
                 <a href="javascript:;" class="btn btn-small btn-danger" @click="offline(index)" v-if="post.status != 'offline'">下线</a>
                 <nuxt-link target="_blank" class="btn btn-small btn-main" :to="'/post/'+post.id">预览</nuxt-link>
@@ -19,19 +19,16 @@ export default{
     data(){
         return {
             posts:[],
+            currPostIndex:0,
             count:0,
             page:0
         }
     },
     created(){
-        this.setPageList(0);
+        this.getPageList(0)
         axios.get('/api/post/count/all').then(res=>{
              this.count= res.data.result
          })
-        axios.get('/api/post/page/0').then(res=>{
-             this.posts = res.data.list;
-              this.$emit('currPostIdChange',this.posts[0].id)
-        })
        /* axios.all([
             axios.get('/api/post/page/0?scope=published'),
             axios.get('/api/post/count/published'),
@@ -52,19 +49,19 @@ export default{
     },
     methods:{
         pageChange(page){
+            this.currPostIndex = 0
             this.page = page
-            this.setPageList(page)
+            this.getPageList(page)
         },
-        setPageList(page){
+        getPageList(page){
              axios.get(`/api/post/page/${page}`).then(res=>{
                 this.posts = res.data.list;
+                this.$emit('currPostChange',this.posts[0].id)
             })
         },
-        setPost(index) {
-           if (isNaN(index)) {
-                console.error('the id is required')
-                return false;
-            }
+        handlePostClick(index) {
+            this.currPostIndex = index
+           this.$emit('currPostChange',this.posts[index].id)
         },
         offline(index) {
            axios.post('/api/post/update',{
