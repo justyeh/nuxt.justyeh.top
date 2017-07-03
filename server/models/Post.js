@@ -1,7 +1,7 @@
 let db = require('../db/DBUtil');
 let pageCfg = require('../../util/api.config')
 
-/*import {objectToSQLWhrer} from '../../util/assist'*/
+import { objectToSQLUpdate } from '../../util/assist'
 
 export default class Post {
 
@@ -26,7 +26,7 @@ export default class Post {
         let sql = 'SELECT * FROM posts where id = ?';
         db.query(sql, [postId], (err, result) => {
             if (err) {
-               return callback(true);
+                return callback(true);
             }
             callback(false, result);
         });
@@ -34,21 +34,13 @@ export default class Post {
 
     //更新Post
     update(post, callback) {
-        post.updated_at = new Date().getTime();
-        let fields = [],
-            params = [];
-        for (var field in post) {
-            if (field === 'id') {
-                continue;
-            }
-            fields.push(field + ' = ?');
-            params.push(post[field])
-        }
+        let sql = 'UPDATE posts SET ' + objectToSQLUpdate(post).updated + ' WHERE id = ?';
+        let params = objectToSQLUpdate(post).params;
         params.push(post.id);
-        let sql = 'UPDATE posts SET ' + fields.join(',') + ' WHERE id = ?';
+
         db.query(sql, params, (err, result) => {
             if (err) {
-               return callback(true);
+                return callback(true);
             }
             callback(false, result.changedRows);
         });

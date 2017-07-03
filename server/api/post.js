@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 
 //services
-let PostSys = require('../service/PostSys');
+let postSys = require('../service/PostSys');
 
 router.get('/post/page/:pageNo', function (req, res, next) {
   var params = {
@@ -10,7 +10,7 @@ router.get('/post/page/:pageNo', function (req, res, next) {
     pageNo : req.params.pageNo || 0
   }
   try {
-    PostSys.list(params, function (result) {
+    postSys.list(params, function (result) {
       res.json(result)
     });
   } catch (error) {
@@ -20,7 +20,7 @@ router.get('/post/page/:pageNo', function (req, res, next) {
 
 router.get('/post/detail/:id', function (req, res, next) {
   try {
-    PostSys.getPostById(req.params.id, function (result) {
+    postSys.getPostById(req.params.id, function (result) {
       res.json(result)
     });
   } catch (error) {
@@ -30,7 +30,7 @@ router.get('/post/detail/:id', function (req, res, next) {
 
 router.get('/post/list/:tagId', function (req, res, next) {
   try {
-    PostSys.getPostsByTagId(req.params.tagId, function (result) {
+    postSys.getPostsByTagId(req.params.tagId, function (result) {
       res.json(result)
     });
   } catch (error) {
@@ -40,9 +40,8 @@ router.get('/post/list/:tagId', function (req, res, next) {
 
 router.post('/post/update', function (req, res, next) {
   try {
-    PostSys.updatePost(req.body.post, function (result) {
+    postSys.updatePost(req.body.post, function (result) {
       res.json(result)
-      return
     });
   } catch (error) {
     res.json({ code: 500, message: '程序发生错误！' })
@@ -52,7 +51,7 @@ router.post('/post/update', function (req, res, next) {
 router.get('/post/count/:scope', function (req, res, next) {
   let scope = req.params.scope || '';
   try {
-    PostSys.getPostCount(scope, function (result) {
+    postSys.getPostCount(scope, function (result) {
       res.json(result)
     });
   } catch (error) {
