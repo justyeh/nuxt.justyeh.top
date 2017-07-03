@@ -5,7 +5,7 @@
     <div class="info">
       <p>更新于：{{post.updated_at}}</p>
       <p>
-        标签：<span v-for="tag in post.tags" :key="tag.id">{{tag.name}}</span>
+        标签：<span v-for="tag in post.tags" :key="tag.tagId">{{tag.name}}</span>
       </p>
     </div>
     <div class="content">
