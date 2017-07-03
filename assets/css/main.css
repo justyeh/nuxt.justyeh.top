@@ -127,6 +127,7 @@ header,footer {
 	border-radius: 4px;
 	box-shadow: 0 0 6px rgba(100,100,100,0.4);
 	transition: all ease-in 0.5s;
+	padding: 0 30px;
 }
 
 @media screen and (max-width: 1400px) {
@@ -143,6 +144,7 @@ header,footer {
 	.page{
 		width: 100%;
 		margin: 20px 0;
+		padding: 0;
 		border-radius: 0;
     	box-shadow: 0 0 6px rgba(100,100,100,0.6);
 		background: #f7f8fa;
