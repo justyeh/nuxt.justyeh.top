@@ -1,13 +1,13 @@
 <template>
     <div>
-        <article v-for="(post, index) in posts" :key="post.id" :class="{curr:currPostIndex==index}">
+        <article v-for="(post, index) in posts" :key="post.id" :class="{curr:currPost.id==post.id}">
             <a href="javascript:;" @click="handlePostClick(index)">{{ post.title }}</a>
-            <div class="handle">
+            <div class="btn-group">
                 <a href="javascript:;" class="btn btn-small btn-danger" @click="offline(index)" v-if="post.status != 'offline'">下线</a>
                 <nuxt-link target="_blank" class="btn btn-small btn-main" :to="'/post/'+post.id">预览</nuxt-link>
             </div>
         </article>
-        <vue-page :total="count" :page="page" model="button" v-on:pageChange="pageChange" class="vue-page"></vue-page>
+        <vue-page :total="count" :page="page" model="button" v-on:pageChange="getPageList" class="vue-page"></vue-page>
     </div>
 </template>
 
@@ -15,62 +15,49 @@
 import axios from '~plugins/axios'
 import VuePage from '~components/VuePage'
 
-export default{
-    data(){
+export default {
+    data() {
         return {
-            posts:[],
-            currPostIndex:0,
-            count:0,
-            page:0
+            posts: [],
+            currPost: 0,
+            count: 0,
+            page: 0
         }
     },
-    created(){
+    created() {
         this.getPageList(0)
-        axios.get('/api/post/count/all').then(res=>{
-             this.count= res.data.result
-         })
-       /* axios.all([
-            axios.get('/api/post/page/0?scope=published'),
-            axios.get('/api/post/count/published'),
-        ]).then( (posRes,countRes) => {
-             this.posts = posRes.data.list;
-             this.count= countRes.data.result
-        }).catch( error => {
-            alert(error)
-        })*/
-      /*  [pageRes, countRes] = await Promise.all([
-            axios.get('/api/post/page/0?scope=published'),
-            axios.get('/api/post/count/published'),
-        ])*/
-       
+        axios.get('/api/post/count/all').then(res => {
+            this.count = res.data.result
+        })
     },
-    components:{
+    components: {
         VuePage
     },
-    methods:{
-        pageChange(page){
-            this.currPostIndex = 0
-            this.page = page
-            this.getPageList(page)
-        },
-        getPageList(page){
-             axios.get(`/api/post/page/${page}`).then(res=>{
+    methods: {
+        getPageList(page) {
+            axios.get(`/api/post/page/${page}`).then(res => {
                 this.posts = res.data.list;
-                this.$emit('currPostChange',this.posts[0].id)
+                this.currPost = this.posts[0];
+                this.page = page;
+                this.$emit('currPostChange', this.posts[0])
             })
         },
         handlePostClick(index) {
-            this.currPostIndex = index
-           this.$emit('currPostChange',this.posts[index].id)
+            this.currPost = this.posts[index]
+            this.$emit('currPostChange', this.currPost)
+        },
+        handlePostFormUpdate(newPost) {
+           this.currPost.title = newPost.title;
+           this.currPost.status = newPost.status;
         },
         offline(index) {
-           axios.post('/api/post/update',{
+            axios.post('/api/post/update', {
                 post: {
                     id: this.posts[index].id,
                     status: 'offline'
                 }
             }).then((res) => {
-                posts[index].status = 'offline';
+                this.posts[index].status = 'offline';
             }).catch((err) => {
                 alert(err)
             });
@@ -97,15 +84,17 @@ article.curr>a {
     font-weight: bold;
 }
 
-article .handle {
+article .btn-group {
     text-align: right;
     padding-top: 10px;
 }
 
-article .handle a {
-    margin: 0 5px;
+article .btn-group a {
+    font-size: 14px;
+    color: #fff;
 }
-.vue-page{
-    padding-top:20px;
+
+.vue-page {
+    padding-top: 20px;
 }
 </style>

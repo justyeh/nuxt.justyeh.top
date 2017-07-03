@@ -1,5 +1,5 @@
 <template>
-    <div>postId:{{currPostId}}
+    <div>
         <form-group>
             <template slot="label">标题</template>
             <input type="text" slot="input" placeholder="标题" v-model="post.title">
@@ -8,12 +8,16 @@
             <template slot="label">海报</template>
             <div slot="input">
                 <input type="text" v-model="post.image">
-                <image-upload :image="post.image" v-on:uploadImage="uploadImage"></image-upload>
+                <image-upload :image="post.image"></image-upload>
             </div>
         </form-group>
         <form-group>
             <template slot="label">seo描述</template>
             <textarea type="text" slot="input" placeholder="标题" v-model="post.meta_description" maxlength="200"></textarea>
+        </form-group>
+        <form-group>
+            <template slot="label">标签</template>
+            <tag-input slot="input" :tags="post.tags" :postId="post.id"></tag-input>
         </form-group>
         <form-group>
             <template slot="label">正文</template>
@@ -23,20 +27,15 @@
                 <vue-markdown :markdown="post.markdown" v-show="preview"></vue-markdown>
             </div>
         </form-group>
-        <form-group>
-            <template slot="label">标签</template>
-            <tag-input slot="input" :tags="post.tags" v-on:addTag="addTag"></tag-input>
-        </form-group>
-        <div class="handle">
-            <button class="btn btn-large btn-main" @click="updatePost">保存</button>
-            <button class="btn btn-large btn-main" v-if="post.status == 'draft'" @click="publish">正式发布</button>
-            <button class="btn btn-large btn-main" v-if="post.status == 'offline'" @click="publish">重新发布</button>
+        <div class="btn-group">
+            <button class="btn btn-large btn-main" @click="updatePost">更新博客</button>
         </div>
     </div>
 </template>
 
 <script>
 import axios from '~plugins/axios'
+import { deepCopy } from '../../util/assist'
 
 import FormGroup from '~components/form/FormGroup'
 import TagInput from '~components/form/TagInput'
@@ -44,7 +43,7 @@ import ImageUpload from '~components/form/ImageUpload'
 import VueMarkdown from '~components/form/VueMarkdown'
 
 export default {
-    props:['currPostId'],
+    props: ['currPost'],
     components: {
         FormGroup,
         TagInput,
@@ -53,22 +52,24 @@ export default {
     },
     data() {
         return {
-           post: {
+            post: {
+                id: '',
                 title: '',
                 images: '',
                 meta_description: '',
                 markdown: '',
+                tags: []
             },
             preview: false,
         }
     },
-    watch:{
-        currPostId(val){
-            this.setPost(val)
+    watch: {
+        currPost(val) {
+            this.setPost(val.id)
         }
     },
-    methods:{
-        setPost(postId){
+    methods: {
+        setPost(postId) {
             if (isNaN(postId)) {
                 return false;
             }
@@ -78,42 +79,18 @@ export default {
                 alert(err)
             });
         },
-        addTag(tag) {
-            this.tags.push(tag);
-            axios.get('api/tag/add/' + tag).then((res) => {
-                this.tags.push(tag)
-            }).catch((error) => {
-                alert(error)
-            });
-        },
-        uploadImage(image) {
-            axios.post('/api/upload/image', {
-                image: image
-            }).then((res) => {
-                this.post.images = res.data.images
-            }).catch((err) => {
-                alert(err)
-            });
-        },
         updatePost() {
+            let tempPost = deepCopy(this.post);
+            delete tempPost.tags
+            delete tempPost.updated_at
             axios.post('/api/post/update', {
-                post: this.post
+                post: tempPost
             }).then((res) => {
-                this.posts[this.currIndex].title = this.post.title;
-                //alert(res.data.message)
-            }).catch((err) => {
-                alert(err)
-            });
-        },
-        publish() {
-            axios.post('/api/post/update', {
-                post: {
-                    id: this.post.id,
-                    status: 'published'
+                if (res.data.code !== 200) {
+                    console.error(res.data.message)
+                    return false;
                 }
-            }).then((res) => {
-                this.post.status = 'published';
-                //alert(res.data.message)
+                this.$emit('postFormUpdated', this.post)
             }).catch((err) => {
                 alert(err)
             });
@@ -123,12 +100,8 @@ export default {
 </script>
 
 <style>
-.post .handle {
-    padding: 20px 0 0 100px;
-}
-
-.post .handle .btn {
-    margin-right: 10px;
+.btn-group {
+    padding: 20px 0 20px 100px;
 }
 
 .markdown {

@@ -5,7 +5,7 @@
             <router-link :to="`/post/${post.id}`">{{ post.title }}</router-link>
             <div class="desc">{{post.meta_description}}</div>
             <div class="tags" v-if="post.tags">
-                <router-link class="btn btn-small btn-default" :to="`/tag/${tag.id}`" v-for="tag in post.tags" :key="tag.id">{{tag.name}}</router-link>
+                <router-link class="btn btn-small btn-default" :to="`/tag/${tag.tagId}`" v-for="tag in post.tags" :key="tag.tagId">{{tag.name}}</router-link>
             </div>
         </article>
     </transition-group>

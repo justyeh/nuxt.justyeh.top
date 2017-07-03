@@ -1,7 +1,7 @@
 <template>
     <div class="main">
-        <post-list class="post-list" v-on:currPostChange="currPostChange"></post-list>
-        <post-form class="post-form" :currPostId="currPostId"></post-form>
+        <post-list class="post-list" v-on:currPostChange="currPostChange" ref="potslist"></post-list>
+        <post-form class="post-form" v-on:postFormUpdated="postFormUpdated" :currPost="currPost"></post-form>
     </div>
 </template>
 
@@ -14,36 +14,33 @@ import PostForm from '~components/admin/PostForm'
 
 export default {
     layout: 'admin',
-   /* async asyncData({ error }) {
-        let [pageRes, countRes] = await Promise.all([
-            axios.get('/api/post/page/0?scope=published'),
-            axios.get('/api/post/count/published'),
-        ])
-        return {
-            posts: pageRes.data.list,
-            count: countRes.data.result
-        }
-    },*/
+    /* async asyncData({ error }) {
+         let [pageRes, countRes] = await Promise.all([
+             axios.get('/api/post/page/0?scope=published'),
+             axios.get('/api/post/count/published'),
+         ])
+         return {
+             posts: pageRes.data.list,
+             count: countRes.data.result
+         }
+     },*/
     data() {
         return {
-            currPostId:null
+            currPost: null
         }
     },
     components: {
         PostList,
         PostForm
     },
-    methods:{
-        currPostChange(postId){
-            this.currPostId = postId;
+    methods: {
+        currPostChange(currPost) {
+            this.currPost = currPost;
+        },
+        postFormUpdated(newPost) {
+            this.$refs.potslist.handlePostFormUpdate(newPost);
         }
     }
-   /* mounted() {
-        this.setPost(0);
-    },
-    methods: {
-        
-    }*/
 }
 
 </script>
