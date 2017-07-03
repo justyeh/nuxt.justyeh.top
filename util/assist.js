@@ -1,17 +1,29 @@
-/*let mysql = require('mysql')*/
 
 export function formatDate(timestamp) {
   let date = new Date(timestamp);
   return date.getYear() + "-" + date.getMonth() + 1 + "-" + date.getDate() + "   " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 }
 
-/*function objectToSQLWhrer(object){
-    var where = '1 = 1'
-    for (var key in object) {
-       where += ' AND ' + key + ' = ' + mysql.escape(object[key]);
+export function objectToSQLUpdate(object) {
+  let updated = [], params = [];
+  for (var key in object) {
+    if (object.hasOwnProperty(key)) {
+      if (key === 'id') {
+        continue;
+      }
+      updated.push(key + ' = ?')
+      params.push(object[key])
     }
-    return where;
-}*/
+  }
+  return {
+    updated: updated.join(','),
+    params: params
+  }
+}
+
+export function deepCopy(object) {
+  return JSON.parse(JSON.stringify(object))
+}
 
 export function timeAgo(time) {
   const between = Date.now() / 1000 - Number(time)
