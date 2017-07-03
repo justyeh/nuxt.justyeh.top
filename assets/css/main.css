@@ -100,6 +100,9 @@ body{
 .btn-group .btn:first-child{
 	margin-left: 0px;
 }
+.btn-group .btn:last-child{
+	margin-right: 0
+}
 
 
 #__nuxt {
