@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="root">
         <post-list class="post-list" v-on:currPostChange="currPostChange" ref="potslist"></post-list>
         <post-form class="post-form" v-on:postFormUpdated="postFormUpdated" :currPost="currPost"></post-form>
     </div>
@@ -46,13 +46,12 @@ export default {
 </script>
 
 <style scoped>
-.main {
+.root {
     position: absolute;
-    top: 80px;
-    left: 150px;
+    top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
-    padding: 50px;
 }
 
 .post-list {
@@ -63,7 +62,7 @@ export default {
     width: 360px;
     background: #f5f5f5;
     overflow-y: auto;
-    padding: 20px 10px;
+    padding: 20px 10px 0 10px;
 }
 
 .post-form {

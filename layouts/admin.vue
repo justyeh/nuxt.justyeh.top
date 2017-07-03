@@ -2,7 +2,9 @@
   <div class="admin">
     <my-header></my-header>
     <side-menu></side-menu>
-    <nuxt></nuxt>
+    <div class="main">
+      <nuxt></nuxt>
+    </div>
   </div>
 </template>
 
@@ -23,6 +25,14 @@ export default {
   position: relative;
   height: 100%;
   min-width: 960px;
+}
+
+.main {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+  right: 0;
+  bottom: 0;
 }
 </style>
 
