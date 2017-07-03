@@ -2,10 +2,12 @@
   <div class="side-menu">
     <ul>
       <li>
-        <nuxt-link to="admin/posts">博客管理</nuxt-link>
+        <nuxt-link to="/admin">
+          <i class="fa fa-list"></i>博客管理</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="admin/tags">标签管理</nuxt-link>
+        <nuxt-link to="/admin/tags">
+          <i class="fa fa-tags"></i>标签管理</nuxt-link>
       </li>
     </ul>
   </div>
@@ -23,16 +25,20 @@
   z-index: 99;
 }
 
-.side-menu a {
+a {
   display: block;
   height: 60px;
   line-height: 60px;
   color: #fff;
-  text-align: center;
   border-bottom: 1px solid rgba(100, 100, 100, 0.3)
 }
 
-.side-menu a:hover {
-  background: #263238;
+a.nuxt-link-exact-active {
+  color: #1b8afa
+}
+
+i {
+  margin: 0 10px 0 20px;
+  ;
 }
 </style>
