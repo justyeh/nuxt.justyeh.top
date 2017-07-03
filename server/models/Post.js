@@ -37,6 +37,7 @@ export default class Post {
         let sql = 'UPDATE posts SET ' + objectToSQLUpdate(post).updated + ' WHERE id = ?';
         let params = objectToSQLUpdate(post).params;
         params.push(post.id);
+        params.updated_at = new Date().getTime();
 
         db.query(sql, params, (err, result) => {
             if (err) {

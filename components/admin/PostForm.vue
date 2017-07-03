@@ -82,7 +82,6 @@ export default {
         updatePost() {
             let tempPost = deepCopy(this.post);
             delete tempPost.tags
-            delete tempPost.updated_at
             axios.post('/api/post/update', {
                 post: tempPost
             }).then((res) => {
