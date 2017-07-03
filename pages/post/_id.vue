@@ -3,9 +3,9 @@
     <div class="poster" v-if="post.image.length > 0 " :style="{backgroundImage:'url('+post.image+')'}"></div>
     <div class="title">{{post.title}}</div>
     <div class="info">
-      <p>{{post.updated_at}}</p>
+      <p>更新于：{{post.updated_at}}</p>
       <p>
-        <span v-for="tag in post.tags" :key="tag.id">{{tag.name}}</span>
+        标签：<span v-for="tag in post.tags" :key="tag.id">{{tag.name}}</span>
       </p>
     </div>
     <div class="content">
@@ -82,9 +82,9 @@ export default {
 
 .info {
   display: flex;
-  /*justify-content: space-around;*/
   font-size: 16px;
   padding: 0 30px;
+  color: #3084bb;
 }
 .info p{
   padding-right: 10px;
