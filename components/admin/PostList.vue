@@ -47,8 +47,8 @@ export default {
             this.$emit('currPostChange', this.currPost)
         },
         handlePostFormUpdate(newPost) {
-           this.currPost.title = newPost.title;
-           this.currPost.status = newPost.status;
+            this.currPost.title = newPost.title;
+            this.currPost.status = newPost.status;
         },
         offline(index) {
             axios.post('/api/post/update', {
@@ -86,7 +86,7 @@ article.curr>a {
 
 article .btn-group {
     text-align: right;
-    padding-top: 10px;
+    padding: 10px 0 0 0;
 }
 
 article .btn-group a {
@@ -95,6 +95,6 @@ article .btn-group a {
 }
 
 .vue-page {
-    padding-top: 20px;
+    padding: 20px 0;
 }
 </style>
