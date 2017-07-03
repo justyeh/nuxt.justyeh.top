@@ -32,7 +32,7 @@ h1{
 
 .page p {
   padding-top: 20px;
-  line-height: 20px;
+  line-height: 26px;
   text-indent: 2em;
 }
 </style>

@@ -12,14 +12,14 @@
         <a target="_blank" href="https://github.com/justyeh">Github</a>
       </div>
       <!-- <form class="serach">
-          <input type="text" id="bdcsMain">
-        </form>-->
+                      <input type="text" id="bdcsMain">
+                    </form>-->
     </div>
   
     <!--<div class="search">
-      <input type="" name="" id="" value="" />
-      <label>搜索</label>
-    </div>-->
+                  <input type="" name="" id="" value="" />
+                  <label>搜索</label>
+                </div>-->
   </header>
 </template>
 
@@ -53,19 +53,42 @@ header {
   font-size: 20px;
 }
 
-.menu a {
-  color: rgba(250, 250, 250, 0.8);
+a {
+  color: rgba(250, 250, 250, 0.4);
   margin-right: 20px;
   line-height: 60px;
   height: 60px;
+  position: relative;
+  transition: all 0.2s ease-in;
 }
-.menu a:last-child{
+
+a.nuxt-link-exact-active {
+  color: rgba(250, 250, 250, 1);
+}
+
+a.nuxt-link-exact-active::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  height: 2px;
+  background: rgba(250, 250, 250, 0.8);
+}
+
+a:last-child {
   margin-right: 0
 }
 
 .menu a:hover {
-  color: rgba(250, 250, 250, 0.95);
+  color: rgba(250, 250, 250, 1);
 }
+
+
+
+
+
+
 
 
 /*.search {
@@ -110,18 +133,18 @@ header {
 
 
 @media screen and (max-width: 960px) {
-  header{
+  header {
     padding: 0;
   }
-	.site{
-		flex-direction: column;
+  .site {
+    flex-direction: column;
     font-size: 26px;
     padding: 30px 0
-	}
-  .site img{
+  }
+  .site img {
     margin: 0 0 10px 0;
   }
-  .nav{
+  .nav {
     justify-content: center;
     font-size: 14px;
   }
