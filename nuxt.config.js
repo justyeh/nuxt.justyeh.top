@@ -32,7 +32,7 @@ module.exports = {
   },
   // Global CSS
   css: ['~assets/css/main.css', '~assets/css/font-awesome.min.css'],
-  
+
   build: {
     //Add axios globally
     vendor: ['axios'],
@@ -48,10 +48,15 @@ module.exports = {
        }
      }*/
   },
-  // loading效果
+  // 页面顶部loading效果
   loading: {
     color: '#04acf7',
     height: '4px',
     failedColor: 'red'
+  },
+  //页面的过渡效果
+  transition: {
+    name: 'page',
+    mode: 'out-in'
   }
 }
