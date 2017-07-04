@@ -68,7 +68,7 @@ export default {
             this.pageNow--;
         },
         next() {
-            if (this.pageNow >= this.total - 1) {
+            if (this.pageNow >= this.pageAll-1) {
                 return false;
             }
             this.pageNow++;
