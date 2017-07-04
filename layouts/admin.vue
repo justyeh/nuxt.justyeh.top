@@ -33,6 +33,8 @@ export default {
   left: 150px;
   right: 0;
   bottom: 0;
+  overflow-y: auto;
+  padding: 0 50px;
 }
 </style>
 
