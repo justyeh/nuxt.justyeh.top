@@ -38,6 +38,16 @@ router.get('/post/list/:tagId', function (req, res, next) {
   }
 });
 
+router.post('/post/add', function (req, res, next) {
+  try {
+    postSys.addPost(req.body.post, function (result) {
+      res.json(result)
+    });
+  } catch (error) {
+    res.json({ code: 500, message: '程序发生错误！' })
+  }
+});
+
 router.post('/post/update', function (req, res, next) {
   try {
     postSys.updatePost(req.body.post, function (result) {

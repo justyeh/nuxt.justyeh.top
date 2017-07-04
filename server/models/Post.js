@@ -32,6 +32,26 @@ export default class Post {
         });
     }
 
+    //插入Post
+    insert(post, callback) {
+        let sql = 'INSERT INTO posts (title,markdown,image,status,meta_description,updated_at) VALUES (?,?,?,?,?,?)'
+        let params = [
+            post.title,
+            post.markdown,
+            post.image,
+            post.status,
+            post.meta_description,
+            new Date().getTime()
+        ]
+        db.query(sql, params, (err, result) => {
+             if (err) {
+                return callback(true);
+            }
+            callback(false, result.insertId);
+        });
+    }
+
+
     //更新Post
     update(post, callback) {
         let sql = 'UPDATE posts SET ' + objectToSQLUpdate(post).updated + ' WHERE id = ?';
