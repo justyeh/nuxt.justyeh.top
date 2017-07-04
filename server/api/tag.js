@@ -24,4 +24,15 @@ router.get('/tag/search/:tagName', function (req, res, next) {
   }
 });
 
+
+router.post('/tag/add/', function (req, res, next) {
+  try {
+    tagSys.addTag(req.body.tagName, function (result) {
+      res.json(result)
+    });
+  } catch (error) {
+    res.json({ code: 500, message: '程序发生错误！' })
+  }
+});
+
 module.exports = router;
