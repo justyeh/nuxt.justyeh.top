@@ -1,9 +1,14 @@
 <template>
     <div>
-        <article v-for="(post, index) in posts" :key="post.id" :class="{curr:currPost.id==post.id}">
-            <a href="javascript:;" @click="handlePostClick(index)">{{ post.title }}</a>
+        <page-header title="博文列表">
+            <button slot="handle" class="btn btn-main" @click="addNewPost">创建新博文</button>
+        </page-header>
+        <article v-for="(post, index) in posts" :key="post.id">
+            <a href="javascript:;" @click="editPost(post.id)">{{ post.title }}</a>
             <div class="btn-group">
-                <a href="javascript:;" class="btn btn-small btn-danger" @click="offline(index)" v-if="post.status != 'offline'">下线</a>
+                <a href="javascript:;" class="btn btn-small btn-danger" @click="updateStatus(index,'offline')" v-if="post.status == 'published'">下线</a>
+                <a href="javascript:;" class="btn btn-small btn-danger" @click="updateStatus(index,'published')" v-if="post.status == 'offline'">重新发布</a>
+                <a href="javascript:;" class="btn btn-small btn-danger" @click="updateStatus(index,'published')" v-if="post.status == 'draft'">正式发布</a>
                 <nuxt-link target="_blank" class="btn btn-small btn-main" :to="'/post/'+post.id">预览</nuxt-link>
             </div>
         </article>
@@ -13,7 +18,9 @@
 
 <script>
 import axios from '~plugins/axios'
+
 import VuePage from '~components/VuePage'
+import PageHeader from '~components/admin/PageHeader'
 
 export default {
     data() {
@@ -31,9 +38,19 @@ export default {
         })
     },
     components: {
-        VuePage
+        VuePage,
+        PageHeader
     },
     methods: {
+        refreshComponent() {
+            this.getPageList(0)
+        },
+        addNewPost() {
+            this.$emit('updateView', 'NewPost')
+        },
+        editPost(postId) {
+            this.$emit('editPost', postId);
+        },
         getPageList(page) {
             axios.get(`/api/post/page/${page}`).then(res => {
                 this.posts = res.data.list;
@@ -42,22 +59,18 @@ export default {
                 this.$emit('currPostChange', this.posts[0])
             })
         },
-        handlePostClick(index) {
-            this.currPost = this.posts[index]
-            this.$emit('currPostChange', this.currPost)
-        },
         handlePostFormUpdate(newPost) {
             this.currPost.title = newPost.title;
             this.currPost.status = newPost.status;
         },
-        offline(index) {
+        updateStatus(index,newStatus) {
             axios.post('/api/post/update', {
                 post: {
                     id: this.posts[index].id,
-                    status: 'offline'
+                    status: newStatus
                 }
             }).then((res) => {
-                this.posts[index].status = 'offline';
+                this.posts[index].status = newStatus;
             }).catch((err) => {
                 alert(err)
             });
@@ -68,8 +81,14 @@ export default {
 
 <style scoped>
 article {
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
+    margin: 20px 0;
+    padding: 10px;
+    box-shadow: 0 0 15px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .1);
+    transition: all ease 0.12s;
+}
+
+article:hover {
+    box-shadow: 0 0 15px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 article a {
@@ -79,9 +98,8 @@ article a {
     transition: all ease .1s;
 }
 
-article.curr>a {
+article.curr a {
     color: #1b8afa;
-    font-weight: bold;
 }
 
 article .btn-group {
