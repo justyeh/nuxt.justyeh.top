@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="tags">
         tag management
     </div>
 </template>
@@ -11,5 +11,8 @@ export default {
 </script>
 
 <style scoped>
-
+.tags {
+    display: flex;
+    height: 100%
+}
 </style>

@@ -1,15 +1,18 @@
 <template>
   <div class="page">
-    <div class="poster" v-if="post.image.length > 0 " :style="{backgroundImage:'url('+post.image+')'}"></div>
-    <div class="title">{{post.title}}</div>
-    <div class="info">
-      <p>更新于：{{post.updated_at}}</p>
-      <p>
-        标签：<span v-for="tag in post.tags" :key="tag.tagId">{{tag.name}}</span>
-      </p>
-    </div>
-    <div class="content">
-      <div v-html="post.html" class="md-theme"></div>
+    <div class="post">
+      <div class="poster" v-if="post.image.length > 0 " :style="{backgroundImage:'url('+post.image+')'}"></div>
+      <div class="title">{{post.title}}</div>
+      <div class="info">
+        <p>更新于：{{post.updated_at}}</p>
+        <p>
+          标签：
+          <span v-for="tag in post.tags" :key="tag.tagId">{{tag.name}}</span>
+        </p>
+      </div>
+      <div class="content">
+        <div v-html="post.html" class="md-theme"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -69,6 +72,14 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  box-shadow: none;
+}
+
+.post {
+  box-shadow: 0 0 6px rgba(100, 100, 100, 0.4);
+}
+
 .poster {
   height: 420px;
   background: no-repeat center / cover;
@@ -86,19 +97,23 @@ export default {
   padding: 0 30px;
   color: #3084bb;
 }
-.info p{
+
+.info p {
   padding-right: 10px;
 }
 
 .info p:last-child {
   padding-left: 0;
 }
-.info p span:after{
+
+.info p span:after {
   content: '，'
 }
-.info p span:last-child:after{
+
+.info p span:last-child:after {
   content: ''
 }
+
 .content {
   padding: 20px 30px;
   line-height: 26px;

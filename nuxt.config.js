@@ -56,7 +56,7 @@ module.exports = {
   },
   //页面的过渡效果
   transition: {
-    name: 'page',
-    mode: 'out-in'
+    name: 'page'
+    /*mode: 'out-in'*/
   }
 }

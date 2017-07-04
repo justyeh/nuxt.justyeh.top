@@ -1,5 +1,5 @@
 <template>
-    <div class="tools">
+    <div class="page">
         <div :class="{cards:true,small:isSmall}">
             <div :class="{card:true,curr:currIndex == index && isSmall}" v-for="(tool,index) in tools" :key="tool.name" @click="setCurrentView(index,tool.component)">
                 <div :style="{backgroundImage:'url('+tool.logo+')'}"></div>
@@ -56,6 +56,13 @@ export default {
 </script>
 
 <style scoped>
+.page {
+    width: 100%;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
 .cards {
     padding: 20px 100px;
     display: flex;
@@ -155,7 +162,7 @@ export default {
     .view {
         padding: 40px 10px;
     }
-    .view i{
+    .view i {
         top: 5px;
         right: 5px;
     }

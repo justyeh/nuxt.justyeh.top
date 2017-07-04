@@ -129,14 +129,20 @@ header,footer {
 	transition: all ease-in 0.5s;
 	padding: 0 30px;
 }
-
-.page-enter-active,
-.page-leave-active {
-    transition: opacity 0.5s ease;
+/*页面过度动画*/
+.page-enter{
+	opacity: 1;
 }
-.page-enter,
-.page-active {
-    opacity: 0;
+.page-enter-active{
+	opacity: 0;
+}
+.page-leave{
+	transform: translateY(0);
+	opacity: 1;
+}
+.page-leave-active{
+	transform: translateX(100px);
+	opacity: 0;
 }
 
 @media screen and (max-width: 1400px) {
