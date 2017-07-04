@@ -6,7 +6,7 @@
           <i class="fa fa-list"></i>博客管理</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/admin/tags">
+        <nuxt-link to="/admin/tag">
           <i class="fa fa-tags"></i>标签管理</nuxt-link>
       </li>
     </ul>
