@@ -1,44 +1,43 @@
 <template>
-    <div class="root">
-        <post-list class="post-list" v-on:currPostChange="currPostChange" ref="potslist"></post-list>
-        <post-form class="post-form" v-on:postFormUpdated="postFormUpdated" :currPost="currPost"></post-form>
-    </div>
+    <transition name="fade">
+        <keep-alive>
+            <component :ref="currView" :is="currView" :postId="editPostId" v-on:updateView="updateView" v-on:editPost="editPost" v-on:refreshPostList="refreshPostList"></component>
+        </keep-alive>
+    </transition>
 </template>
 
 <script>
-import axios from '~plugins/axios'
-
 import PostList from '~components/admin/PostList'
-import PostForm from '~components/admin/PostForm'
-
+import EditPost from '~components/admin/EditPost'
+import NewPost from '~components/admin/NewPost'
 
 export default {
     layout: 'admin',
-    /* async asyncData({ error }) {
-         let [pageRes, countRes] = await Promise.all([
-             axios.get('/api/post/page/0?scope=published'),
-             axios.get('/api/post/count/published'),
-         ])
-         return {
-             posts: pageRes.data.list,
-             count: countRes.data.result
-         }
-     },*/
     data() {
         return {
-            currPost: null
+            currView: 'PostList',
+            editPostId: null
         }
     },
     components: {
         PostList,
-        PostForm
+        EditPost,
+        NewPost
     },
     methods: {
-        currPostChange(currPost) {
-            this.currPost = currPost;
+        updateView(view) {
+            this.currView = view
         },
-        postFormUpdated(newPost) {
-            this.$refs.potslist.handlePostFormUpdate(newPost);
+        editPost(postId) {
+            this.updateView('EditPost');
+            this.editPostId = postId
+        },
+        refreshPostList() {
+            this.currView = 'PostList'
+            this.$nextTick(() => {
+                this.$refs['PostList'].refreshComponent();
+                document.querySelector('.main').scrollTop = 0
+            })
         }
     }
 }
@@ -46,25 +45,6 @@ export default {
 </script>
 
 <style scoped>
-.root {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.post-list {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 360px;
-    background: #f5f5f5;
-    overflow-y: auto;
-    padding: 20px 10px 0 10px;
-}
-
 .post-form {
     position: absolute;
     top: 0;
@@ -73,5 +53,15 @@ export default {
     bottom: 0;
     padding: 20px;
     overflow-y: auto;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .3s ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
 }
 </style>
