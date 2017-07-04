@@ -17,12 +17,11 @@
 }
 
 .form-label {
-    width: 100px;
-    padding-right: 10px;
     color: #222;
     line-height: 36px;
-    text-align: right;
+    width: 60px;
 }
+
 .form-input {
     flex: 1;
 }
