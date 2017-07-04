@@ -1,17 +1,19 @@
 <template>
     <div>
         <div class="tags">
-            <div class="btn btn-small btn-default" v-for="(tag,index) in tags" :key="tag.id">
+            <div class="btn btn-small btn-default" v-for="(tag,index) in selfTags" :key="tag.id">
                 <span>{{tag.name}}</span>
                 <i class="fa fa-trash-o" @click="delPostTag(index)"></i>
             </div>
         </div>
+        tags:{{selfTags}}
         <div class="tagInput">
             <input type="text" @input="tagInput" @keyup.up.stop.prevent="currIndexChange('up')" @keyup.down.stop.prevent="currIndexChange('down')" @keyup.enter.stop.prevent="tagEnter" v-model="tag">
             <ul>
                 <li :class="{curr:index === currIndex}" v-for="(tag,index) in autoComplete" :key="tag.id" @click="tagEnter(index)">{{tag.name}}</li>
                 <template v-if="autoComplete.length == 0 && tag.length > 0">
-                    <li @click="addNewTag">将{{tag}}添加到Tag表中</li>
+                    <li class="curr" @click="addNewTag">将
+                        <span>{{tag}}</span>添加到Tag表中</li>
                 </template>
             </ul>
         </div>
@@ -22,53 +24,21 @@
 import axios from '~plugins/axios'
 
 export default {
+    props: ['tags'],
     data() {
         return {
             tag: '',
-            currIndex: 0,
-            autoComplete: []
-        }
-    },
-    props: {
-        tags: {
-            type: Array
-        },
-        postId: {
-            type: Number
+            currIndex: -1,
+            autoComplete: [],
+            selfTags: [],
         }
     },
     watch: {
         tags(val) {
-            this.tags = val
+            this.selfTags = val
         }
     },
     methods: {
-        tagEnter(index) {
-            //为空不处理
-            if (this.tag.trim() === '') {
-                return;
-            }
-            //防止添加重复Tag
-            if (this.tags.filter(tag => tag.name === this.autoComplete[this.currIndex].name).length > 0) {
-                alert("请不要添加重复的标签");
-                return;
-            }
-
-            //如果是点击的,if(index)不行，vue默认会传一个Event参数
-            if (typeof index === 'Number') {
-                this.currIndex = index;
-            }
-
-            //区分添加已有的还是新的
-            if (this.autoComplete.length > 0) {
-                this.addPostTag()
-            } else {
-                this.addNewTag()
-                /* this.addNewTag(insertId => {
-                     this.addPostTag(insertId)
-                 })*/
-            }
-        },
         tagInput() {
             if (this.tag.trim() == '') {
                 this.autoComplete = []
@@ -79,43 +49,62 @@ export default {
                 if (data.code !== 200) {
                     console.error(data.message)
                 }
-                this.currIndex = 0
+                this.currIndex = -1;
                 this.autoComplete = data.list
             })
         },
+        tagEnter(index) {
+            //为空不处理
+            if (this.tag.trim() === '') {
+                return;
+            }
+
+            //如果是点击的,if(index)不能判断是否有index参数，vue默认会传一个Event参数
+            if (typeof index === 'number') {
+                this.currIndex = index;
+                this.tag = this.autoComplete[index].name
+            }
+
+            //autoComplete不为空，没有选中项时无效
+            if (this.currIndex < 0 && this.autoComplete.length > 0) {
+                return;
+            }
+
+            //防止添加重复Tag
+            if (this.tags.filter(tag => tag.name === this.tag).length > 0) {
+                alert("请不要添加重复的标签");
+                return;
+            }
+
+            //区分添加已有的还是新的
+            if (this.autoComplete.length > 0) {
+                this.addPostTag()
+            } else {
+                this.addNewTag()
+            }
+        },
+        currIndexChange(direction) {
+            if (direction === 'up' && this.currIndex > 0) {
+                this.currIndex--
+            }
+            if (direction === 'down' && this.currIndex < this.autoComplete.length - 1) {
+                this.currIndex++
+            }
+
+            if (this.autoComplete.length > 0) {
+                this.tag = this.autoComplete[this.currIndex].name
+            }
+        },
         delPostTag(index) {
-            axios.post("/api/post/tag/del", {
-                postTagId: this.tags[index].postTagId
-            }).then(res => {
-                if (res.data.code !== 200) {
-                    console.error(res.data.message);
-                    return false
-                }
-                this.tags.splice(index, 1);
-            }).catch((err) => {
-                alert(err)
-            });
+            this.$emit("delTag", index)
         },
         addPostTag(newTagId) {
-            let insertTtagId = newTagId || this.autoComplete[this.currIndex].id;
-            console.log(insertTtagId)
-            axios.post('/api/post/tag/add', {
-                postTag: {
-                    postId: this.postId,
-                    tagId: insertTtagId
-                }
-            }).then(res => {
-                if (res.data.code !== 200) {
-                    console.error(data.message)
-                }
-                this.tags.push({
-                    postTagId: res.data.insertId,
-                    tagId: insertTtagId,
-                    name: this.autoComplete[this.currIndex].name
-                })
-                this.autoComplete = [];
-                this.tag = ''
-            });
+            this.$emit("addTag", {
+                id: newTagId || this.autoComplete[this.currIndex].id,
+                name: this.tag
+            })
+            this.autoComplete = []
+            this.tag = ''
         },
         addNewTag() {
             axios.post('/api/tag/add', {
@@ -173,6 +162,11 @@ li {
     cursor: pointer;
 }
 
+li span {
+    color: #1b8afa;
+}
+
+li:hover,
 li.curr {
     background: rgba(100, 100, 100, 0.1)
 }
