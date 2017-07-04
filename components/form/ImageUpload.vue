@@ -1,6 +1,6 @@
 <template>
     <div class="img-uploader">
-        <div :style="{backgroundImage: 'url(' + image + ')'}"></div>
+        <div v-if="image" :style="{backgroundImage: 'url(' + image + ')'}"></div>
         <!--<input @change="handleChange" type="file" accept="image/gif,image/jpeg,image/png, image/jpg">-->
     </div>
 </template>
