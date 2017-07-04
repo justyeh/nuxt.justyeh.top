@@ -14,7 +14,7 @@ let delPostTag = (postTagId, callback) => {
 
 //增加Post的Tag
 let addPostTag = (postTag, callback) => {
-    postTagModel.addPostTag(postTag, (err, result) => {
+    postTagModel.addPostTag([postTag.postId, postTag.tagId], (err, result) => {
         if (err) {
             return callback({ code: 404, message: 'insert fail' });
         }

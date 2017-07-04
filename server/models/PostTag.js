@@ -1,7 +1,7 @@
 
 let db = require('../db/DBUtil');
 
-class PostTag {
+export default class PostTag {
 
     //根据PostId获取Tag列表
     tagsByPostId(postId, callback) {
@@ -35,16 +35,14 @@ class PostTag {
         });
     }
 
-    //增加Post的Tag
-    addPostTag(postTag, callback) {
-        let sql = 'INSERT INTO post_tags (post_id,tag_id) VALUES (?,?)'
-        db.query(sql, [postTag.postId,postTag.tagId], (err, result) => {
+    addPostTag(postTags, callback) {
+        let sql = 'INSERT INTO post_tags (post_id,tag_id) VALUES ?'
+        db.query(sql, [postTags], (err, result) => {
             if (err) {
                 return callback(true);
             }
             callback(false, result.insertId);
         });
     }
-}
 
-module.exports = PostTag;
+}
