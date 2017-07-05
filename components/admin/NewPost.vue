@@ -1,12 +1,11 @@
 <template>
     <div>
-        <button @click="test">refreshPostList</button>
         <page-header title="创建新博文">
             <button slot="handle" class="btn btn-main" @click="returnList">回列表</button>
         </page-header>
         <form-group>
             <template slot="label">标题</template>
-            <input type="text" slot="input" placeholder="标题" v-model="post.title">
+            <input type="text" slot="input" placeholder="标题" v-model="post.title" maxlength="100">
         </form-group>
         <form-group>
             <template slot="label">海报</template>
@@ -17,7 +16,7 @@
         </form-group>
         <form-group>
             <template slot="label">标签</template>
-            <new-tag-input slot="input" :tags="post.tags" v-on:delTag="delTag" v-on:addTag="addTag"></new-tag-input>
+            <tag-input slot="input" :tags="post.tags" v-on:delTag="delTag" v-on:addTag="addTag"></tag-input>
         </form-group>
         <form-group>
             <template slot="label">简介</template>
@@ -42,7 +41,7 @@
 import axios from '~plugins/axios'
 
 import FormGroup from '~components/form/FormGroup'
-import NewTagInput from '~components/form/NewTagInput'
+import TagInput from '~components/form/TagInput'
 import ImageUpload from '~components/form/ImageUpload'
 import VueMarkdown from '~components/form/VueMarkdown'
 import PageHeader from '~components/admin/PageHeader'
@@ -50,7 +49,7 @@ import PageHeader from '~components/admin/PageHeader'
 export default {
     components: {
         FormGroup,
-        NewTagInput,
+        TagInput,
         VueMarkdown,
         ImageUpload,
         PageHeader
@@ -69,9 +68,6 @@ export default {
         }
     },
     methods: {
-        test() {
-            this.$emit('refreshPostList')
-        },
         returnList() {
             this.$emit('updateView', 'PostList')
         },
@@ -98,7 +94,7 @@ export default {
                     status: '',
                     tags: []
                 }
-                this.$emit('refreshPostList')
+                this.$emit('postSaved')
             }).catch((err) => {
                 alert(err)
             });
