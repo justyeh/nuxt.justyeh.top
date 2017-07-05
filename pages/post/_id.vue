@@ -64,8 +64,18 @@ export default {
     return {
       title: this.post.title,
       meta: [
-        { hid: 'description', name: 'description', content: this.post.meta_description }
+        { hid: 'description', name: 'description', content: this.post.meta_description },
+        { name: 'keywords', content: this.keywords.join(',') }
       ]
+    }
+  },
+  computed: {
+    keywords() {
+      let keywords = [];
+      this.post.tags.forEach(function (element) {
+        keywords.push(element.name)
+      });
+      return keywords
     }
   }
 }
