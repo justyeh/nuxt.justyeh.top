@@ -5,7 +5,7 @@ let router = express.Router();
 let postTagSys = require('../service/PostTagSys');
 
 //删除Post的Tag
-router.post('/post/tag/del', function (req, res, next) {
+router.post('/del', function (req, res, next) {
   try {
     postTagSys.delPostTag(req.body.postTagId, function (result) {
       res.json(result)
@@ -17,7 +17,7 @@ router.post('/post/tag/del', function (req, res, next) {
 });
 
 //增加Post的Tag
-router.post('/post/tag/add', function (req, res, next) {
+router.post('/add', function (req, res, next) {
   try {
     postTagSys.addPostTag(req.body.postTag, function (result) {
       res.json(result)

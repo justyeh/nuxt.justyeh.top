@@ -4,7 +4,7 @@ let router = express.Router();
 //services
 let tagSys = require('../service/TagSys');
 
-router.get('/tag/detail/:id', function (req, res, next) {
+router.get('/detail/:id', function (req, res, next) {
   try {
     tagSys.getTagByTagId(req.params.id, function (result) {
       res.json(result)
@@ -14,7 +14,7 @@ router.get('/tag/detail/:id', function (req, res, next) {
   }
 });
 
-router.get('/tag/search/:tagName', function (req, res, next) {
+router.get('/search/:tagName', function (req, res, next) {
   try {
     tagSys.searchTagsByName(req.params.tagName, function (result) {
       res.json(result)
@@ -25,7 +25,7 @@ router.get('/tag/search/:tagName', function (req, res, next) {
 });
 
 
-router.post('/tag/add/', function (req, res, next) {
+router.post('/add', function (req, res, next) {
   try {
     tagSys.addTag(req.body.tagName, function (result) {
       res.json(result)

@@ -5,7 +5,7 @@ let router = express.Router();
 var userSys = require('../service/UserSys');
 
 /*登陆*/
-router.post('/user/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   let user = req.body.user || null;
   userSys.auth(user,function(data){
     res.json(data)

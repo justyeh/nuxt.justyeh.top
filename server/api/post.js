@@ -4,7 +4,7 @@ let router = express.Router();
 //services
 let postSys = require('../service/PostSys');
 
-router.get('/post/page/:pageNo', function (req, res, next) {
+router.get('/page/:pageNo', function (req, res, next) {
   var params = {
     scope : req.query.scope || '',
     pageNo : req.params.pageNo || 0
@@ -18,7 +18,7 @@ router.get('/post/page/:pageNo', function (req, res, next) {
   }
 });
 
-router.get('/post/detail/:id', function (req, res, next) {
+router.get('/detail/:id', function (req, res, next) {
   try {
     postSys.getPostById(req.params.id, function (result) {
       res.json(result)
@@ -28,7 +28,7 @@ router.get('/post/detail/:id', function (req, res, next) {
   }
 });
 
-router.get('/post/list/:tagId', function (req, res, next) {
+router.get('/list/:tagId', function (req, res, next) {
   try {
     postSys.getPostsByTagId(req.params.tagId, function (result) {
       res.json(result)
@@ -38,7 +38,7 @@ router.get('/post/list/:tagId', function (req, res, next) {
   }
 });
 
-router.post('/post/add', function (req, res, next) {
+router.post('/add', function (req, res, next) {
   try {
     postSys.addPost(req.body.post, function (result) {
       res.json(result)
@@ -48,7 +48,7 @@ router.post('/post/add', function (req, res, next) {
   }
 });
 
-router.post('/post/update', function (req, res, next) {
+router.post('/update', function (req, res, next) {
   try {
     postSys.updatePost(req.body.post, function (result) {
       res.json(result)
@@ -58,7 +58,7 @@ router.post('/post/update', function (req, res, next) {
   }
 });
 
-router.get('/post/count/:scope', function (req, res, next) {
+router.get('/count/:scope', function (req, res, next) {
   let scope = req.params.scope || '';
   try {
     postSys.getPostCount(scope, function (result) {

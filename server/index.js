@@ -2,8 +2,6 @@ import Nuxt from 'nuxt'
 import express from 'express'
 import bodyParser from 'body-parser'
 
-let api = require('./api/index');
-
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -12,8 +10,8 @@ const port = process.env.PORT || 3000
 
 app.set('port', port)
 
-// Import API Routes
-app.use('/api', api)
+// Import Routes
+let api = require('./api/index')(app);
 
 // Start nuxt.js
 async function start() {
