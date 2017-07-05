@@ -25,7 +25,7 @@ export default {
             type: Number,
             default: 0
         },
-        model:{
+        model: {
             required: true
         },
         path: {}
@@ -47,17 +47,11 @@ export default {
         pageAll() {
             return Math.ceil(this.total / ApiCfg.pageSize)
         },
-        prevPage(){
-            if(this.mode == 'link'){
-                return this.path + (this.pageNow > 1 ? this.pageNow-1 : 1)
-            }
-            return;
+        prevPage() {
+            return this.path + (this.pageNow > 1 ? this.pageNow - 1 : 1)
         },
-        nextPage(){
-            if(this.mode == 'link'){
-                return this.path + (this.pageNow < this.pageAll-1 ? this.pageNow +1 : this.pageAll-1)
-            }
-            return;
+        nextPage() {
+            return this.path + (this.pageNow < this.pageAll - 1 ? this.pageNow + 1 : this.pageAll - 1)
         }
     },
     methods: {
@@ -68,7 +62,7 @@ export default {
             this.pageNow--;
         },
         next() {
-            if (this.pageNow >= this.pageAll-1) {
+            if (this.pageNow >= this.pageAll - 1) {
                 return false;
             }
             this.pageNow++;
@@ -83,7 +77,8 @@ div {
     justify-content: space-between;
 }
 
-button,a {
+button,
+a {
     display: inline-block;
     padding: 8px 10px;
     border: 1px solid #666;
@@ -103,12 +98,14 @@ button,a {
     border-color: rgb(51, 204, 250);
     color: rgb(51, 204, 250);
 }
+
 @media screen and (max-width: 960px) {
-  div{
-    padding: 0 10px;
-  }
-  button,a {
-      padding: 5px 8px;
-  }
+    div {
+        padding: 0 10px;
+    }
+    button,
+    a {
+        padding: 5px 8px;
+    }
 }
 </style>
