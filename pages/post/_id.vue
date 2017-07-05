@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="post">
-      <div class="poster" v-if="post.image.length > 0 " :style="{backgroundImage:'url('+post.image+')'}"></div>
+      <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
       <div class="title">{{post.title}}</div>
       <div class="info">
         <p>更新于：{{post.updated_at}}</p>
