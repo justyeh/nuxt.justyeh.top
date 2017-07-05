@@ -1,30 +1,30 @@
-.md-theme {
+.md {
 	color: #222;
 	word-break: break-word;
 	font-size: 16px;
     line-height: 1.4;
 }
-.md-theme a {
+.md a {
 	color: #3084bb;
 }
-.md-theme a:hover{
+.md a:hover{
     text-decoration: underline;
 }
-.md-theme img {
+.md img {
 	max-width: 100%;
 	margin: 0 auto;
     display: block;
 }
-.md-theme *:first-child {
+.md *:first-child {
 	margin-top: 0
 }
-.md-theme code {
+.md code {
 	font-family: "Menlo", "Liberation Mono", "Consolas", "DejaVu Sans Mono", "Ubuntu Mono", "Courier New", "andale mono", "lucida console", monospace;
 	white-space: pre;
 	word-wrap: normal;
 	line-height: 1.3;
 }
-.md-theme kbd {
+.md kbd {
 	display: inline-block;
 	padding: 3px 5px;
 	font-size: 11px;
@@ -39,7 +39,7 @@
 	border-radius: 3px;
 	box-shadow: 0px -1px 0px #BBB inset
 }
-.md-theme h1 {
+.md h1 {
 	font-size: 1.3em;
 	font-weight: 600;
 	margin: 24px 0 12px 0;
@@ -47,57 +47,48 @@
 	border-bottom: 1px solid #e7e9ed;
 	color: #313236
 }
-.md-theme h2 {
+.md h2 {
 	font-size: 1.2em;
 	font-weight: 600;
 	margin: 24px 0 12px 0;
 	color: #313236
 }
-.md-theme h3 {
+.md h3 {
 	margin: 24px 0 12px 0;
 	font-size: 1.15em
 }
-.md-theme h4 {
+.md h4 {
 	margin: 24px 0 12px 0;
 	font-size: 1.1em
 }
-.md-theme h5 {
+.md h5 {
 	margin: 24px 0 12px 0;
 	font-size: 1em
 }
-.md-theme h6 {
+.md h6 {
 	margin: 24px 0 12px 0;
 	font-size: 0.90em
 }
-.md-theme h1, .md-theme h2, .md-theme h3, .md-theme h4, .md-theme h5, .md-theme h6 {
+.md h1, .md h2, .md h3, .md h4, .md h5, .md h6 {
 	position: relative
 }
-.md-theme blockquote {
+.md blockquote {
 	color: #7f8fa4;
 	font-size: inherit;
 	padding: 8px 21px;
 	margin: 12px 0 12px;
 	border-left: 3px solid #e7e9ed
 }
-.md-theme blockquote p {
+.md blockquote p {
 	color: #7f8fa4 !important;
 	font-size: inherit;
 	line-height: 1.5
 }
-.md-theme p {
+.md p {
 	color: #5c5d5e;
 	margin: 6px 0 0 0
 }
-.md-theme table {
-	margin: 12px 0 12px 0;
-	color: #5c5d5e;
-	border-collapse:collapse; 
-	border-spacing:0;
-}
-.md-theme table th {
-	background: #f8fafc
-}
-.md-theme pre {
+.md pre {
 	margin: 12px 0 12px 0 !important;
 	background-color: #002b36;
 	font-size: 13px !important;
@@ -111,7 +102,7 @@
 	padding: 10px;
 	overflow-x: auto;
 }
-.md-theme p>code {
+.md p>code {
 	font-weight: inherit;
 	border: solid 1px #ccc;
 	padding: 0 5px;
@@ -119,60 +110,66 @@
 	border-radius: 3px;
 	margin: 0 2px;
 }
-.md-theme ul, .md-theme ol {
+.md ul, .md ol {
 	padding: 0;
 	margin: 6px 0 6px 18px !important
 }
-.md-theme li {
+.md li {
 	line-height: 1.6em;
 	list-style: disc;
 }
-.md-theme hr {
+.md hr {
 	height:1px;
 	border:none;
 	border-top:1px dashed #222;
 }
-.md-theme table {
+.md table {
+	margin: 12px 0 12px 0;
 	width: 100%;
 	max-width: 100%;
-	margin-bottom: 21px;
+	color: #5c5d5e;
 	border: 1px solid #eee;
+	border-collapse:collapse; 
+	border-spacing:0;
 }
-.md-theme table>thead>tr>th,
-.md-theme table>thead>tr>td,
-.md-theme table>tbody>tr>th,
-.md-theme table>tbody>tr>td,
-.md-theme table>tfoot>tr>th,
-.md-theme table>tfoot>tr>td {
+.md table th {
+	background: #f8fafc
+}
+.md table>thead>tr>th,
+.md table>thead>tr>td,
+.md table>tbody>tr>th,
+.md table>tbody>tr>td,
+.md table>tfoot>tr>th,
+.md table>tfoot>tr>td {
 	padding: 8px;
 	line-height: 1.42857143;
 	vertical-align: top;
 	border-top: 1px solid #eee
 }
-.md-theme table>thead>tr>th {
+.md table>thead>tr>th {
 	vertical-align: bottom;
 	border-bottom: 2px solid #eee
 }
-.md-theme table>caption+thead>tr:first-child>th,
-.md-theme table>caption+thead>tr:first-child>td,
-.md-theme table>colgroup+thead>tr:first-child>th,
-.md-theme table>colgroup+thead>tr:first-child>td,
-.md-theme table>thead:first-child>tr:first-child>th,
-.md-theme table>thead:first-child>tr:first-child>td {
+.md table>caption+thead>tr:first-child>th,
+.md table>caption+thead>tr:first-child>td,
+.md table>colgroup+thead>tr:first-child>th,
+.md table>colgroup+thead>tr:first-child>td,
+.md table>thead:first-child>tr:first-child>th,
+.md table>thead:first-child>tr:first-child>td {
 	border-top: 0
 }
-.md-theme table>tbody+tbody {
+.md table>tbody+tbody {
 	border-top: 2px solid #eee
 }
-.md-theme table>thead>tr>th,
-.md-theme table>thead>tr>td,
-.md-theme table>tbody>tr>th,
-.md-theme table>tbody>tr>td,
-.md-theme table>tfoot>tr>th,
-.md-theme table>tfoot>tr>td {
+.md table>thead>tr>th,
+.md table>thead>tr>td,
+.md table>tbody>tr>th,
+.md table>tbody>tr>td,
+.md table>tfoot>tr>th,
+.md table>tfoot>tr>td {
 	border: 1px solid #eee
 }
-.md-theme table>thead>tr>th,
-.md-theme table>thead>tr>td {
+.md table>thead>tr>th,
+.md table>thead>tr>td {
 	border-bottom-width: 2px
 }

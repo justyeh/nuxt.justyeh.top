@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="content">
-        <div v-html="post.html" class="md-theme"></div>
+        <div v-html="post.html" class="md"></div>
       </div>
     </div>
   </div>
