@@ -37,17 +37,18 @@ export default {
 
 <style scoped>
 .index {
-  width: 1000px;
-  margin: 50px auto;
+    width: 1000px;
+    margin: 50px auto;
 }
+
 @media screen and (max-width: 960px) {
-  .index {
-    width: 100%;
-    margin: 20px 0;
-  }
-  .more {
-    margin: 0 10px;
-  }
+    .index {
+        width: 100%;
+        margin: 20px 0;
+    }
+    .more {
+        margin: 0 10px;
+    }
 }
 </style>
 

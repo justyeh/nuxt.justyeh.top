@@ -4,7 +4,7 @@
             <div class="poster" v-if="post.image" :style="{backgroundImage:'url('+post.image+')'}"></div>
             <router-link :to="`/post/${post.id}`">{{ post.title }}</router-link>
             <div class="desc">{{post.meta_description}}</div>
-            <div class="tags" v-if="post.tags">
+            <div class="tags" v-if="post.tags && post.tags.length>0">
                 <router-link class="btn btn-small btn-default" :to="`/tag/${tag.tagId}`" v-for="tag in post.tags" :key="tag.tagId">{{tag.name}}</router-link>
             </div>
         </article>
@@ -26,7 +26,7 @@ export default {
 article {
     background: #fff;
     border-radius: 2px;
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.26);
+    box-shadow: 0 0 25px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, 0.15);
     margin-bottom: 40px;
 }
 
@@ -109,13 +109,13 @@ article .tags a {
 }
 
 @media screen and (max-width: 1400px) {
-     article .poster {
+    article .poster {
         height: 420px;
     }
 }
 
 @media screen and (max-width: 1200px) {
-     article .poster {
+    article .poster {
         height: 360px;
     }
 }
@@ -147,11 +147,13 @@ article .tags a {
         margin: 10px 10px 10px 0;
     }
 }
+
 @media screen and (max-width: 640px) {
     article .poster {
         height: 160px;
     }
 }
+
 @media screen and (max-width: 480px) {
     article .poster {
         height: 130px;

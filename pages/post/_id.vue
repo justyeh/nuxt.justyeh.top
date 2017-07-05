@@ -5,7 +5,7 @@
       <div class="title">{{post.title}}</div>
       <div class="info">
         <p>更新于：{{post.updated_at}}</p>
-        <p>
+        <p v-if="post.tags && post.tags.length > 0">
           标签：
           <span v-for="tag in post.tags" :key="tag.tagId">{{tag.name}}</span>
         </p>
