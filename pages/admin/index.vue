@@ -1,7 +1,7 @@
 <template>
     <transition name="fade">
         <keep-alive>
-            <component :ref="currView" :is="currView" :postId="editPostId" v-on:updateView="updateView" v-on:editPost="editPost" v-on:refreshPostList="refreshPostList"></component>
+            <component :ref="currView" :is="currView" :postId="editPostId" v-on:updateView="updateView" v-on:editPost="editPost" v-on:postSaved="postSaved" v-on:postUpdated="postUpdated"></component>
         </keep-alive>
     </transition>
 </template>
@@ -28,15 +28,22 @@ export default {
         updateView(view) {
             this.currView = view
         },
-        editPost(postId) {
-            this.updateView('EditPost');
-            this.editPostId = postId
+        editPost(editPostId) {
+            this.updateView('EditPost')
+            this.editPostId = editPostId
         },
-        refreshPostList() {
+        postSaved() {
             this.currView = 'PostList'
             this.$nextTick(() => {
-                this.$refs['PostList'].refreshComponent();
+                console.log(this.$refs)
+                this.$refs['PostList'].refreshComponent(false)
                 document.querySelector('.main').scrollTop = 0
+            })
+        },
+        postUpdated() {
+            this.currView = 'PostList'
+            this.$nextTick(() => {
+                this.$refs['PostList'].refreshComponent(true)
             })
         }
     }
