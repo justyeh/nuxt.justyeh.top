@@ -5,7 +5,7 @@
         </page-header>
         <form-group>
             <template slot="label">标题</template>
-            <input type="text" slot="input" placeholder="标题" v-model="post.title">
+            <input type="text" slot="input" placeholder="标题" v-model="post.title" maxlength="100">
         </form-group>
         <form-group>
             <template slot="label">海报</template>
@@ -16,7 +16,7 @@
         </form-group>
         <form-group>
             <template slot="label">标签</template>
-            <tag-input slot="input" :tags="post.tags" :postId="post.id"></tag-input>
+            <tag-input slot="input" :tags="post.tags" v-on:delTag="delTag" v-on:addTag="addTag"></tag-input>
         </form-group>
         <form-group>
             <template slot="label">简介</template>
@@ -51,7 +51,6 @@ export default {
     data() {
         return {
             post: {
-                id: '',
                 title: '',
                 images: '',
                 meta_description: '',
@@ -73,12 +72,44 @@ export default {
     },
     watch: {
         postId(val) {
-            this.setPost(parseInt(val))
+            this.setPost(val)
         }
     },
     methods: {
         returnList() {
             this.$emit('updateView', 'PostList')
+        },
+        addTag(tag) {
+            console.log(tag)
+            axios.post('/api/post/tag/add', {
+                postTag: {
+                    postId: this.postId,
+                    tagId: tag.id
+                }
+            }).then(res => {
+                if (res.data.code !== 200) {
+                    console.error(data.message)
+                }
+                this.post.tags.push({
+                    postTagId: res.data.insertId,
+                    tagId: tag.id,
+                    name: tag.name
+                })
+            });
+
+        },
+        delTag(index) {
+            axios.post("/api/post/tag/del", {
+                postTagId: this.post.tags[index].postTagId
+            }).then(res => {
+                if (res.data.code !== 200) {
+                    console.error(res.data.message);
+                    return false
+                }
+                this.post.tags.splice(index, 1);
+            }).catch((err) => {
+                alert(err)
+            });
         },
         updatePost() {
             let tempPost = deepCopy(this.post);
@@ -90,7 +121,7 @@ export default {
                     console.error(res.data.message)
                     return false;
                 }
-                this.$emit('postFormUpdated', this.post)
+                this.$emit('postUpdated', this.post)
             }).catch((err) => {
                 alert(err)
             });
@@ -101,18 +132,6 @@ export default {
             }
             axios.get(`/api/post/detail/${postId}`).then((res) => {
                 this.post = res.data.list[0];
-            }).catch((err) => {
-                alert(err)
-            });
-        },
-        addNewPost() {
-            axios.post('/api/post/add', {
-                post: this.post
-            }).then((res) => {
-                if (res.data.code !== 200) {
-                    console.error(res.data.message)
-                    return false;
-                }
             }).catch((err) => {
                 alert(err)
             });
