@@ -42,8 +42,12 @@ export default {
         PageHeader
     },
     methods: {
-        refreshComponent() {
-            this.getPageList(0)
+        refreshComponent(isSaveCurrPage) {
+            if (isSaveCurrPage) {
+                this.getPageList(this.page)
+            } else {
+                this.getPageList(0)
+            }
         },
         addNewPost() {
             this.$emit('updateView', 'NewPost')
@@ -63,7 +67,7 @@ export default {
             this.currPost.title = newPost.title;
             this.currPost.status = newPost.status;
         },
-        updateStatus(index,newStatus) {
+        updateStatus(index, newStatus) {
             axios.post('/api/post/update', {
                 post: {
                     id: this.posts[index].id,
