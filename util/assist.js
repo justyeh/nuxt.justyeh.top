@@ -46,11 +46,9 @@ export function getCookiesInServer(req) {
   return Cookies;
 }
 
-
-export function setCookieInClient(name, value) {
-  let Days = 30;
+export function setCookieInClient(name, value, minutes) {
   let exp = new Date();
-  exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+  exp.setTime(exp.getTime() + minutes * 60 * 1000);
   document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
@@ -73,4 +71,16 @@ export function seo() {
   }
   let s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(bp, s);
+}
+
+export function isLogin() {
+  console.log(getCookieInClient('token'))
+  if (getCookieInClient('token')) {
+    return true
+  }
+  return false
+}
+
+export function setToken(tokenValue) {
+  setCookieInClient('token',tokenValue,2)
 }
