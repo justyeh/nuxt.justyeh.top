@@ -12,7 +12,7 @@
                 <label for="password">
                     <i class="fa fa-lock"></i>
                 </label>
-                <input type="text" id="account" placeholder="Password" v-model="password">
+                <input type="password" id="account" placeholder="Password" v-model="password" @keyup.enter="login">
             </div>
             <div class="form-group">
                 <button class="btn" v-on:keyup.enter="login" @click="login">Sign in</button>
@@ -23,6 +23,7 @@
 
 <script>
 import axios from '~plugins/axios'
+import { setToken } from '../../util/assist'
 
 export default {
     layout: 'login',
@@ -41,16 +42,17 @@ export default {
                 }
             }).then((res) => {
                 let data = res.data;
-                 if(data.code !== 200){
-                     alert(data.message);
-                 }
-                 if(data.code === 200){
-                     this.$router.replace('/admin')
-                 }
-                 return;
+                if (data.code !== 200) {
+                    alert(data.message);
+                }
+                if (data.code === 200) {
+                    setToken('12346');
+                    this.$router.replace('/admin')
+                }
+                return;
             }).catch((error) => {
                 console.error(error);
-            });
+            })
         }
     }
 }
@@ -107,6 +109,7 @@ input {
     border: solid 1px #f7fafc;
     text-indent: 30px;
 }
+
 
 
 
