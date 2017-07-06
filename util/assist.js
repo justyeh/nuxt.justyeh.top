@@ -74,7 +74,6 @@ export function seo() {
 }
 
 export function isLogin() {
-  console.log(getCookieInClient('token'))
   if (getCookieInClient('token')) {
     return true
   }
