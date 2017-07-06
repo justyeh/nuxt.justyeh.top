@@ -58,5 +58,10 @@ module.exports = {
   transition: {
     name: 'page'
     /*mode: 'out-in'*/
+  },
+  //配置路由
+  router: {
+    middleware: 'adminAuth'
   }
+
 }
