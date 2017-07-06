@@ -7,6 +7,7 @@ let query = function (sql, params, callback) {
     try {
         pool.getConnection((err, connection) => {
             if (err) {
+                console.log(err)
                 return callback(true);
             }
             //链接
@@ -20,7 +21,7 @@ let query = function (sql, params, callback) {
                 callback(false, result);
             });
         });
-    } catch (error) {
+    } catch (err) {
         console.error('db error24:' + err)
         return callback(true);
     }
