@@ -1,4 +1,18 @@
+const needAuth = require('../../util/api.config').needAuth
+
 module.exports = app => {
+
+    //实现登陆拦截
+    app.use('/api', function (req, res, next) {
+        let path = req.originalUrl;
+        if (needAuth.indexOf(path) > 0) {
+            console.log('AUTH --> ' + path)
+        }/* else {
+            next();
+        }*/
+        next();
+    })
+
 
     app.get('/api', (req, res) => {
         res.json({ message: '欢迎使用justyeh的API服务！' });
@@ -11,5 +25,5 @@ module.exports = app => {
     app.use('/api/tag', require('./tag'))
 
     app.use('/api/post/tag', require('./postTag'))
-    
+
 }
