@@ -1,6 +1,6 @@
 let db = require('../db/DBUtil');
 
-class Tag {
+export default class Tag {
 
     //根据TagId获取Tag
     one(tagId, callback) {
@@ -13,6 +13,7 @@ class Tag {
         });
     }
 
+    //根据Name获取Tags
     searchTagsByName(tageName, callback) {
         let sql = "SELECT id,name FROM tags where name like ? LIMIT 6";
         db.query(sql, ['%' + tageName + '%'], (err, result) => {
@@ -23,6 +24,7 @@ class Tag {
         });
     }
 
+    //添加Tag
     addTag(tageName, callback) {
         let sql = 'INSERT INTO tags (name) VALUES (?)'
         db.query(sql, [tageName], (err, result) => {
@@ -34,5 +36,3 @@ class Tag {
     }
 
 }
-
-module.exports = Tag;
