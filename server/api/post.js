@@ -38,6 +38,17 @@ router.get('/list/:tagId', function (req, res, next) {
   }
 });
 
+router.get('/count/:scope', function (req, res, next) {
+  let scope = req.params.scope || '';
+  try {
+    postSys.getPostCount(scope, function (result) {
+      res.json(result)
+    });
+  } catch (error) {
+    res.json({ code: 500, message: '程序发生错误！' })
+  }
+});
+
 router.post('/add', function (req, res, next) {
   try {
     postSys.addPost(req.body.post, function (result) {
@@ -51,17 +62,6 @@ router.post('/add', function (req, res, next) {
 router.post('/update', function (req, res, next) {
   try {
     postSys.updatePost(req.body.post, function (result) {
-      res.json(result)
-    });
-  } catch (error) {
-    res.json({ code: 500, message: '程序发生错误！' })
-  }
-});
-
-router.get('/count/:scope', function (req, res, next) {
-  let scope = req.params.scope || '';
-  try {
-    postSys.getPostCount(scope, function (result) {
       res.json(result)
     });
   } catch (error) {
