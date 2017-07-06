@@ -23,7 +23,7 @@
 
 <script>
 import axios from '~plugins/axios'
-import { setToken } from '../../util/assist'
+import { setToken,isLogin } from '../../util/assist'
 
 export default {
     layout: 'login',
@@ -32,6 +32,11 @@ export default {
             account: '',
             password: ''
         }
+    },
+    created(){
+        /*if(isLogin()){
+            this.$router.replace('/admin')
+        }*/
     },
     methods: {
         login() {
@@ -46,7 +51,7 @@ export default {
                     alert(data.message);
                 }
                 if (data.code === 200) {
-                    setToken('12346');
+                    setToken(data.token);
                     this.$router.replace('/admin')
                 }
                 return;

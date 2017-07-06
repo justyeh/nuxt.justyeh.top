@@ -1,4 +1,5 @@
 import * as axios from 'axios'
+import { getCookieInClient } from '../util/assist'
 
 let options = {
 }
@@ -10,24 +11,28 @@ if (process.SERVER_BUILD) {
 let $http = axios.create(options)
 
 // 拦截request
-/*$http.interceptors.request.use(
-    config => {
-        if (store.state.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-            config.headers.Authorization = `token ${store.state.token}`;
-        }
-        return config;
-    },
-    err => {
-        return Promise.reject(err);
-});*/
+$http.interceptors.request.use(
+  config => {
+    if (typeof document === 'object') {
+      let token = getCookieInClient('token')
+      if(token){
+         config.headers.Authorization = token;
+      }
+     
+    }
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  });
 
 // 拦截response
-/*$http.interceptors.response.use(function (response) {
+$http.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   // Do something with response error
   return Promise.reject(error);
 });
-*/
+
 
 export default $http

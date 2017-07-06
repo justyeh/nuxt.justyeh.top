@@ -6,7 +6,8 @@ module.exports = app => {
     app.use('/api', function (req, res, next) {
         let path = req.originalUrl;
         if (needAuth.indexOf(path) > 0) {
-            console.log('AUTH --> ' + path)
+            var token = req.headers['authorization'];
+            console.log(token)
         }/* else {
             next();
         }*/
