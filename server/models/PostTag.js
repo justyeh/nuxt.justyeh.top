@@ -1,5 +1,5 @@
 
-let db = require('../db/DBUtil');
+let db = require('../util/DBUtil');
 
 export default class PostTag {
 

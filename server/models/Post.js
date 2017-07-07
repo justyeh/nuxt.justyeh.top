@@ -1,4 +1,4 @@
-let db = require('../db/DBUtil');
+let db = require('../util/DBUtil');
 let pageCfg = require('../../util/api.config')
 
 import { objectToSQLUpdate } from '../../util/assist'

@@ -1,7 +1,7 @@
 let mysql = require('mysql');
-let serverCfg = require('../../util/mysql.config')
+const mysqlCfg = require('./server.config').db
 
-let pool = mysql.createPool(serverCfg.db);
+let pool = mysql.createPool(mysqlCfg);
 
 let query = function (sql, params, callback) {
     try {
