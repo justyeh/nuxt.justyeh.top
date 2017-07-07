@@ -1,16 +1,12 @@
-let db = require('../db/DBUtil')
+let crypto = require('crypto')
 
-const crypto = require('crypto')
-let jwt = require('jwt-simple')
-
-const secret = 'justyeh'
-
+let db = require('../util/DBUtil')
 
 export default class User {
 
     //验证用户名密码
     auth(user, callback) {
-        let sql = "SELECT id,name,image,email,bio,website,location FROM users WHERE account = ? AND password = ?";
+        let sql = "SELECT id FROM users WHERE account = ? AND password = ?";
 
         //加密密码
         user.password = crypto.createHash('sha1').update(user.password).digest('hex');
@@ -22,26 +18,5 @@ export default class User {
             callback(false, result);
         });
     }
-
-    //设置token
-    setToken(user, callback) {
-        let token = jwt.encode({
-            id: user.id,
-            date: new Date().getTime()
-        }, secret)
-
-        let sql = "UPDATE users SET token = ? WHERE id = ?"
-
-        db.query(sql, [token, user.id,], (err, result) => {
-            if (err) {
-                return callback(true);
-            }
-            if (result.changedRows === 1) {
-                return callback(false, token);
-            }
-            callback(true);
-        });
-    }
-
 }
 

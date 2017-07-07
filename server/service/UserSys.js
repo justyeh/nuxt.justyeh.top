@@ -1,3 +1,7 @@
+let jwt = require('jwt-simple')
+let moment = require('moment')
+let jwtSecret = require('../util/server.config').jwtSecret
+
 import User from '../models/User'
 
 let userModel = new User();
@@ -13,18 +17,21 @@ let auth = (user, callback) => {
         if (err) {
             return callback({ code: 404, message: '登陆失败' });
         }
-        if (user.length === 0) {
-            return callback({ code: 403, message: '用户名或密码错误' });
+
+        if (user.length === 1) {
+            //设置七天有效期
+            //let expires = moment().add(7, 'days').valueOf();
+            let expires = moment().add(120, 'seconds').valueOf();
+            
+            let token = jwt.encode({
+                uid: user[0].id,
+                exp: expires
+            }, jwtSecret)
+
+            return callback({ code: 200, message: 'success', token: token });
         }
 
-
-        userModel.setToken(user[0], (err, result) => {
-            if (err) {
-                return callback({ code: 404, message: '登陆失败' });
-            }
-            callback({ code: 200, message: 'success', token: result});
-        })
-
+        callback({ code: 404, message: '登陆失败' });
     });
 }
 
