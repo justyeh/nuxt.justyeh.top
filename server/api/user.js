@@ -12,11 +12,4 @@ router.post('/login', function(req, res, next) {
   });
 });
 
-/*router.get('/user/:id', function(req, res, next) {
-  let userId = req.params.id;
-  userSys.getUserById(userId,function(data){
-    res.json(data)
-  });
-});*/
-
 module.exports = router;

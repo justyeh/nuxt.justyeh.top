@@ -20,9 +20,8 @@ let auth = (user, callback) => {
 
         if (user.length === 1) {
             //设置七天有效期
-            //let expires = moment().add(7, 'days').valueOf();
-            let expires = moment().add(120, 'seconds').valueOf();
-            
+            let expires = moment().add(7, 'days').valueOf();
+
             let token = jwt.encode({
                 uid: user[0].id,
                 exp: expires
