@@ -80,7 +80,6 @@ export default {
             this.$emit('updateView', 'PostList')
         },
         addTag(tag) {
-            console.log(tag)
             axios.post('/api/post/tag/add', {
                 postTag: {
                     postId: this.postId,
