@@ -25,7 +25,6 @@ import hljs from 'highlight.js'
 import '~assets/css/yeh-md-theme.css'
 import '~assets/css/ocean.min.css'
 
-
 let marked = require('marked');
 
 marked.setOptions({
@@ -43,7 +42,6 @@ marked.setOptions({
 });
 
 export default {
-  name: 'id',
   validate({ params }) {
     return /^\d+$/.test(params.id)
   },
