@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="renderer" content="webkit">
+		<title>轻量级web富文本编辑器wangEditor介绍</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				background: #eaebec;
+			}
+			
+			.container {
+				width: 800px;
+				background: #fff;
+				margin: 0 auto;
+				padding: 15px 15px 45px 15px;
+			}
+			
+			.codeEditor {
+				position: relative;
+			}
+			
+			.codeEditor .editor {
+				border: solid 1px #c2c2c2;
+				height: 300px;
+			}
+			.codeEditor .editor-seleteor{
+				padding-top: 20px;
+			}
+			.codeEditor .editor-seleteor select {
+				display: inline-block;
+				width: 100px;
+				height: 32px;
+				border: solid 1px #c2c2c2;
+				width: 100px;
+			}
+			.codeEditor .editor-seleteor label{
+				display: inline-block;
+				height: 32px;
+				line-height: 32px;
+				vertical-align: top;
+			}
+			
+			.btns {
+				padding-top: 100px;
+				text-align: right;
+			}
+			
+			.btns button {
+				display: inline-block;
+				margin-left: 10px;
+				padding: 3px 6px;
+			}
+		</style>
+		<!--核心样式-->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/codemirror/5.24.2/codemirror.min.css">
+		<!--引入css文件，用以支持主题-->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/codemirror/5.24.2/theme/icecoder.css">
+		<link rel="stylesheet" href="http://cdn.bootcss.com/codemirror/5.24.2/theme/eclipse.css">
+
+		<!--核心库文件-->
+		<script src="http://cdn.bootcss.com/codemirror/5.24.2/codemirror.min.js"></script>
+
+		<!--语法文件:加入高亮支持-->
+		<script src="http://cdn.bootcss.com/codemirror/5.24.2/mode/clike/clike.js"></script>
+		<script src="http://cdn.bootcss.com/codemirror/5.24.2/mode/xml/xml.js"></script>
+		<script src="http://cdn.bootcss.com/codemirror/5.24.2/mode/javascript/javascript.js"></script>
+		<script src="http://cdn.bootcss.com/codemirror/5.24.2/mode/vbscript/vbscript.js"></script>
+		<script src="http://cdn.bootcss.com/codemirror/5.24.2/mode/css/css.js"></script>
+		<script src="http://cdn.bootcss.com/codemirror/5.24.2/mode/sql/sql.js"></script>
+		<script src="http://cdn.bootcss.com/codemirror/5.24.2/mode/htmlmixed/htmlmixed.js"></script>
+
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="codeEditor">
+				<div class="editor">
+					<textarea id="code">
+function setVal() {
+	editor.setValue('为codemirror赋值');
+}</textarea>
+				</div>
+				<div class="editor-seleteor">
+					<label>语言</label>
+					<select class="selector" onchange="selectLanguage(this)">
+						<option value="java">java</option>
+						<option value="html">html</option>
+						<option value="javascript">javascript</option>
+						<option value="css">css</option>
+						<option value="sql">sql</option>
+						<option value="c/c++">c/c++</option>
+					</select>
+					<label>主题</label>
+					<select class="selector" onchange="selectTheme(this)">
+						<option value="eclipse">eclipse</option>
+						<option value="icecoder">icecoder</option>
+					</select>
+				</div>
+			</div>
+			<div class="btns">
+				<button onclick="getVal()">getVal</button>
+				<button onclick="setVal()">setVal</button>
+			</div>
+		</div>
+
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+				lineNumbers: true,
+				styleActiveLine: true,
+				matchBrackets: true,
+				mode: {
+					name: "text/x-java"
+				},
+				width: "100%",
+				height: "100%",
+				theme: "eclipse",
+				keyMap: "default",
+				lineWrapping: true,
+				foldGutter: true,
+				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+				indentUnit: 4,
+				showCursorWhenSelecting: true,
+				extraKeys: {
+					"Shift-Alt-Enter": function(cm) {
+						cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+					},
+					"Ctrl-Space": "autocomplete",
+					"Ctrl-F7": function() {
+						$('#code_submit').click();
+					}
+				}
+			});
+
+			function selectLanguage(obj) {
+				var lang = obj.value;
+				var mode = '';
+				switch(lang) {
+					case 'java':
+						mode = 'text/x-java';
+						break;
+					case 'html':
+						mode = 'htmlmixed';
+						break;
+					case 'javascript':
+						mode = 'text/javascript';
+						break;
+					case 'css':
+						mode = 'text/css';
+						break;
+					case 'sql':
+						mode = 'text/x-sql';
+						break;
+					case 'c/c++':
+						mode = 'text/x-c++src';
+						break;
+				}
+				if(mode.length != '') {
+					editor.setOption('mode', mode)
+				}
+			}
+
+			function selectTheme(obj) {
+				var theme = obj.value;
+				editor.setOption("theme", theme);
+			}
+			
+			function getVal() {
+				console.log($(".CodeMirror-sizer").html())
+				var val = editor.getValue();
+				console.log(val)
+			}
+			
+			function setVal() {
+				editor.setValue('为codemirror赋值');
+			}
+		</script>
+	</body>
+
+</html>
