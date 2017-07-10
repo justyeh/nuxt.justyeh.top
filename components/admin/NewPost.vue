@@ -26,7 +26,7 @@
             <template slot="label">正文</template>
             <div slot="input" class="markdown">
                 <button class="btn btn-small btn-main" @click="preview = !preview">{{preview ? '编辑' : '预览'}}</button>
-                <textarea v-model="post.markdown" @keydown.ctrl.83.stop.prevent="saveNewPost"></textarea>
+                <textarea v-model="post.markdown"></textarea>
                 <vue-markdown :markdown="post.markdown" v-show="preview"></vue-markdown>
             </div>
         </form-group>

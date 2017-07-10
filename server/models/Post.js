@@ -1,7 +1,7 @@
 let db = require('../util/DBUtil');
 let pageCfg = require('../../util/api.config')
 
-import { objectToSQLUpdate } from '../../util/assist'
+import { postToSQLUpdate } from '../../util/assist'
 
 export default class Post {
 
@@ -44,7 +44,7 @@ export default class Post {
             new Date().getTime()
         ]
         db.query(sql, params, (err, result) => {
-             if (err) {
+            if (err) {
                 return callback(true);
             }
             callback(false, result.insertId);
@@ -54,10 +54,10 @@ export default class Post {
 
     //更新Post
     update(post, callback) {
-        let sql = 'UPDATE posts SET ' + objectToSQLUpdate(post).updated + ' WHERE id = ?';
-        let params = objectToSQLUpdate(post).params;
+        let sql = 'UPDATE posts SET ' + postToSQLUpdate(post).updated + ' WHERE id = ?'
+
+        let params = postToSQLUpdate(post).params
         params.push(post.id);
-        params.updated_at = new Date().getTime();
 
         db.query(sql, params, (err, result) => {
             if (err) {

@@ -4,7 +4,7 @@ export function formatDate(timestamp) {
   return date.getYear() + "-" + date.getMonth() + 1 + "-" + date.getDate() + "   " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 }
 
-export function objectToSQLUpdate(object) {
+export function postToSQLUpdate(object) {
   let updated = [], params = [];
   for (var key in object) {
     if (object.hasOwnProperty(key)) {
@@ -15,6 +15,8 @@ export function objectToSQLUpdate(object) {
       params.push(object[key])
     }
   }
+  updated.push('updated_at = ?')
+  params.push(Date.now())
   return {
     updated: updated.join(','),
     params: params
@@ -81,5 +83,5 @@ export function isLogin() {
 }
 
 export function setToken(tokenValue) {
-  setCookieInClient('token',tokenValue,2)
+  setCookieInClient('token', tokenValue, 60*24*7)
 }
