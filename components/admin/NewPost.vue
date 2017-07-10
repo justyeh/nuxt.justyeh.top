@@ -27,7 +27,7 @@
             <div slot="input" class="markdown">
                 <button class="btn btn-small btn-main" @click="preview = !preview">{{preview ? '编辑' : '预览'}}</button>
                 <textarea v-model="post.markdown"></textarea>
-                <vue-markdown :markdown="post.markdown" v-show="preview"></vue-markdown>
+                <vue-markdown :markdown="previewMarkdown" v-show="preview"></vue-markdown>
             </div>
         </form-group>
         <div class="btn-group">
@@ -65,6 +65,14 @@ export default {
                 tags: []
             },
             preview: false,
+            previewMarkdown: ''
+        }
+    },
+    watch: {
+        preview() {
+            if (this.preview) {
+                this.previewMarkdown = this.post.markdown
+            }
         }
     },
     methods: {
