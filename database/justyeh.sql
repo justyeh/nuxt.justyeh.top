@@ -200,7 +200,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '叶文祥', 'justyeh', '99926e3dab995487ceab34ec1c8b2fd7f99392da', null, 'justyeh@163.com', '码畜，其他没什么好说的！', 'http://www.justyeh.com', '暂住北京');
+INSERT INTO `users` VALUES ('1', '叶文祥', 'justyeh', '99926e3dab995487ceab34ec1c8b2fd7f12342da', null, 'justyeh@163.com', '码畜，其他没什么好说的！', 'http://www.justyeh.com', '暂住北京');
 
 -- ----------------------------
 -- Table structure for user_roles
