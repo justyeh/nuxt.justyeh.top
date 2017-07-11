@@ -9,17 +9,14 @@ module.exports = function (req, res, next) {
     if (needAuth.indexOf(path) < 0) {
         return next();
     }
-
     //接口需要登陆
     var token = req.headers['authorization']
-
     if (!token) {
         return res.json({
             code: 401,
             message: 'you need login:there is no token'
         })
     }
-
     try {
         //解密获取的token
         let decoded = jwt.decode(token, jwtSecret);
@@ -31,16 +28,11 @@ module.exports = function (req, res, next) {
                 message: 'you need login:token is expired'
             });
         }
-
         next();
-
     } catch (err) {
         return res.json({
             code: 401,
             message: 'you need login:decode token fail'
         })
     }
-
-
-
 };
