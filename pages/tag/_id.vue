@@ -1,7 +1,6 @@
 <template>
     <div class="page">
         <h1>{{tag.name}}</h1>
-        <p v-if="tag.description">{{tag.description}}</p>
         <article v-for="post in posts" :key="post.id">
             <div class="poster" v-if="post.image">
                 <div :style="{backgroundImage:'url('+post.image+')'}"></div>
@@ -53,6 +52,7 @@ export default {
 
 h1 {
     color: #3084bb;
+    padding-bottom: 20px;
 }
 
 .page>p {
