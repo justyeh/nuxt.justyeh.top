@@ -87,14 +87,14 @@
 }
 .md p {
 	color: #5c5d5e;
-	margin: 6px 0 0 0
+	margin: 20px 0 0 0
 }
 .md pre {
 	margin: 12px 0 12px 0 !important;
 	background-color: #002b36;
 	font-size: 13px !important;
 	color: #93a1a1;
-	line-height: 1.6em !important;
+	line-height: 1.15em !important;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-ms-border-radius: 2px;
