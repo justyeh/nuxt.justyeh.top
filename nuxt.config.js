@@ -57,7 +57,6 @@ module.exports = {
   //页面的过渡效果
   transition: {
     name: 'page'
-    /*mode: 'out-in'*/
   },
   //配置路由
   router: {

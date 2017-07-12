@@ -12,8 +12,9 @@
 }
 .md img {
 	max-width: 100%;
-	margin: 0 auto;
+	margin: 5px auto;
     display: block;
+	box-shadow: 0 0 5px rgba(0,0,0,0.23);
 }
 .md *:first-child {
 	margin-top: 0
@@ -86,14 +87,14 @@
 }
 .md p {
 	color: #5c5d5e;
-	margin: 6px 0 0 0
+	margin: 20px 0 0 0
 }
 .md pre {
 	margin: 12px 0 12px 0 !important;
 	background-color: #002b36;
 	font-size: 13px !important;
 	color: #93a1a1;
-	line-height: 1.6em !important;
+	line-height: 1.15em !important;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-ms-border-radius: 2px;
@@ -128,7 +129,7 @@
 	width: 100%;
 	max-width: 100%;
 	color: #5c5d5e;
-	border: 1px solid #eee;
+	border: 1px solid #bbb;
 	border-collapse:collapse; 
 	border-spacing:0;
 }
@@ -144,11 +145,11 @@
 	padding: 8px;
 	line-height: 1.42857143;
 	vertical-align: top;
-	border-top: 1px solid #eee
+	border-top: 1px solid #bbb
 }
 .md table>thead>tr>th {
 	vertical-align: bottom;
-	border-bottom: 2px solid #eee
+	border-bottom: 2px solid #bbb
 }
 .md table>caption+thead>tr:first-child>th,
 .md table>caption+thead>tr:first-child>td,
@@ -159,7 +160,7 @@
 	border-top: 0
 }
 .md table>tbody+tbody {
-	border-top: 2px solid #eee
+	border-top: 2px solid #bbb
 }
 .md table>thead>tr>th,
 .md table>thead>tr>td,
@@ -167,7 +168,7 @@
 .md table>tbody>tr>td,
 .md table>tfoot>tr>th,
 .md table>tfoot>tr>td {
-	border: 1px solid #eee
+	border: 1px solid #bbb
 }
 .md table>thead>tr>th,
 .md table>thead>tr>td {

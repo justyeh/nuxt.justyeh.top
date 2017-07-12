@@ -26,8 +26,8 @@
             <template slot="label">正文</template>
             <div slot="input" class="markdown">
                 <button class="btn btn-small btn-main" @click="preview = !preview">{{preview ? '编辑' : '预览'}}</button>
-                <textarea v-model="post.markdown" @keydown.ctrl.83.stop.prevent="updatePost"></textarea>
-                <vue-markdown :markdown="post.markdown" v-show="preview"></vue-markdown>
+                <textarea v-model="post.markdown" @keydown.ctrl.83.stop.prevent="updateMarkdown"></textarea>
+                <vue-markdown :markdown="previewMarkdown" v-show="preview"></vue-markdown>
             </div>
         </form-group>
         <div class="btn-group">
@@ -55,9 +55,11 @@ export default {
                 images: '',
                 meta_description: '',
                 markdown: '',
-                tags: []
+                tags: [],
+                updated: null
             },
             preview: false,
+            previewMarkdown: ''
         }
     },
     components: {
@@ -73,6 +75,11 @@ export default {
     watch: {
         postId(val) {
             this.setPost(val)
+        },
+        preview() {
+            if (this.preview) {
+                this.previewMarkdown = this.post.markdown
+            }
         }
     },
     methods: {
@@ -121,6 +128,22 @@ export default {
                     return false;
                 }
                 this.$emit('postUpdated', this.post)
+            }).catch((err) => {
+                alert(err)
+            });
+        },
+        updateMarkdown() {
+            let tempPost = {
+                id: this.post.id,
+                markdown: this.post.markdown
+            }
+            axios.post('/api/post/update', {
+                post: tempPost
+            }).then((res) => {
+                if (res.data.code !== 200) {
+                    console.error(res.data.message)
+                    return false;
+                }
             }).catch((err) => {
                 alert(err)
             });

@@ -9,9 +9,9 @@ let postTagModel = new PostTag();
 let list = (params, callback) => {
     postModel.list(params, (err, posts) => {
         if (err) {
-            callback({ code: 404, message: 'no result' });
+            return callback({ code: 404, message: 'no result' });
         }
-        //get each post's tags
+        //get each posts' tags
         async.eachSeries(posts, (post, tagCallback) => {
             postTagModel.tagsByPostId(post.id, (err, result) => {
                 if (err) {

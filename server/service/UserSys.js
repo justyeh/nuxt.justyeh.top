@@ -17,7 +17,6 @@ let auth = (user, callback) => {
         if (err) {
             return callback({ code: 404, message: '登陆失败' });
         }
-
         if (user.length === 1) {
             //设置七天有效期
             let expires = moment().add(7, 'days').valueOf();
@@ -29,7 +28,6 @@ let auth = (user, callback) => {
 
             return callback({ code: 200, message: 'success', token: token });
         }
-
         callback({ code: 404, message: '登陆失败' });
     });
 }
