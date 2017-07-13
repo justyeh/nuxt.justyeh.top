@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import axios from '~plugins/axios'
+import axios from 'axios'
 import { deepCopy } from '../../util/assist'
 
 import FormGroup from '~components/form/FormGroup'

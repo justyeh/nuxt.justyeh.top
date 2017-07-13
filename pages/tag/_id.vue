@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from '~plugins/axios'
+import axios from 'axios'
 import PostList from '~components/PostList'
 
 export default {

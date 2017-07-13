@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axios from '~plugins/axios'
+import axios from 'axios'
 import PostList from '~components/PostList'
 
 export default {
@@ -28,9 +28,10 @@ export default {
 </script>
 
 <style scoped>
-.page{
+.page {
   box-shadow: none;
 }
+
 .more {
   background: #fff;
   border-radius: 2px;
