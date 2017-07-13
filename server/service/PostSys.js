@@ -22,10 +22,9 @@ let list = (params, callback) => {
             });
         }, (err) => {
             if (err) {
-                callback({ code: 404, message: 'no result' });
-                return false;
+                return callback({ code: 404, message: 'no result' });
             }
-            callback({ code: 404, message: 'no result', list: posts });
+            callback({ code: 404, message: 'success', list: posts });
         });
     });
 }
