@@ -3,6 +3,8 @@ let db = require('../util/DBUtil');
 
 export default class PostTag {
 
+
+
     //根据PostId获取Tag列表
     tagsByPostId(postId, callback) {
         let sql = "SELECT post_tags.id AS postTagId,tags.id AS tagId,tags.name FROM posts,tags,post_tags WHERE posts.id = post_tags.post_id AND tags.id = post_tags.tag_id AND posts.id = ?";
@@ -21,6 +23,16 @@ export default class PostTag {
                 return callback(true);
             }
             callback(false, result);
+        });
+    }
+    //根据TagId获取对应的Post数量
+    postCountByTagId(tagId, callback) {
+        let sql = 'SELECT COUNT(tags.id) AS count FROM post_tags,tags WHERE post_tags.tag_id = tags.id AND tags.id = ?'
+        db.query(sql, [tagId], (err, result) => {
+            if (err) {
+                return callback(true);
+            }
+            callback(false, result[0].count);
         });
     }
 
