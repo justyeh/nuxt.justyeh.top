@@ -102,7 +102,6 @@ export default {
                     name: tag.name
                 })
             });
-
         },
         delTag(index) {
             axios.post("/api/post/tag/del", {
