@@ -10,11 +10,6 @@ module.exports = function (req, res, next) {
         return next();
     }
 
-    return res.json({
-        code: 401,
-        message: 'you need login:there is no token'
-    })
-
     //接口需要登陆
     var token = req.headers['authorization']
     if (!token) {
