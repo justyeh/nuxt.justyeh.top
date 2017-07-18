@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import axios from '~plugins/axios'
+import axios from 'axios'
 import { setToken,isLogin } from '../../util/assist'
 
 export default {

@@ -1,10 +1,11 @@
 import * as axios from 'axios'
 import { getCookieInClient } from '../util/assist'
 
-export default ({ app, store }) => {
+export default ({ app, store, redirect }) => {
 
+  // The server-side needs a full url to works
   if (process.SERVER_BUILD) {
-    axios.default.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`
+    axios.defaults.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`
   }
 
   // interceptors request
@@ -22,8 +23,7 @@ export default ({ app, store }) => {
 
   axios.interceptors.response.use(response => {
     if (response.data.code === 401) {
-      //jump to login page
-      console.log(app)
+      redirect('/login')
     }
     return response;
   }, function (error) {

@@ -6,16 +6,20 @@
 </template>
 
 <script>
-import axios from '~plugins/axios'
+import axios from 'axios'
 import PostList from '~components/PostList'
 
 export default {
-  async asyncData({ req, error }) {
+  async asyncData({ error }) {
     const page = 0
+    
     let [pageRes, countRes] = await Promise.all([
       axios.get(`/api/post/page/${page}?scope=published`),
       axios.get('/api/post/count/published'),
-    ])
+    ]).catch(err => {
+      error({ statusCode: 400, message: err })
+    })
+
     return {
       posts: pageRes.data.list,
       count: countRes.data.result,
@@ -28,9 +32,10 @@ export default {
 </script>
 
 <style scoped>
-.page{
+.page {
   box-shadow: none;
 }
+
 .more {
   background: #fff;
   border-radius: 2px;

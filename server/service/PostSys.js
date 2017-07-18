@@ -1,6 +1,6 @@
 import Post from '../models/Post'
 import PostTag from '../models/PostTag'
-let async = require('async');
+let async = require('async')
 
 let postModel = new Post();
 let postTagModel = new PostTag();
@@ -15,17 +15,16 @@ let list = (params, callback) => {
         async.eachSeries(posts, (post, tagCallback) => {
             postTagModel.tagsByPostId(post.id, (err, result) => {
                 if (err) {
-                    tagCallback(err)
+                   return tagCallback(err)
                 }
                 post.tags = result;
                 tagCallback()
             });
         }, (err) => {
             if (err) {
-                callback({ code: 404, message: 'no result' });
-                return false;
+                return callback({ code: 404, message: 'no result' });
             }
-            callback({ code: 404, message: 'no result', list: posts });
+            callback({ code: 404, message: 'success', list: posts });
         });
     });
 }

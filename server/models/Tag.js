@@ -2,6 +2,17 @@ let db = require('../util/DBUtil');
 
 export default class Tag {
 
+    //获取所有tag列表
+    tagList(callback) {
+        let sql = "SELECT id,name FROM tags";
+        db.query(sql, [], (err, result) => {
+            if (err) {
+                return callback(true);
+            }
+            callback(false, result);
+        });
+    }
+
     //根据TagId获取Tag
     one(tagId, callback) {
         let sql = "SELECT id,name,description FROM tags where id = ?";

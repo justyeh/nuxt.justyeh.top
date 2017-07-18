@@ -4,6 +4,8 @@
 
 在线地址 [www.justyeh.com](http://www.justyeh.com)
 
+博客：[使用Nuxt+Vue+Node构建的SSR博客项目](http://justyeh.com/post/29)
+
 ## 技术栈
 
 Vue.js+Nuxt.js+Es6+Webpack+Mysql+Noyde.js+Express.js

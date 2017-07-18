@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import axios from '~plugins/axios'
+import axios from 'axios'
 
 import VuePage from '~components/VuePage'
 import PageHeader from '~components/admin/PageHeader'

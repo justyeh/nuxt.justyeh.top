@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import axios from '~plugins/axios'
+import axios from 'axios'
 
 import FormGroup from '~components/form/FormGroup'
 import TagInput from '~components/form/TagInput'

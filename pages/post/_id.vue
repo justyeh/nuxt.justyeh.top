@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import axios from '~plugins/axios'
+import axios from 'axios'
 import timeago from 'timeago.js'
 
 import hljs from 'highlight.js'

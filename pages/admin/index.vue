@@ -35,7 +35,6 @@ export default {
         postSaved() {
             this.currView = 'PostList'
             this.$nextTick(() => {
-                console.log(this.$refs)
                 this.$refs['PostList'].refreshComponent(false)
                 document.querySelector('.main').scrollTop = 0
             })
