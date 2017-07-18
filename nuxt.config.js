@@ -35,7 +35,7 @@ module.exports = {
 
   build: {
     //Add axios globally
-    vendor: ['axios'],
+    vendor: ['axios','vue-notification'],
     // Run ESLINT on save
     /*extend (config, ctx) {
        if (ctx.isClient) {
@@ -64,6 +64,7 @@ module.exports = {
   },
   //插件
   plugins: [
-    '~plugins/axios'
+    { src: '~plugins/axios' },
+    { src: '~plugins/vue-notification', ssr: false }
   ]
 }

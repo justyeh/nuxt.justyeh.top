@@ -1,9 +1,12 @@
 <template>
-    <transition name="fade">
-        <keep-alive>
-            <component :ref="currView" :is="currView" :postId="editPostId" v-on:updateView="updateView" v-on:editPost="editPost" v-on:postSaved="postSaved" v-on:postUpdated="postUpdated"></component>
-        </keep-alive>
-    </transition>
+    <div>
+        <transition name="fade">
+            <keep-alive>
+                <component :ref="currView" :is="currView" :postId="editPostId" v-on:updateView="updateView" v-on:editPost="editPost" v-on:postSaved="postSaved" v-on:postUpdated="postUpdated"></component>
+            </keep-alive>
+        </transition>
+        <notifications  position="bottom left" :duration="600" ></notifications>
+    </div>
 </template>
 
 <script>
@@ -26,6 +29,11 @@ export default {
     },
     methods: {
         updateView(view) {
+            this.$notify({
+               type:'error',
+                title: '测试',
+                text: 'notification测试'
+            });
             this.currView = view
         },
         editPost(editPostId) {

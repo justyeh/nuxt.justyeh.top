@@ -60,6 +60,7 @@
                 </div>
             </div>
         </modal>
+        <notifications  position="bottom left" :duration="600" ></notifications>
     </div>
 </template>
 
@@ -115,7 +116,19 @@ export default {
 
         },
         delTag() {
-            this.delTagModalShow = true
+           this.$notify({
+               type:'error',
+                title: '测试',
+                text: 'notification测试'
+            });
+            /*this.$notify({
+               type:'success',
+                title: '测试',
+                text: 'notification测试'
+            });*/
+            
+
+            //this.delTagModalShow = true
         },
         async showPost(tagId) {
             let postsRes = await axios.get(`/api/post/list/${tagId}`)
