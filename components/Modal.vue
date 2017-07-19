@@ -1,5 +1,5 @@
 <template>
-    <transition name="fade">
+    <transition name="modal">
         <div class="modal" v-show="isModalShow">
             <div class="main">
                 <div class="title">
@@ -44,7 +44,7 @@ export default {
 
 <style scoped>
 .modal {
-    background: rgba(100, 100, 100, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     position: fixed;
     left: 0;
     top: 0;
@@ -54,6 +54,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity .3s ease;
 }
 
 .main {
@@ -84,13 +85,17 @@ i {
     padding: 20px;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity .3s ease-in-out;
+.modal-enter {
+  opacity: 0;
 }
 
-.fade-enter,
-.fade-leave-to {
-    opacity: 0
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style>
