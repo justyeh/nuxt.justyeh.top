@@ -7,7 +7,8 @@
 博客：[使用Nuxt+Vue+Node构建的SSR博客项目](http://justyeh.com/post/29)
 
 ## 注意
-最近Nuxt官方将版本升级到了rc6，我的项目开发的时候最新版本是rc3，很抱歉的是rc3和rc6有冲突，导致了项目不能允许，现在已知的报错有：
+
+最近Nuxt官方将版本升级到了rc6，我的项目开发的时候最新版本是rc3，很抱歉的是rc3和rc6有冲突，导致了项目不能运行，现在已知的报错有：
 
 ```
 Same thing here pretty much : UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): TypeError: __WEBPACK_IMPORTED_MODULE_2_nuxt___default.a is not a constructor
@@ -19,7 +20,7 @@ Same thing here pretty much : UnhandledPromiseRejectionWarning: Unhandled promis
 npm install --save nuxt@1.0.0-alpha.3
 ```
 
-基于目前我的博客是稳定运行的，所以目前我不会升级nuxt的版本，如果有遇到版本相关的问题，大家可以多关注官方的[issue](https://github.com/nuxt/nuxt.js/issues)，很多问题在上面可以搜到。
+鉴于我的博客是稳定运行的，所以目前我不会升级nuxt的版本，如果有遇到版本相关的问题，大家可以多关注官方的[issue](https://github.com/nuxt/nuxt.js/issues)，很多问题在上面可以搜到。
 
 
 
