@@ -27,7 +27,7 @@
     "marked": "^0.3.6",
     "moment": "^2.18.1",
     "mysql": "^2.13.0",
-    "nuxt": "^1.0.0-alpha.3",
+    "nuxt": "1.0.0-alpha.3",
     "source-map-support": "^0.4.15",
     "timeago.js": "^3.0.2",
     "vue-notification": "^1.3.1"
