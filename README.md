@@ -1,4 +1,4 @@
-准备换个环境了，最好是北京亦庄附近，这是我的[简历](http://justyeh.com/resume.html)，希望大家有好的机会可以介绍一下，在此谢过了！
+准备换个环境了，最好是北京亦庄附近，这是我的[简历](http://justyeh.com/resume/index.html)，希望大家有好的机会可以介绍一下，在此谢过了！
 
 # justyeh.com
 
