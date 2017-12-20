@@ -28,7 +28,7 @@ npm install --save nuxt@1.0.0-alpha.3
 
 ## 技术栈
 
-Vue.js+Nuxt.js+Es6+Webpack+Mysql+Noyde.js+Express.js
+Vue.js+Nuxt.js+Es6+Webpack+Mysql+Node.js+Express.js
 
 ## 运行
 
