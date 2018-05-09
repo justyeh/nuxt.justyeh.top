@@ -41,6 +41,10 @@ npm run dev
 npm run build
 npm start
 
+#pm2
+npm run build
+pm2 start npm --name 'justyeh.com' -- start
+
 #运行地址
 http://localhost:3000
 ```
