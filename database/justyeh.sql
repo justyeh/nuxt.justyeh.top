@@ -29,7 +29,7 @@ CREATE TABLE `posts` (
   `meta_description` varchar(255) DEFAULT NULL COMMENT 'HTML描述',
   `updated_at` bigint(20) DEFAULT NULL COMMENT '修改时间（删除）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='叶文祥的前端博客：文章表';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='justyeh的前端博客：文章表';
 
 -- ----------------------------
 -- Records of posts
@@ -69,7 +69,7 @@ CREATE TABLE `post_tags` (
   `post_id` int(8) NOT NULL COMMENT '角色ID',
   `tag_id` int(8) NOT NULL COMMENT '用户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='叶文祥的前端博客：文章标签表';
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='justyeh的前端博客：文章标签表';
 
 -- ----------------------------
 -- Records of post_tags
@@ -124,7 +124,7 @@ CREATE TABLE `roles` (
   `name` varchar(2050) DEFAULT NULL COMMENT '名称',
   `description` varchar(20) DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='叶文祥的前端博客：角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='justyeh的前端博客：角色表';
 
 -- ----------------------------
 -- Records of roles
@@ -144,7 +144,7 @@ CREATE TABLE `tags` (
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   `hidden` tinyint(1) DEFAULT '0' COMMENT '是否隐藏（0显示，1隐藏）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='叶文祥的前端博客：标签表';
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='justyeh的前端博客：标签表';
 
 -- ----------------------------
 -- Records of tags
@@ -195,12 +195,12 @@ CREATE TABLE `users` (
   `website` varchar(50) DEFAULT NULL COMMENT '网址',
   `location` varchar(100) DEFAULT NULL COMMENT '地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='叶文祥的前端博客：用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='justyeh的前端博客：用户表';
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '叶文祥', 'justyeh', '99926e3dab995487ceab34ec1c8b2fd7f99392da', null, 'justyeh@163.com', '码畜，其他没什么好说的！', 'http://www.justyeh.com', '暂住北京');
+INSERT INTO `users` VALUES ('1', 'justyeh', 'justyeh', '99926e3dab995487ceab34ec1c8b2fd7f99392da', null, 'justyeh@163.com', '码畜，其他没什么好说的！', 'http://www.justyeh.com', '暂住北京');
 
 -- ----------------------------
 -- Table structure for user_roles
@@ -211,7 +211,7 @@ CREATE TABLE `user_roles` (
   `role_id` int(8) NOT NULL COMMENT '角色ID',
   `user_id` int(8) NOT NULL COMMENT '用户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='叶文祥的前端博客：用户角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='justyeh的前端博客：用户角色表';
 
 -- ----------------------------
 -- Records of user_roles
